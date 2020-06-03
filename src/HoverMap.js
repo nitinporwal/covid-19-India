@@ -4,7 +4,7 @@ import world from "@svg-maps/india";
 import './App.css';
 import Data from "./Data";
 import { covid } from "./api/covid";
-import States from "./States";
+// import States from "./States";
 import { Link } from "react-router-dom";
  
 class HoverMap extends React.Component {
@@ -220,12 +220,20 @@ class HoverMap extends React.Component {
                 <article className="examples__block">
                     <div className='ui grid'>
                         <div className="four wide column examples__block__info">
-                            <div className="examples__block__info__item">
-                                Pointed location: {this.state.pointedLocation}
-                                <Data code={this.state.pointedLocation} />
-                            </div>
-                            <div className="examples__block__info__item">
-                                Clicked location: {this.state.clickedLocation}
+                            <div class="ui cards">
+                                <div class="card">
+                                    <div class="content">
+                                        <div class="header examples__block__info__item">
+                                            {/* <h2> */}
+                                                Pointed location: 
+                                                {this.state.pointedLocation}
+                                            {/* </h2> */}
+                                        </div>
+                                        <div class="description">
+                                            <Data code={this.state.pointedLocation} />
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div className="eleven wide column examples__block__map examples__block__map--usa">

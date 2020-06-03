@@ -27,16 +27,16 @@ class Data extends Component {
                 toolpick=(
                     <div>
                         <div>
-                            confirmed: {stats.confirmed}
+                            Confirmed: {stats.confirmed}
                         </div>
                         <div>
-                            active: {stats.active}
+                            Active: {stats.active}
                         </div>
                         <div>
-                            deaths: {stats.deaths}
+                            Deaths: {stats.deaths}
                         </div>
                         <div>
-                            recovered: {stats.recovered}
+                            Recovered: {stats.recovered}
                         </div>
                     </div>
                 )
