@@ -1,13 +1,17 @@
-import React, { Component } from 'react';
-
-class App extends Component {
+import React from "react";
+import { SVGMap } from "react-svg-map";
+import world from "@svg-maps/india";
+import './App.css';
+import HoverMap from "./HoverMap";
+ 
+class App extends React.Component {
     render() {
         return (
-            <div>
-                Hello world!
+            <div className="container">
+                <HoverMap />
             </div>
         )
     }
-};
+}
 
 export default App;
