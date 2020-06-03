@@ -3,6 +3,7 @@ import { SVGMap } from "react-svg-map";
 import world from "@svg-maps/india";
 import './App.css';
 import Data from "./Data";
+import { covid } from "./api/covid";
  
 class HoverMap extends React.Component {
     constructor(props) {
@@ -14,7 +15,8 @@ class HoverMap extends React.Component {
 				display: 'none'
 			},
 			focusedLocation: null,
-			clickedLocation: null
+            clickedLocation: null,
+            cases: []
 		};
 
 		this.handleLocationMouseOver = this.handleLocationMouseOver.bind(this);
@@ -23,7 +25,13 @@ class HoverMap extends React.Component {
 		this.handleLocationClick = this.handleLocationClick.bind(this);
 		this.handleLocationFocus = this.handleLocationFocus.bind(this);
 		this.handleLocationBlur = this.handleLocationBlur.bind(this);
-	}
+    }
+    componentDidMount = () => {
+        covid.get('/data.json').then(res => {
+            // console.log(res.data.statewise)
+            this.setState({cases: res.data.statewise});
+        })
+    }
     getLocationSelected(event) {
         return event.target.attributes['aria-checked'].value === 'true';
     }
@@ -67,43 +75,72 @@ class HoverMap extends React.Component {
 		};
 		this.setState({ tooltipStyle });
 	}
-
-	getLocationClassName(location, index) {
-		// Generate random heat map
-		return `svg-map__location svg-map__location--heat${index % 4}`;
+	getLocationClassName = (location, index) => {
+        // console.log(location, index)
+        // console.log(this.state)
+        let r=this.state.cases.filter(c=> {
+            return c.state===location.name
+        })
+        let cases, max;
+        if(this.state.cases[0]) {
+            cases=this.state.cases[0].confirmed;
+            max=this.state.cases[0].confirmed;
+        }
+        if(r[0]) {
+            cases=r[0].confirmed;
+        }
+        // Generate random heat map
+        if(cases<2*(max)/100) {
+            return `svg-map__location svg-map__location--heat4`;
+        }
+        else if(cases<4*(max)/100) {
+            return `svg-map__location svg-map__location--heat3`;
+        }
+        else if(cases<8*(max)/100) {
+            return `svg-map__location svg-map__location--heat2`;
+        }
+        else if(cases<16*(max)/100) {
+            return `svg-map__location svg-map__location--heat1`;
+        }
+        else if(cases<32*(max)/100) {
+            return `svg-map__location svg-map__location--heat0`;
+        }
+        else {
+            return `svg-map__location svg-map__location--heat0`;
+        }
 	}
 
 	render() {
 		return (
 			<article className="examples__block">
-				<h2 className="examples__block__title">
-					India SVG heat map with tooltips
-				</h2>
-                <div className="examples__block__info">
-					<div className="examples__block__info__item">
-						Pointed location: {this.state.pointedLocation}
-					</div>
-					<div className="examples__block__info__item">
-						Clicked location: {this.state.clickedLocation}
-					</div>
-				</div>
-				<div className="examples__block__map examples__block__map--usa">
-					<SVGMap
-						map={world}
-						locationClassName={this.getLocationClassName}
-						onLocationMouseOver={this.handleLocationMouseOver}
-						onLocationMouseOut={this.handleLocationMouseOut}
-						onLocationClick={this.handleLocationClick}
-						onLocationFocus={this.handleLocationFocus}
-						onLocationBlur={this.handleLocationBlur}
-						onLocationMouseMove={this.handleLocationMouseMove} />
-					<div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
-						<div className="ui header">
-                            {this.state.pointedLocation}
+                <div className='ui grid'>
+                    <div className="six wide column examples__block__info">
+                        <div className="examples__block__info__item">
+                            Pointed location: {this.state.pointedLocation}
+                            <Data code={this.state.pointedLocation} />
                         </div>
-                        <Data code={this.state.pointedLocation} />
-					</div>
-				</div>
+                        <div className="examples__block__info__item">
+                            Clicked location: {this.state.clickedLocation}
+                        </div>
+                    </div>
+                    <div className="ten wide column examples__block__map examples__block__map--usa">
+                        <SVGMap 
+                            map={world}
+                            onLocationMouseOver={this.handleLocationMouseOver}
+                            onLocationMouseOut={this.handleLocationMouseOut}
+                            onLocationClick={this.handleLocationClick}
+                            onLocationFocus={this.handleLocationFocus}
+                            onLocationBlur={this.handleLocationBlur}
+                            locationClassName={(location, index) =>this.getLocationClassName(location, index)}
+                            onLocationMouseMove={this.handleLocationMouseMove} />
+                        <div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
+                            <div className="ui header">
+                                {this.state.pointedLocation}
+                            </div>
+                            <Data code={this.state.pointedLocation} />
+                        </div>
+                    </div>
+                </div>
 			</article>
 		);
 	}
