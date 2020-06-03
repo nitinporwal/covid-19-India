@@ -1,5 +1,5 @@
 .container {
-    margin: 40px;
+    margin-top: 10px;
 }
 .svg-map {
     width: 100%;
@@ -10,7 +10,7 @@
     stroke-linejoin: round;
 }
 .examples {
-    width: 800px;
+    width: 900px;
     margin: 0 auto;
     font-family: Arial, sans-serif;
     text-align: center;
@@ -56,7 +56,7 @@
     display: inline-block;
     width: 500px;
 }
-.examples__block__map .svg-map__location:focus, .examples__block__map--usa .svg-map__location:hover {
+.examples__block__map .svg-map__location--heat0:focus, .examples__block__map--usa .svg-map__location--heat0:hover, .examples__block__map--usa .svg-map__location--heat1:hover, .examples__block__map--usa .svg-map__location--heat2:hover, .examples__block__map--usa .svg-map__location--heat3:hover, .examples__block__map--usa .svg-map__location--heat4:hover, .examples__block__map--usa .svg-map__location--heat5:hover {
     opacity: 0.75;
 }
 .examples__block__map__tooltip {

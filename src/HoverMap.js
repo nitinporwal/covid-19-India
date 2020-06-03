@@ -8,6 +8,8 @@ import { covid } from "./api/covid";
 class HoverMap extends React.Component {
     constructor(props) {
 		super(props);
+        this.links = {
+		};
 
 		this.state = {
 			pointedLocation: null,
@@ -27,9 +29,14 @@ class HoverMap extends React.Component {
 		this.handleLocationBlur = this.handleLocationBlur.bind(this);
     }
     componentDidMount = () => {
+        const url='localhost:3000/state/'
         covid.get('/data.json').then(res => {
             // console.log(res.data.statewise)
             this.setState({cases: res.data.statewise});
+            res.data.statewise.map(data => {
+                return this.links[data.statecode.toLowerCase()]=`${url}${data.statecode.toLowerCase()}`
+            })
+            console.log(this.links);
         })
     }
     getLocationSelected(event) {
@@ -55,7 +62,11 @@ class HoverMap extends React.Component {
 		const clickedLocationId = this.getLocationId(event);
         this.setState({ clickedLocation: clickedLocation });
         console.log(clickedLocationId);
-        
+        let r=this.state.cases.filter(c=> {
+            return c.state===clickedLocation
+        })
+        console.log(r);
+		window.open(this.links[clickedLocationId]);
     }
     
 	handleLocationFocus(event) {
@@ -108,13 +119,51 @@ class HoverMap extends React.Component {
         else {
             return `svg-map__location svg-map__location--heat0`;
         }
-	}
-
+    }
+    handleHover = (ca) => {
+        const pointedLocation = ca.state;
+		this.setState({ pointedLocation });
+    }
+    handleOut = () => {
+		this.setState({ pointedLocation: null, tooltipStyle: { display: 'none' } });
+    }
+    // handleMouseMove = (event) => {
+	// 	const tooltipStyle = {
+    //         display: 'block',
+    //         style: {
+    //             zIndex:"10"
+    //         },
+	// 		top: event.clientY + 10,
+	// 		left: event.clientX - 300
+	// 	};
+	// 	this.setState({ tooltipStyle });
+    // }
+    showStats = () => {
+        return (
+            <tbody>
+                {this.state.cases.map(ca => {
+                    return (
+                        <tr 
+                            onMouseOver={() => this.handleHover(ca)}
+                            onMouseOut={this.handleOut}
+                            // onMouseMove={this.handleMouseMove}
+                        >
+                            <td>{ca.state}</td>
+                            <td>{ca.confirmed}</td>
+                            <td>{ca.active}</td>
+                            <td>{ca.recovered}</td>
+                            <td>{ca.deaths}</td>
+                        </tr>
+                    )
+                })}
+            </tbody>
+        )
+    }
 	render() {
 		return (
 			<article className="examples__block">
                 <div className='ui grid'>
-                    <div className="six wide column examples__block__info">
+                    <div className="four wide column examples__block__info">
                         <div className="examples__block__info__item">
                             Pointed location: {this.state.pointedLocation}
                             <Data code={this.state.pointedLocation} />
@@ -123,7 +172,7 @@ class HoverMap extends React.Component {
                             Clicked location: {this.state.clickedLocation}
                         </div>
                     </div>
-                    <div className="ten wide column examples__block__map examples__block__map--usa">
+                    <div className="eleven wide column examples__block__map examples__block__map--usa">
                         <SVGMap 
                             map={world}
                             onLocationMouseOver={this.handleLocationMouseOver}
@@ -139,6 +188,20 @@ class HoverMap extends React.Component {
                             </div>
                             <Data code={this.state.pointedLocation} />
                         </div>
+                    </div>
+                    <div className="one wide column">
+                        <table className="ui selectable striped table">
+                            <thead>
+                                <tr>
+                                <th>State/UT</th>
+                                <th>Confirmed</th>
+                                <th>Active</th>
+                                <th>Recovered</th>
+                                <th>Deaths</th>
+                                </tr>
+                            </thead>
+                            {this.showStats()}
+                        </table>
                     </div>
                 </div>
 			</article>
