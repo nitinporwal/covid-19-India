@@ -23,22 +23,24 @@ class Data extends Component {
         let toolpick=null;
         if(code) {
             let stats=this.getStats(code);
-            toolpick=(
-                <div>
+            if(stats) {
+                toolpick=(
                     <div>
-                        confirmed: {stats.confirmed}
+                        <div>
+                            confirmed: {stats.confirmed}
+                        </div>
+                        <div>
+                            active: {stats.active}
+                        </div>
+                        <div>
+                            deaths: {stats.deaths}
+                        </div>
+                        <div>
+                            recovered: {stats.recovered}
+                        </div>
                     </div>
-                    <div>
-                        active: {stats.active}
-                    </div>
-                    <div>
-                        deaths: {stats.deaths}
-                    </div>
-                    <div>
-                        recovered: {stats.recovered}
-                    </div>
-                </div>
-            )
+                )
+            }
         }
         return (
             <div>

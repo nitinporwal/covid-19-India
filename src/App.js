@@ -10,7 +10,7 @@ class App extends React.Component {
             <BrowserRouter>
                 <Route path="/" exact component={HoverMap} />
                 <Route 
-                    path="/state/jk" exact 
+                    path="/state/"
                     render={(routeProps) => (
                         <States {...routeProps} />
                     )}

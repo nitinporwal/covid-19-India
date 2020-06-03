@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 
 class States extends Component {
-    render() {
+    render(props) {
+        console.log(this.props.location.state)
         return (
             <div>
-                Hi
+                {this.props.location.state.region.ca.state}
             </div>
         )
     }

@@ -4,6 +4,8 @@ import world from "@svg-maps/india";
 import './App.css';
 import Data from "./Data";
 import { covid } from "./api/covid";
+import States from "./States";
+import { Link } from "react-router-dom";
  
 class HoverMap extends React.Component {
     constructor(props) {
@@ -18,6 +20,7 @@ class HoverMap extends React.Component {
 			},
 			focusedLocation: null,
             clickedLocation: null,
+            clickedLocationCode: null,
             cases: []
 		};
 
@@ -57,7 +60,7 @@ class HoverMap extends React.Component {
 		this.setState({ pointedLocation: null, tooltipStyle: { display: 'none' } });
 	}
 
-    handleLocationClick(event) {
+    handleLocationClick = (event) => {
 		const clickedLocation = this.getLocationName(event);
 		const clickedLocationId = this.getLocationId(event);
         this.setState({ clickedLocation: clickedLocation });
@@ -66,12 +69,14 @@ class HoverMap extends React.Component {
             return c.state===clickedLocation
         })
         console.log(r);
-		window.open(this.links[clickedLocationId]);
+		// window.open(this.links[clickedLocationId]);
+        this.setState({clickedLocationCode: clickedLocationId});
+        console.log(this.state);
     }
     
 	handleLocationFocus(event) {
 		const focusedLocation = this.getLocationName(event);
-		this.setState({ focusedLocation: focusedLocation });
+        this.setState({ focusedLocation: focusedLocation });
 	}
 
 	handleLocationBlur() {
@@ -127,6 +132,9 @@ class HoverMap extends React.Component {
     handleOut = () => {
 		this.setState({ pointedLocation: null, tooltipStyle: { display: 'none' } });
     }
+    handleOut = () => {
+
+    }
     // handleMouseMove = (event) => {
 	// 	const tooltipStyle = {
     //         display: 'block',
@@ -143,16 +151,62 @@ class HoverMap extends React.Component {
             <tbody>
                 {this.state.cases.map(ca => {
                     return (
-                        <tr 
+                        <tr key={ca.statecode}
                             onMouseOver={() => this.handleHover(ca)}
                             onMouseOut={this.handleOut}
+                            // onClick={this.handleClick}
                             // onMouseMove={this.handleMouseMove}
-                        >
-                            <td>{ca.state}</td>
-                            <td>{ca.confirmed}</td>
-                            <td>{ca.active}</td>
-                            <td>{ca.recovered}</td>
-                            <td>{ca.deaths}</td>
+                            >
+                            <td>
+                                <Link to={{
+                                    pathname: `/state/${ca.statecode}`,
+                                    state: {
+                                        region: {ca}
+                                    }
+                                }}>
+                                    {ca.state}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link to={{
+                                    pathname: `/state/${ca.statecode}`,
+                                    state: {
+                                        region: {ca}
+                                    }
+                                }}>
+                                    {ca.confirmed}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link to={{
+                                    pathname: `/state/${ca.statecode}`,
+                                    state: {
+                                        region: {ca}
+                                    }
+                                }}>
+                                    {ca.active}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link to={{
+                                    pathname: `/state/${ca.statecode}`,
+                                    state: {
+                                        region: {ca}
+                                    }
+                                }}>
+                                    {ca.recovered}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link to={{
+                                    pathname: `/state/${ca.statecode}`,
+                                    state: {
+                                        region: {ca}
+                                    }
+                                }}>
+                                    {ca.deaths}
+                                </Link>
+                            </td>
                         </tr>
                     )
                 })}
@@ -160,52 +214,60 @@ class HoverMap extends React.Component {
         )
     }
 	render() {
-		return (
-			<article className="examples__block">
-                <div className='ui grid'>
-                    <div className="four wide column examples__block__info">
-                        <div className="examples__block__info__item">
-                            Pointed location: {this.state.pointedLocation}
-                            <Data code={this.state.pointedLocation} />
-                        </div>
-                        <div className="examples__block__info__item">
-                            Clicked location: {this.state.clickedLocation}
-                        </div>
-                    </div>
-                    <div className="eleven wide column examples__block__map examples__block__map--usa">
-                        <SVGMap 
-                            map={world}
-                            onLocationMouseOver={this.handleLocationMouseOver}
-                            onLocationMouseOut={this.handleLocationMouseOut}
-                            onLocationClick={this.handleLocationClick}
-                            onLocationFocus={this.handleLocationFocus}
-                            onLocationBlur={this.handleLocationBlur}
-                            locationClassName={(location, index) =>this.getLocationClassName(location, index)}
-                            onLocationMouseMove={this.handleLocationMouseMove} />
-                        <div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
-                            <div className="ui header">
-                                {this.state.pointedLocation}
+        if(!this.state.clickedLocation) {
+            // {console.log("YES")}
+            return (
+                <article className="examples__block">
+                    <div className='ui grid'>
+                        <div className="four wide column examples__block__info">
+                            <div className="examples__block__info__item">
+                                Pointed location: {this.state.pointedLocation}
+                                <Data code={this.state.pointedLocation} />
                             </div>
-                            <Data code={this.state.pointedLocation} />
+                            <div className="examples__block__info__item">
+                                Clicked location: {this.state.clickedLocation}
+                            </div>
+                        </div>
+                        <div className="eleven wide column examples__block__map examples__block__map--usa">
+                            <SVGMap 
+                                map={world}
+                                onLocationMouseOver={this.handleLocationMouseOver}
+                                onLocationMouseOut={this.handleLocationMouseOut}
+                                onLocationClick={(event) => this.handleLocationClick(event)}
+                                onLocationFocus={this.handleLocationFocus}
+                                onLocationBlur={this.handleLocationBlur}
+                                locationClassName={(location, index) =>this.getLocationClassName(location, index)}
+                                onLocationMouseMove={this.handleLocationMouseMove} />
+                            <div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
+                                <div className="ui header">
+                                    {this.state.pointedLocation}
+                                </div>
+                                <Data code={this.state.pointedLocation} />
+                            </div>
+                        </div>
+                        <div className="one wide column">
+                            <table className="ui selectable striped table">
+                                <thead>
+                                    <tr>
+                                    <th>State/UT</th>
+                                    <th>Confirmed</th>
+                                    <th>Active</th>
+                                    <th>Recovered</th>
+                                    <th>Deaths</th>
+                                    </tr>
+                                </thead>
+                                {this.showStats()}
+                            </table>
                         </div>
                     </div>
-                    <div className="one wide column">
-                        <table className="ui selectable striped table">
-                            <thead>
-                                <tr>
-                                <th>State/UT</th>
-                                <th>Confirmed</th>
-                                <th>Active</th>
-                                <th>Recovered</th>
-                                <th>Deaths</th>
-                                </tr>
-                            </thead>
-                            {this.showStats()}
-                        </table>
-                    </div>
-                </div>
-			</article>
-		);
+                </article>
+            );
+        }
+        // else {
+        //     return (
+        //         <States region={this.state.clickedLocationCode} />
+        //     )
+        // }
 	}
 }
 
