@@ -18,15 +18,22 @@ class States extends Component {
             recoveredDaily: [],
             deathDaily: []
         }
+        this.classes = {
+            class1: "active focus",
+            class2: "",
+            class3: "active focus",
+            class4: "",
+            class5: ""
+        }
     }
     componentDidMount = () => {
         covid.get('/states_daily.json').then(res => {
             return this.setState({daily: res.data.states_daily})
         }).then(() => {
-            this.fetchConfirmed();
+            this.fetchMonth();
         })
     }
-    fetchConfirmed = () => {
+    fetchOverall = () => {
         let c=this.props.location.state.region.ca.statecode.toString().toLowerCase();
         let conf=[], act=[], dec=[], rec=[];
         let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
@@ -53,12 +60,124 @@ class States extends Component {
             return null;
         })
         this.setState({confirmed: conf, active: act, death: dec, recovered: rec, confirmedDaily: confDaily, activeDaily: actDaily, deathDaily: decDaily, recoveredDaily: recDaily});
+        
+        let dail=this.state.isDaily;
+        this.setState({isDaily: !dail});
+        this.setState({isDaily: dail});    
+    }
+    fetchMonth = () => {
+        let c=this.props.location.state.region.ca.statecode.toString().toLowerCase();
+        let res=new Date();
+        let res2=new Date();
+        res2.setDate(res.getDate()-31);
+        let conf=[], act=[], dec=[], rec=[];
+        let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
+        let x=0, y=0, z=0, a=0;
+        this.state.daily.filter(d => {
+            if(new Date(d.date)>=res2) {
+                if(d.status==='Confirmed') {
+                    x=parseInt(parseInt(x)+parseInt(d[`${c}`]));
+                    conf.push({date: d.date, cases: x});
+                    confDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
+                }
+                else if(d.status==='Deceased') {
+                    z=parseInt(parseInt(z)+parseInt(d[`${c}`]));
+                    dec.push({date: d.date, cases: z});
+                    decDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
+                    y=x-z-a;
+                    act.push({date: d.date, cases: y});
+                    actDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
+                }
+                else if(d.status==='Recovered') {
+                    a=parseInt(parseInt(a)+parseInt(d[`${c}`]));
+                    rec.push({date: d.date, cases: a});
+                    recDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
+                }
+
+            }
+            return null;
+        })
+        this.setState({confirmed: conf, active: act, death: dec, recovered: rec, confirmedDaily: confDaily, activeDaily: actDaily, deathDaily: decDaily, recoveredDaily: recDaily});
+    
+        let dail=this.state.isDaily;
+        this.setState({isDaily: !dail});
+        this.setState({isDaily: dail});
+    }
+    fetchHalf = () => {
+        let c=this.props.location.state.region.ca.statecode.toString().toLowerCase();
+        let res=new Date();
+        let res2=new Date();
+        res2.setDate(res.getDate()-14);
+        let conf=[], act=[], dec=[], rec=[];
+        let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
+        let x=0, y=0, z=0, a=0;
+        this.state.daily.filter(d => {
+            if(new Date(d.date)>=res2) {
+                if(d.status==='Confirmed') {
+                    x=parseInt(parseInt(x)+parseInt(d[`${c}`]));
+                    conf.push({date: d.date, cases: x});
+                    confDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
+                }
+                else if(d.status==='Deceased') {
+                    z=parseInt(parseInt(z)+parseInt(d[`${c}`]));
+                    dec.push({date: d.date, cases: z});
+                    decDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
+                    y=x-z-a;
+                    act.push({date: d.date, cases: y});
+                    actDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
+                }
+                else if(d.status==='Recovered') {
+                    a=parseInt(parseInt(a)+parseInt(d[`${c}`]));
+                    rec.push({date: d.date, cases: a});
+                    recDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
+                }
+
+            }
+            return null;
+        })
+        this.setState({confirmed: conf, active: act, death: dec, recovered: rec, confirmedDaily: confDaily, activeDaily: actDaily, deathDaily: decDaily, recoveredDaily: recDaily});
+        
+        let dail=this.state.isDaily;
+        this.setState({isDaily: !dail});
+        this.setState({isDaily: dail});
     }
     toggleChartsDaily = () => {
-        this.setState({isDaily: false});
+        if(this.classes.class2!=="active focus") {
+            this.classes.class1="";
+            this.classes.class2="active focus";
+            this.setState({isDaily: true});
+        }
     }
-    toggleChatsTotal = () => {
-        this.setState({isDaily: true});
+    toggleChartsTotal = () => {
+        if(this.classes.class1!=="active focus") {
+            this.classes.class1="active focus";
+            this.classes.class2="";
+            this.setState({isDaily: false});
+        }
+    }
+    handleBegining = () => {
+        if(this.classes.class4!=="active focus") {
+            this.classes.class3="";
+            this.classes.class4="active focus";
+            this.classes.class5="";
+            this.fetchOverall();
+        }
+    }
+    handleMonth = () => {
+        if(this.classes.class3!=="active focus") {
+            this.classes.class3="active focus";
+            this.classes.class4="";
+            this.classes.class5="";
+            this.fetchMonth();
+        }
+    }
+    handleTwoWeeks = () => {
+        if(this.classes.class5!=="active focus") {
+            this.classes.class3="";
+            this.classes.class4="";
+            this.classes.class5="active focus";
+            this.fetchHalf();
+        }
     }
     render(props) {
         let daily = (
@@ -75,7 +194,6 @@ class States extends Component {
                     <Tooltip/>
                     <Legend />
                     <Bar type='monotone' dataKey="cases" stroke='#7900fa' fill='#7900fa' />
-                    {/* {console.log(`${this.props.location.state.region.ca.statecode.toString().toLowerCase()}`)} */}
                     </BarChart>
                 </div>
                 <div className="eight wide column">
@@ -140,7 +258,6 @@ class States extends Component {
                             <Tooltip/>
                             <Legend />
                             <Line type='monotone' dataKey="cases" stroke='#7900fa' fill='#7900fa' />
-                            {/* {console.log(`${this.props.location.state.region.ca.statecode.toString().toLowerCase()}`)} */}
                             </LineChart>
                         </div>
                         <div className="eight wide column">
@@ -194,16 +311,26 @@ class States extends Component {
                     <h2>
                         {this.props.location.state.region.ca.state}
                     </h2>
-                    <div className="btn-group btn-group-toggle" data-toggle="buttons">
-                        <label onClick={this.toggleChartsDaily} className="btn btn-primary">
-                            <input type="radio" name="options" id="option1" autocomplete="off" checked /> Total
+                    <div className="btn-group btn-group-toggle" style={{marginLeft: "20%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
+                        <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
+                            <input type="radio" name="options" id="option1" autoComplete="off" /> Total
                         </label>
-                        <label onClick={this.toggleChatsTotal} className="btn btn-primary">
-                            <input type="radio" name="options" id="option2" autocomplete="off" /> Daily
+                        <label onClick={this.toggleChartsDaily} className={`btn btn-primary ${this.classes.class2}`}>
+                            <input type="radio" name="options" id="option2" autoComplete="off" /> Daily
+                        </label>
+                    </div>
+                    <div className="btn-group btn-group-toggle" style={{marginLeft: "40%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
+                        <label onClick={this.handleBegining} className={`btn btn-primary ${this.classes.class4}`}>
+                            <input type="radio" name="options" id="option1" autoComplete="off" /> Begining
+                        </label>
+                        <label onClick={this.handleMonth} className={`btn btn-primary ${this.classes.class3}`}>
+                            <input type="radio" name="options" id="option2" autoComplete="off" /> One Month
+                        </label>
+                        <label onClick={this.handleTwoWeeks} className={`btn btn-primary ${this.classes.class5}`}>
+                            <input type="radio" name="options" id="option2" autoComplete="off" /> Two Weeks
                         </label>
                     </div>
                     {daily}
-                    
                 </div>
             );
         }
