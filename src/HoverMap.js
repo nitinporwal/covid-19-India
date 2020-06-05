@@ -22,9 +22,19 @@ class HoverMap extends React.Component {
             clickedLocation: null,
             clickedLocationCode: null,
             cases: [],
-            totalCases: []
+            totalCases: [],
+            sortConfig: {
+                key: "confirmed",
+                direction: "desc"
+            },
 		};
-
+        this.classes = {
+            class1: "",
+            class2: "",
+            class3: "",
+            class4: "",
+            class5: ""
+        }
 		this.handleLocationMouseOver = this.handleLocationMouseOver.bind(this);
 		this.handleLocationMouseOut = this.handleLocationMouseOut.bind(this);
 		this.handleLocationMouseMove = this.handleLocationMouseMove.bind(this);
@@ -124,17 +134,16 @@ class HoverMap extends React.Component {
 	getLocationClassName = (location, index) => {
         // console.log(location, index)
         // console.log(this.state)
-        let r=this.state.cases.filter(c=> {
+        let cases, max;
+        this.state.cases.filter(c=> {
+            if(c.statecode==='TT') {
+                max=c.confirmed;
+            }
+            if(c.state===location.name) {
+                cases=c.confirmed;
+            }
             return c.state===location.name
         })
-        let cases, max;
-        if(this.state.cases[0]) {
-            cases=this.state.cases[0].confirmed;
-            max=this.state.cases[0].confirmed;
-        }
-        if(r[0]) {
-            cases=r[0].confirmed;
-        }
         // Generate random heat map
         if(cases<2*(max)/100) {
             return `svg-map__location svg-map__location--heat4`;
@@ -162,6 +171,36 @@ class HoverMap extends React.Component {
     handleOut = () => {
 		this.setState({ pointedLocation: "Total", tooltipStyle: { display: 'none' } });
     }
+    dynamicsort = (key, direction) => {
+        return (a, b) => {
+            if(key==="state") {
+                if (a[key] < b[key]) {
+                    return direction === 'asc' ? -1 : 1;
+                  }
+                  if (a[key] > b[key]) {
+                    return direction === 'asc' ? 1 : -1;
+                  }
+                  return 0;
+            }
+            if (parseInt(a[key]) < parseInt(b[key])) {
+                return direction === 'asc' ? -1 : 1;
+              }
+              if (parseInt(a[key]) > parseInt(b[key])) {
+                return direction === 'asc' ? 1 : -1;
+              }
+              return 0;
+        }
+    }
+    sortData = (key) => {
+        let direction = 'desc';
+        if (this.state.sortConfig && this.state.sortConfig.key === key && this.state.sortConfig.direction === 'desc') {
+            direction = 'asc';
+        }
+        this.setState({sortConfig: {key: key, direction: direction}});
+        let x=this.state.cases;
+        console.log(key, direction)
+        x.sort(this.dynamicsort(key, direction));
+    }
     showStats = () => {
         // let p=0, q=0, r=0, s=0;
         return (
@@ -175,54 +214,55 @@ class HoverMap extends React.Component {
                         <tr key={ca.statecode}
                             onMouseOver={() => this.handleHover(ca)}
                             onMouseOut={this.handleOut}
+                            style={{height: "1px"}}
                             >
-                            <td>
+                            <td style={{padding: "0.2em 0.7em"}}>
                                 <Link to={{
                                     pathname: `/state/${ca.statecode}`,
                                     state: {
                                         region: {ca}
                                     }
-                                }}>
+                                }} style={{textDecoration: "none"}}>
                                     {ca.state}
                                 </Link>
                             </td>
-                            <td>
+                            <td style={{padding: "0.2em 0.7em"}}>
                                 <Link to={{
                                     pathname: `/state/${ca.statecode}`,
                                     state: {
                                         region: {ca}
                                     }
-                                }}>
+                                }} style={{textDecoration: "none"}}>
                                     {ca.confirmed}
                                     {/* <br/>
                                     {q} */}
                                 </Link>
                             </td>
-                            <td>
+                            <td style={{padding: "0.2em 0.7em"}}>
                                 <Link to={{
                                     pathname: `/state/${ca.statecode}`,
                                     state: {
                                         region: {ca}
                                     }
-                                }}>
+                                }} style={{textDecoration: "none"}}>
                                     {ca.active}
                                     {/* <br/>
                                     {p} */}
                                 </Link>
                             </td>
-                            <td>
+                            <td style={{padding: "0.2em 0.7em"}}>
                                 <Link to={{
                                     pathname: `/state/${ca.statecode}`,
                                     state: {
                                         region: {ca}
                                     }
-                                }}>
+                                }} style={{textDecoration: "none"}}>
                                     {ca.recovered}
                                     {/* <br/>
                                     {r} */}
                                 </Link>
                             </td>
-                            <td>
+                            <td style={{padding: "0.2em 0.7em"}}>
                                 <Link to={{
                                     pathname: `/state/${ca.statecode}`,
                                     state: {
@@ -245,23 +285,30 @@ class HoverMap extends React.Component {
         )
     }
 	render() {
+        let v="";
+        if(this.state.sortConfig.direction==="desc") {
+            v="  👇"
+        }
+        else {
+            v="  ☝️"
+        }
         if(!this.state.clickedLocation) {
             console.log(this.state)
             return (
-                <article className="examples__block">
-                    <div className='ui grid'>
-                        <div className="fifteen wide column">
+                <article className="examples__block" style={{marginTop: "3%"}}>
+                    <div className='ui grid' style={{fontSize: "0.95em"}}>
+                        <div className="fifteen wide column jumbotron">
                             <div className="ui grid">
                                 <div className="five wide column examples__block__info">
-                                <div className="card text-white bg-primary mb-3" style={{maxWidth: "18rem", minWidth: "16rem"}}>
+                                <div className="card text-white bg-primary mb-3" style={{maxWidth: "18rem", minWidth: "14rem"}}>
                                     <div className="card-header">
-                                        <h4>
+                                        <h5>
                                             Pointed location:
                                             <br/>
                                             {(this.state.pointedLocation!=="Total") ? 
                                             this.state.pointedLocation :
                                             "India"}
-                                        </h4>
+                                        </h5>
                                     </div>
                                     <div className="card-body">
                                         <Data code={this.state.pointedLocation} />
@@ -308,11 +355,26 @@ class HoverMap extends React.Component {
                             <table className="ui selectable striped table">
                                 <thead>
                                     <tr>
-                                    <th>State/UT</th>
-                                    <th>Confirmed</th>
-                                    <th>Active</th>
-                                    <th>Recovered</th>
-                                    <th>Deaths</th>
+                                    <th onClick={() => this.sortData("state")} style={{cursor: "default"}}>
+                                        State/UT
+                                        {(this.state.sortConfig.key==="state") ? v : ""}
+                                    </th>
+                                    <th onClick={() => this.sortData("confirmed")} style={{cursor: "default"}}>
+                                        Confirmed
+                                        {(this.state.sortConfig.key==="confirmed") ? v : ""}
+                                    </th>
+                                    <th onClick={() => this.sortData("active")} style={{cursor: "default"}}>
+                                        Active
+                                        {(this.state.sortConfig.key==="active") ? v : ""}
+                                    </th>
+                                    <th onClick={() => this.sortData("recovered")} style={{cursor: "default"}}>
+                                        Recovered
+                                        {(this.state.sortConfig.key==="recovered") ? v : ""}
+                                    </th>
+                                    <th onClick={() => this.sortData("deaths")} style={{cursor: "default"}}>
+                                        Deaths
+                                        {(this.state.sortConfig.key==="deaths") ? v : ""}
+                                    </th>
                                     </tr>
                                 </thead>
                                 {this.showStats()}

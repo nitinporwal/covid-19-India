@@ -10,7 +10,7 @@ class App extends React.Component {
         return (
             <>
             <Navbar />
-            <div className="ui container">
+            <div className="container">
                 <BrowserRouter>
                     <Route path="/" exact component={HoverMap} />
                     <Route 
