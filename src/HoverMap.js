@@ -5,6 +5,7 @@ import './App.css';
 import Data from "./Data";
 import { covid } from "./api/covid";
 import { Link} from "react-router-dom";
+import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, BarChart } from 'recharts';
 
  
 class HoverMap extends React.Component {
@@ -28,13 +29,6 @@ class HoverMap extends React.Component {
                 direction: "desc"
             },
 		};
-        this.classes = {
-            class1: "",
-            class2: "",
-            class3: "",
-            class4: "",
-            class5: ""
-        }
 		this.handleLocationMouseOver = this.handleLocationMouseOver.bind(this);
 		this.handleLocationMouseOut = this.handleLocationMouseOut.bind(this);
 		this.handleLocationMouseMove = this.handleLocationMouseMove.bind(this);
@@ -287,10 +281,10 @@ class HoverMap extends React.Component {
 	render() {
         let v="";
         if(this.state.sortConfig.direction==="desc") {
-            v="  👇"
+            v="🔽"
         }
         else {
-            v="  ☝️"
+            v="🔼"
         }
         if(!this.state.clickedLocation) {
             console.log(this.state)
@@ -350,6 +344,65 @@ class HoverMap extends React.Component {
                                     </div>
                                 </div>
                             </div>
+                            <div className='ui grid'>
+                        <div className="eight wide column">
+                            <div className="ui header centered">
+                                Confirmed cases:
+                            </div>
+                            <LineChart width={550} height={250} data={this.state.totalCases} syncId="anyId"
+                                margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey="date"/>
+                            <YAxis dataKey="" />
+                            <Tooltip/>
+                            <Legend />
+                            <Line type='monotone' dataKey="totalconfirmed" stroke='#7900fa' fill='#7900fa' />
+                            </LineChart>
+                        </div>
+                        <div className="eight wide column">
+                            <div className="ui header centered">
+                                Active cases:
+                            </div>
+                            <LineChart width={550} height={250} data={this.state.active} syncId="anyId"
+                                margin={{top: 0, right: 0, left: 30, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey="date"/>
+                            <YAxis/>
+                            <Tooltip/>
+                            <Legend />
+                            <Line type='monotone' dataKey="totalactive" stroke='#fc030f' fill='#fc030f' />
+                            </LineChart>
+                        </div>
+                        <div className="eight wide column">
+                            <div className="ui header centered">
+                                Recovered:
+                            </div>
+                            <LineChart width={550} height={250} data={this.state.recovered} syncId="anyId"
+                                margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey="date"/>
+                            <YAxis/>
+                            <Tooltip/>
+                            <Legend />
+                            <Line type='monotone' dataKey="totalrecovered" stroke='#9dfc03' fill='#9dfc03' />
+                            </LineChart>
+                        </div>
+                        <div className="eight wide column">
+                            <div className="ui header centered">
+                                Deaths:
+                            </div>
+                            <LineChart width={550} height={250} data={this.state.death} syncId="anyId"
+                                margin={{top: 0, right: 0, left: 30, bottom: 0}}>
+                            <CartesianGrid strokeDasharray="3 3"/>
+                            <XAxis dataKey="date"/>
+                            <YAxis/>
+                            <Tooltip/>
+                            <Legend />
+                            {/* <Brush /> */}
+                            <Line type='monotone' dataKey="totaldeceased" stroke='#949ea8' fill='#949ea8' />
+                            </LineChart>
+                        </div>
+                    </div>
                         </div>
                         <div className="one wide column">
                             <table className="ui selectable striped table">
@@ -357,23 +410,28 @@ class HoverMap extends React.Component {
                                     <tr>
                                     <th onClick={() => this.sortData("state")} style={{cursor: "default"}}>
                                         State/UT
-                                        {(this.state.sortConfig.key==="state") ? v : ""}
+                                        <br/>
+                                        {(this.state.sortConfig.key==="state") ? v : "⏹️"}
                                     </th>
                                     <th onClick={() => this.sortData("confirmed")} style={{cursor: "default"}}>
                                         Confirmed
-                                        {(this.state.sortConfig.key==="confirmed") ? v : ""}
+                                        <br/>
+                                        {(this.state.sortConfig.key==="confirmed") ? v : "⏹️"}
                                     </th>
                                     <th onClick={() => this.sortData("active")} style={{cursor: "default"}}>
                                         Active
-                                        {(this.state.sortConfig.key==="active") ? v : ""}
+                                        <br/>
+                                        {(this.state.sortConfig.key==="active") ? v : "⏹️"}
                                     </th>
                                     <th onClick={() => this.sortData("recovered")} style={{cursor: "default"}}>
                                         Recovered
-                                        {(this.state.sortConfig.key==="recovered") ? v : ""}
+                                        <br/>
+                                        {(this.state.sortConfig.key==="recovered") ? v : "⏹️"}
                                     </th>
                                     <th onClick={() => this.sortData("deaths")} style={{cursor: "default"}}>
                                         Deaths
-                                        {(this.state.sortConfig.key==="deaths") ? v : ""}
+                                        <br/>
+                                        {(this.state.sortConfig.key==="deaths") ? v : "⏹️"}
                                     </th>
                                     </tr>
                                 </thead>
