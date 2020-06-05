@@ -4,9 +4,7 @@ import world from "@svg-maps/india";
 import './App.css';
 import Data from "./Data";
 import { covid } from "./api/covid";
-import States from "./States";
-import { Link, Route, withRouter } from "react-router-dom";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from 'recharts';
+import { Link} from "react-router-dom";
 
  
 class HoverMap extends React.Component {
@@ -20,30 +18,34 @@ class HoverMap extends React.Component {
 			tooltipStyle: {
 				display: 'none'
 			},
-			focusedLocation: null,
+			// focusedLocation: null,
             clickedLocation: null,
             clickedLocationCode: null,
             cases: [],
-            totalCases: [],
-            totalActive: [],
-            totalConfirmed: [],
-            totalDeath: [],
-            totalRecovered: []
+            totalCases: []
 		};
 
 		this.handleLocationMouseOver = this.handleLocationMouseOver.bind(this);
 		this.handleLocationMouseOut = this.handleLocationMouseOut.bind(this);
 		this.handleLocationMouseMove = this.handleLocationMouseMove.bind(this);
 		this.handleLocationClick = this.handleLocationClick.bind(this);
-		this.handleLocationFocus = this.handleLocationFocus.bind(this);
-		this.handleLocationBlur = this.handleLocationBlur.bind(this);
+		// this.handleLocationFocus = this.handleLocationFocus.bind(this);
+		// this.handleLocationBlur = this.handleLocationBlur.bind(this);
     }
     componentDidMount = () => {
-        const url='localhost:3000/state/'
         covid.get('/data.json').then(res => {
             // console.log(res.data.cases_time_series)
-            this.setState({cases: res.data.statewise, totalCases: res.data.cases_time_series});
-        }).then(() => this.fetchTotal())
+            let cas=res.data.cases_time_series;
+            let c=cas.map(ca => {
+                return {...ca,
+                    totalactive: (ca.totalconfirmed-ca.totaldeceased-ca.totalrecovered).toString(),
+                    dailyactive: (ca.dailyconfirmed-ca.dailydeceased-ca.dailyrecovered).toString()
+                }
+            })
+            // console.log(c);
+            this.setState({cases: res.data.statewise, totalCases: c});
+        })
+        // .then(() => this.fetchTotal())
     }
     getLocationSelected(event) {
         return event.target.attributes['aria-checked'].value === 'true';
@@ -84,14 +86,14 @@ class HoverMap extends React.Component {
 
     }
     
-	handleLocationFocus(event) {
-		const focusedLocation = this.getLocationName(event);
-        this.setState({ focusedLocation: focusedLocation });
-	}
+	// handleLocationFocus(event) {
+	// 	const focusedLocation = this.getLocationName(event);
+    //     this.setState({ focusedLocation: focusedLocation });
+	// }
 
-	handleLocationBlur() {
-		this.setState({ focusedLocation: null });
-	}
+	// handleLocationBlur() {
+	// 	this.setState({ focusedLocation: null });
+	// }
 
 	handleLocationMouseMove(event) {
 		const tooltipStyle = {
@@ -101,21 +103,24 @@ class HoverMap extends React.Component {
 		};
 		this.setState({ tooltipStyle });
     }
-    fetchTotal = () => {
-        let a=[], b=[], c=[], d=[];
-        this.state.totalCases.map(t => {
-            let x=parseInt(t.totalconfirmed), y=parseInt(t.totalrecovered), z=parseInt(t.totaldeceased);
-            a=this.state.totalConfirmed;
-            a.push({date: t.date, cases: x});
-            b=this.state.totalRecovered;
-            b.push({date: t.date, cases: y});
-            c=this.state.totalDeath;
-            c.push({date: t.date, cases: z});
-            d=this.state.totalActive;
-            d.push({date: t.date, cases: x-y-z});
-        })
-        this.setState({totalActive: d, totalConfirmed: a, totalDeath: c, totalRecovered: b})
-    }
+    // fetchTotal = () => {
+    //     let a=[], b=[], c=[], d=[], x=0, y=0, z=0;
+    //     this.state.totalCases.map(t => {
+    //         let r=t.totalconfirmed-x, s=t.totalrecovered-y, u=t.totaldeceased-z;
+    //         x=parseInt(t.totalconfirmed);
+    //         y=parseInt(t.totalrecovered)
+    //         z=parseInt(t.totaldeceased);
+    //         a=this.state.totalConfirmed;
+    //         a.push({date: t.date, cases: x, delta: r});
+    //         b=this.state.totalRecovered;
+    //         b.push({date: t.date, cases: y, delta: s});
+    //         c=this.state.totalDeath;
+    //         c.push({date: t.date, cases: z, delta: u});
+    //         d=this.state.totalActive;
+    //         d.push({date: t.date, cases: x-y-z, delat: r-s-u});
+    //     })
+    //     this.setState({totalActive: d, totalConfirmed: a, totalDeath: c, totalRecovered: b})
+    // }
 	getLocationClassName = (location, index) => {
         // console.log(location, index)
         // console.log(this.state)
@@ -158,9 +163,14 @@ class HoverMap extends React.Component {
 		this.setState({ pointedLocation: "Total", tooltipStyle: { display: 'none' } });
     }
     showStats = () => {
+        // let p=0, q=0, r=0, s=0;
         return (
             <tbody>
                 {this.state.cases.map(ca => {
+                    // q=ca.confirmed-q;
+                    // p=ca.active-p;
+                    // r=ca.recovered-r;
+                    // s=ca.deaths-s;
                     return (
                         <tr key={ca.statecode}
                             onMouseOver={() => this.handleHover(ca)}
@@ -184,6 +194,8 @@ class HoverMap extends React.Component {
                                     }
                                 }}>
                                     {ca.confirmed}
+                                    {/* <br/>
+                                    {q} */}
                                 </Link>
                             </td>
                             <td>
@@ -194,6 +206,8 @@ class HoverMap extends React.Component {
                                     }
                                 }}>
                                     {ca.active}
+                                    {/* <br/>
+                                    {p} */}
                                 </Link>
                             </td>
                             <td>
@@ -204,6 +218,8 @@ class HoverMap extends React.Component {
                                     }
                                 }}>
                                     {ca.recovered}
+                                    {/* <br/>
+                                    {r} */}
                                 </Link>
                             </td>
                             <td>
@@ -214,24 +230,44 @@ class HoverMap extends React.Component {
                                     }
                                 }}>
                                     {ca.deaths}
+                                    {/* <br/>
+                                    {s} */}
                                 </Link>
                             </td>
                         </tr>
                     )
+                    // p=ca.confirmed;
+                    // q=ca.active
+                    // r=ca.confirmed
+                    // s=ca.deaths;
                 })}
             </tbody>
         )
     }
 	render() {
         if(!this.state.clickedLocation) {
-            {console.log(this.state)}
+            console.log(this.state)
             return (
                 <article className="examples__block">
                     <div className='ui grid'>
                         <div className="fifteen wide column">
                             <div className="ui grid">
                                 <div className="five wide column examples__block__info">
-                                    <div className="ui cards">
+                                <div className="card text-white bg-primary mb-3" style={{maxWidth: "18rem", minWidth: "16rem"}}>
+                                    <div className="card-header">
+                                        <h4>
+                                            Pointed location:
+                                            <br/>
+                                            {(this.state.pointedLocation!=="Total") ? 
+                                            this.state.pointedLocation :
+                                            "India"}
+                                        </h4>
+                                    </div>
+                                    <div className="card-body">
+                                        <Data code={this.state.pointedLocation} />
+                                    </div>
+                                    </div>
+                                    {/* <div className="ui cards">
                                         <div className="card">
                                             <div className="content">
                                                 <div className="header examples__block__info__item">
@@ -247,7 +283,7 @@ class HoverMap extends React.Component {
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> */}
                                 </div>
                                 <div className="eleven wide column examples__block__map examples__block__map--usa">
                                     <SVGMap 
