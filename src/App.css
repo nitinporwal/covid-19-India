@@ -3,7 +3,8 @@
     margin-left: 2.5%;
 }
 .svg-map {
-    width: 100%;
+    width: 96%;
+    float: right;
     height: auto;
     stroke: rgb(255, 255, 255);
     stroke-width: 1;
@@ -23,7 +24,7 @@
 .examples__block__info {
     display: inline-block;
     vertical-align: top;
-    width: 350px;
+    width: 450px;
     text-align: left;
 }
 .examples__block__map--australia .svg-map {

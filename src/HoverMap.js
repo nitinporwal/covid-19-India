@@ -66,8 +66,12 @@ class HoverMap extends React.Component {
                     dailyactive: (ca.dailyconfirmed-ca.dailydeceased-ca.dailyrecovered).toString()
                 }
             })
+            let caes=res.data.statewise;
+            let cc=caes.filter(ca => {
+                return ca.statecode!=="UN"
+            })
             // console.log(c);
-            this.setState({cases: res.data.statewise, totalCases: c});
+            this.setState({cases: cc, totalCases: c});
         }).then(() => {
             this.fetchMonth()
         })
