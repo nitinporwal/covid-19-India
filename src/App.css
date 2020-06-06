@@ -1,6 +1,6 @@
 .container {
     margin-top: 10px;
-    margin-left: 5%;
+    margin-left: 2.5%;
 }
 .svg-map {
     width: 100%;
@@ -118,6 +118,9 @@ table {
   border-collapse: seperated;
   /* box-shadow: 10px 5px rgb(187, 187, 187); */
 }
+thead {
+  min-height: 300px;
+}
 tr {
   background-color: rgb(228, 240, 245);
 }
@@ -126,7 +129,7 @@ th, td {
   /* border: 1px solid black; */
   border-top: 4px solid rgb(255, 255, 255);
   border-bottom: 4px solid rgb(255, 255, 255);
-  border-radius: 5%;
+  /* border-radius: 5%; */
   padding:4px 6px;
 }
 thead > tr:last-of-type > th:nth-of-type(1) {
@@ -134,18 +137,22 @@ thead > tr:last-of-type > th:nth-of-type(1) {
 }
 
 thead > tr:last-of-type > th:nth-of-type(2) {
+  min-width: 110px;
   background-color: rgb(245, 210, 253);
 }
 
 thead > tr:last-of-type > th:nth-of-type(3) {
+  min-width: 79px;
   background-color: rgb(252, 200, 200);
 }
 
 thead > tr:last-of-type > th:nth-of-type(4) {
+  min-width: 107px;
   background-color: rgb(197, 250, 197);
 }
 
 thead > tr:last-of-type > th:nth-of-type(5) {
+  min-width: 85px;
   background-color: rgb(198, 202, 197);
 }
 

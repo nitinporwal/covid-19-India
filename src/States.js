@@ -107,7 +107,7 @@ class States extends Component {
         let c=this.props.location.state.region.ca.statecode.toString().toLowerCase();
         let res=new Date();
         let res2=new Date();
-        res2.setDate(res.getDate()-14);
+        res2.setDate(res.getDate()-15);
         let conf=[], act=[], dec=[], rec=[];
         let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
         let x=0, y=0, z=0, a=0;
@@ -182,11 +182,11 @@ class States extends Component {
     render(props) {
         let daily = (
             <div className='ui grid'>
-                <div className="eight wide column">
+                <div className="nine wide column">
                     <div className="ui header centered">
                         Confirmed cases:
                     </div>
-                    <BarChart width={550} height={250} data={this.state.confirmedDaily} syncId="anyId"
+                    <BarChart width={600} height={250} data={this.state.confirmedDaily} syncId="anyId"
                         margin={{top: 0, right: 30, left: 0, bottom: 0}}>
                     <CartesianGrid strokeDasharray="3 3"/>
                     <XAxis dataKey="date"/>
@@ -196,11 +196,11 @@ class States extends Component {
                     <Bar type='monotone' dataKey="cases" stroke='#7900fa' fill='#7900fa' />
                     </BarChart>
                 </div>
-                <div className="eight wide column">
+                <div className="seven wide column">
                     <div className="ui header centered">
                         Active cases:
                     </div>
-                    <BarChart width={550} height={250} data={this.state.activeDaily} syncId="anyId"
+                    <BarChart width={600} height={250} data={this.state.activeDaily} syncId="anyId"
                         margin={{top: 0, right: 0, left: 30, bottom: 0}}>
                     <CartesianGrid strokeDasharray="3 3"/>
                     <XAxis dataKey="date"/>
@@ -210,25 +210,25 @@ class States extends Component {
                     <Bar type='monotone' dataKey="cases" stroke='#fc030f' fill='#fc030f' />
                     </BarChart>
                 </div>
-                <div className="eight wide column">
+                <div className="nine wide column">
                     <div className="ui header centered">
                         Recovered:
                     </div>
-                    <BarChart width={550} height={250} data={this.state.recoveredDaily} syncId="anyId"
+                    <BarChart width={600} height={250} data={this.state.recoveredDaily} syncId="anyId"
                         margin={{top: 0, right: 30, left: 0, bottom: 0}}>
                     <CartesianGrid strokeDasharray="3 3"/>
                     <XAxis dataKey="date"/>
                     <YAxis/>
                     <Tooltip/>
                     <Legend />
-                    <Bar type='monotone' dataKey="cases" stroke='#9dfc03' fill='#9dfc03' />
+                    <Bar type='monotone' dataKey="cases" stroke='#03fc45' fill='#03fc45' />
                     </BarChart>
                 </div>
-                <div className="eight wide column">
+                <div className="seven wide column">
                     <div className="ui header centered">
                         Deaths:
                     </div>
-                    <BarChart width={550} height={250} data={this.state.deathDaily} syncId="anyId"
+                    <BarChart width={600} height={250} data={this.state.deathDaily} syncId="anyId"
                         margin={{top: 0, right: 0, left: 30, bottom: 0}}>
                     <CartesianGrid strokeDasharray="3 3"/>
                     <XAxis dataKey="date"/>
@@ -246,11 +246,11 @@ class States extends Component {
             if(!this.state.isDaily) {
                 daily= (
                     <div className='ui grid'>
-                        <div className="eight wide column">
+                        <div className="nine wide column">
                             <div className="ui header centered">
                                 Confirmed cases:
                             </div>
-                            <LineChart width={550} height={250} data={this.state.confirmed} syncId="anyId"
+                            <LineChart width={600} height={250} data={this.state.confirmed} syncId="anyId"
                                 margin={{top: 0, right: 30, left: 0, bottom: 0}}>
                             <CartesianGrid strokeDasharray="3 3"/>
                             <XAxis dataKey="date"/>
@@ -260,11 +260,11 @@ class States extends Component {
                             <Line type='monotone' dataKey="cases" stroke='#7900fa' fill='#7900fa' />
                             </LineChart>
                         </div>
-                        <div className="eight wide column">
+                        <div className="seven wide column">
                             <div className="ui header centered">
                                 Active cases:
                             </div>
-                            <LineChart width={550} height={250} data={this.state.active} syncId="anyId"
+                            <LineChart width={600} height={250} data={this.state.active} syncId="anyId"
                                 margin={{top: 0, right: 0, left: 30, bottom: 0}}>
                             <CartesianGrid strokeDasharray="3 3"/>
                             <XAxis dataKey="date"/>
@@ -274,25 +274,25 @@ class States extends Component {
                             <Line type='monotone' dataKey="cases" stroke='#fc030f' fill='#fc030f' />
                             </LineChart>
                         </div>
-                        <div className="eight wide column">
+                        <div className="nine wide column">
                             <div className="ui header centered">
                                 Recovered:
                             </div>
-                            <LineChart width={550} height={250} data={this.state.recovered} syncId="anyId"
+                            <LineChart width={600} height={250} data={this.state.recovered} syncId="anyId"
                                 margin={{top: 0, right: 30, left: 0, bottom: 0}}>
                             <CartesianGrid strokeDasharray="3 3"/>
                             <XAxis dataKey="date"/>
                             <YAxis/>
                             <Tooltip/>
                             <Legend />
-                            <Line type='monotone' dataKey="cases" stroke='#9dfc03' fill='#9dfc03' />
+                            <Line type='monotone' dataKey="cases" stroke='#03fc45' fill='#03fc45' />
                             </LineChart>
                         </div>
-                        <div className="eight wide column">
+                        <div className="seven wide column">
                             <div className="ui header centered">
                                 Deaths:
                             </div>
-                            <LineChart width={550} height={250} data={this.state.death} syncId="anyId"
+                            <LineChart width={600} height={250} data={this.state.death} syncId="anyId"
                                 margin={{top: 0, right: 0, left: 30, bottom: 0}}>
                             <CartesianGrid strokeDasharray="3 3"/>
                             <XAxis dataKey="date"/>
@@ -333,13 +333,6 @@ class States extends Component {
                     {daily}
                 </div>
             );
-        }
-        else {
-            return (
-                <div>
-                    hi
-                </div>
-            )
         }
     }
 }

@@ -24,11 +24,28 @@ class HoverMap extends React.Component {
             clickedLocationCode: null,
             cases: [],
             totalCases: [],
+            active: [],
+            confirmed: [],
+            recovered: [],
+            death: [],
+            activeDaily: [],
+            confirmedDaily: [],
+            recoveredDaily: [],
+            deathDaily: [],
             sortConfig: {
                 key: "confirmed",
                 direction: "desc"
             },
-		};
+            isDaily: false,
+        };
+        
+        this.classes = {
+            class1: "active focus",
+            class2: "",
+            class3: "",
+            class4: "active focus",
+            class5: ""
+        }
 		this.handleLocationMouseOver = this.handleLocationMouseOver.bind(this);
 		this.handleLocationMouseOut = this.handleLocationMouseOut.bind(this);
 		this.handleLocationMouseMove = this.handleLocationMouseMove.bind(this);
@@ -48,6 +65,8 @@ class HoverMap extends React.Component {
             })
             // console.log(c);
             this.setState({cases: res.data.statewise, totalCases: c});
+        }).then(() => {
+            this.fetchMonth()
         })
         // .then(() => this.fetchTotal())
     }
@@ -166,29 +185,17 @@ class HoverMap extends React.Component {
 		this.setState({ pointedLocation: "Total", tooltipStyle: { display: 'none' } });
     }
     fetchOverall = () => {
-        let c=this.props.location.state.region.ca.statecode.toString().toLowerCase();
         let conf=[], act=[], dec=[], rec=[];
         let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
-        let x=0, y=0, z=0, a=0;
-        this.state.daily.map(d => {
-            if(d.status==='Confirmed') {
-                x=parseInt(parseInt(x)+parseInt(d[`${c}`]));
-                conf.push({date: d.date, cases: x});
-                confDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-            }
-            else if(d.status==='Deceased') {
-                z=parseInt(parseInt(z)+parseInt(d[`${c}`]));
-                dec.push({date: d.date, cases: z});
-                decDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-                y=x-z-a;
-                act.push({date: d.date, cases: y});
-                actDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-            }
-            else if(d.status==='Recovered') {
-                a=parseInt(parseInt(a)+parseInt(d[`${c}`]));
-                rec.push({date: d.date, cases: a});
-                recDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-            }
+        this.state.totalCases.map(d => {
+            conf.push({date: d.date, cases: parseInt(d.totalconfirmed)});
+            confDaily.push({date: d.date, cases: parseInt(d.dailyactive)});
+            dec.push({date: d.date, cases: parseInt(d.totaldeceased)});
+            decDaily.push({date: d.date, cases: parseInt(d.dailydeceased)});
+            act.push({date: d.date, cases: parseInt(d.totalactive)});
+            actDaily.push({date: d.date, cases: parseInt(d.dailyactive)});
+            rec.push({date: d.date, cases: parseInt(d.totalrecovered)});
+            recDaily.push({date: d.date, cases: parseInt(d.dailyrecovered)});
             return null;
         })
         this.setState({confirmed: conf, active: act, death: dec, recovered: rec, confirmedDaily: confDaily, activeDaily: actDaily, deathDaily: decDaily, recoveredDaily: recDaily});
@@ -198,34 +205,25 @@ class HoverMap extends React.Component {
         this.setState({isDaily: dail});    
     }
     fetchMonth = () => {
-        let c=this.props.location.state.region.ca.statecode.toString().toLowerCase();
         let res=new Date();
         let res2=new Date();
         res2.setDate(res.getDate()-31);
+        // console.log(res, res2);
         let conf=[], act=[], dec=[], rec=[];
         let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
-        let x=0, y=0, z=0, a=0;
-        this.state.daily.filter(d => {
+        this.state.totalCases.filter(d => {
+            let x=d.date;
+            x=x+"20"
+            d.date=x;
             if(new Date(d.date)>=res2) {
-                if(d.status==='Confirmed') {
-                    x=parseInt(parseInt(x)+parseInt(d[`${c}`]));
-                    conf.push({date: d.date, cases: x});
-                    confDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-                }
-                else if(d.status==='Deceased') {
-                    z=parseInt(parseInt(z)+parseInt(d[`${c}`]));
-                    dec.push({date: d.date, cases: z});
-                    decDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-                    y=x-z-a;
-                    act.push({date: d.date, cases: y});
-                    actDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-                }
-                else if(d.status==='Recovered') {
-                    a=parseInt(parseInt(a)+parseInt(d[`${c}`]));
-                    rec.push({date: d.date, cases: a});
-                    recDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-                }
-
+                conf.push({date: d.date, cases: parseInt(d.totalconfirmed)});
+                confDaily.push({date: d.date, cases: parseInt(d.dailyactive)});
+                dec.push({date: d.date, cases: parseInt(d.totaldeceased)});
+                decDaily.push({date: d.date, cases: parseInt(d.dailydeceased)});
+                act.push({date: d.date, cases: parseInt(d.totalactive)});
+                actDaily.push({date: d.date, cases: parseInt(d.dailyactive)});
+                rec.push({date: d.date, cases: parseInt(d.totalrecovered)});
+                recDaily.push({date: d.date, cases: parseInt(d.dailyrecovered)});
             }
             return null;
         })
@@ -236,39 +234,26 @@ class HoverMap extends React.Component {
         this.setState({isDaily: dail});
     }
     fetchHalf = () => {
-        let c=this.props.location.state.region.ca.statecode.toString().toLowerCase();
         let res=new Date();
         let res2=new Date();
-        res2.setDate(res.getDate()-14);
+        res2.setDate(res.getDate()-15);
         let conf=[], act=[], dec=[], rec=[];
         let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
-        let x=0, y=0, z=0, a=0;
-        this.state.daily.filter(d => {
+        this.state.totalCases.filter(d => {
             if(new Date(d.date)>=res2) {
-                if(d.status==='Confirmed') {
-                    x=parseInt(parseInt(x)+parseInt(d[`${c}`]));
-                    conf.push({date: d.date, cases: x});
-                    confDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-                }
-                else if(d.status==='Deceased') {
-                    z=parseInt(parseInt(z)+parseInt(d[`${c}`]));
-                    dec.push({date: d.date, cases: z});
-                    decDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-                    y=x-z-a;
-                    act.push({date: d.date, cases: y});
-                    actDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-                }
-                else if(d.status==='Recovered') {
-                    a=parseInt(parseInt(a)+parseInt(d[`${c}`]));
-                    rec.push({date: d.date, cases: a});
-                    recDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-                }
-
+                conf.push({date: d.date, cases: parseInt(d.totalconfirmed)});
+                confDaily.push({date: d.date, cases: parseInt(d.dailyactive)});
+                dec.push({date: d.date, cases: parseInt(d.totaldeceased)});
+                decDaily.push({date: d.date, cases: parseInt(d.dailydeceased)});
+                act.push({date: d.date, cases: parseInt(d.totalactive)});
+                actDaily.push({date: d.date, cases: parseInt(d.dailyactive)});
+                rec.push({date: d.date, cases: parseInt(d.totalrecovered)});
+                recDaily.push({date: d.date, cases: parseInt(d.dailyrecovered)});
             }
             return null;
         })
         this.setState({confirmed: conf, active: act, death: dec, recovered: rec, confirmedDaily: confDaily, activeDaily: actDaily, deathDaily: decDaily, recoveredDaily: recDaily});
-        
+    
         let dail=this.state.isDaily;
         this.setState({isDaily: !dail});
         this.setState({isDaily: dail});
@@ -288,17 +273,17 @@ class HoverMap extends React.Component {
         }
     }
     handleBegining = () => {
-        if(this.classes.class4!=="active focus") {
-            this.classes.class3="";
-            this.classes.class4="active focus";
+        if(this.classes.class3!=="active focus") {
+            this.classes.class3="active focus";
+            this.classes.class4="";
             this.classes.class5="";
             this.fetchOverall();
         }
     }
     handleMonth = () => {
-        if(this.classes.class3!=="active focus") {
-            this.classes.class3="active focus";
-            this.classes.class4="";
+        if(this.classes.class4!=="active focus") {
+            this.classes.class3="";
+            this.classes.class4="active focus";
             this.classes.class5="";
             this.fetchMonth();
         }
@@ -313,6 +298,13 @@ class HoverMap extends React.Component {
     }
     dynamicsort = (key, direction) => {
         return (a, b) => {
+            if(a.statecode==="TT") {
+                console.log("YES");
+                return direction === 'asc' ? -1 : -1;
+            }
+            else if(b.statecode==="TT") {
+                return direction === 'asc' ? 1: 1;
+            }
             if(key==="state") {
                 if (a[key] < b[key]) {
                     return direction === 'asc' ? -1 : 1;
@@ -427,16 +419,124 @@ class HoverMap extends React.Component {
 	render() {
         let v="";
         if(this.state.sortConfig.direction==="desc") {
-            v="🔽"
+            v=" 🔽"
         }
         else {
-            v="🔼"
+            v=" 🔼"
         }
+        let daily = (
+            <div>
+                <div className="ui header centered">
+                    Confirmed cases:
+                </div>
+                <BarChart width={650} height={200} data={this.state.confirmedDaily} syncId="anyId"
+                    margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                <CartesianGrid strokeDasharray="3 3"/>
+                <XAxis dataKey="date"/>
+                <YAxis dataKey="" />
+                <Tooltip/>
+                <Legend />
+                <Bar type='monotone' dataKey="cases" stroke='#7900fa' fill='#7900fa' />
+                </BarChart>
+                <div className="ui header centered">
+                    Active cases:
+                </div>
+                <BarChart width={650} height={200} data={this.state.activeDaily} syncId="anyId"
+                    margin={{top: 0, right: 0, left: 30, bottom: 0}}>
+                <CartesianGrid strokeDasharray="3 3"/>
+                <XAxis dataKey="date"/>
+                <YAxis/>
+                <Tooltip/>
+                <Legend />
+                <Bar type='monotone' dataKey="cases" stroke='#fc030f' fill='#fc030f' />
+                </BarChart>
+                <div className="ui header centered">
+                    Recovered:
+                </div>
+                <BarChart width={650} height={200} data={this.state.recoveredDaily} syncId="anyId"
+                    margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                <CartesianGrid strokeDasharray="3 3"/>
+                <XAxis dataKey="date"/>
+                <YAxis/>
+                <Tooltip/>
+                <Legend />
+                <Bar type='monotone' dataKey="cases" stroke='#03fc45' fill='#03fc45' />
+                </BarChart>
+                <div className="ui header centered">
+                    Deaths:
+                </div>
+                <BarChart width={650} height={200} data={this.state.deathDaily} syncId="anyId"
+                    margin={{top: 0, right: 0, left: 30, bottom: 0}}>
+                <CartesianGrid strokeDasharray="3 3"/>
+                <XAxis dataKey="date"/>
+                <YAxis/>
+                <Tooltip/>
+                <Legend />
+                {/* <Brush /> */}
+                <Bar type='monotone' dataKey="cases" stroke='#949ea8' fill='#949ea8' />
+                </BarChart>
+            </div>
+        )
         if(!this.state.clickedLocation) {
-            console.log(this.state)
+            console.log(this.classes)
+            if(!this.state.isDaily) {
+                daily= (
+                    <div>
+                        <div className="ui header centered">
+                            Confirmed cases:
+                        </div>
+                        <LineChart width={650} height={200} data={this.state.confirmed} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 30, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis dataKey="" />
+                        <Tooltip/>
+                        <Legend />
+                        <Line type='monotone' dataKey="cases" stroke='#7900fa' fill='#7900fa' />
+                        </LineChart>
+                        <div className="ui header centered">
+                            Active cases:
+                        </div>
+                        <LineChart width={650} height={200} data={this.state.active} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 30, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        <Line type='monotone' dataKey="cases" stroke='#fc030f' fill='#fc030f' />
+                        </LineChart>
+                        <div className="ui header centered">
+                            Recovered:
+                        </div>
+                        <LineChart width={650} height={200} data={this.state.recovered} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 30, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        <Line type='monotone' dataKey="cases" stroke='#03fc45' fill='#03fc45' />
+                        </LineChart>
+                        <div className="ui header centered">
+                            Deaths:
+                        </div>
+                        <LineChart width={650} height={200} data={this.state.death} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 30, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        {/* <Brush /> */}
+                        <Line type='monotone' dataKey="cases" stroke='#949ea8' fill='#949ea8' />
+                        </LineChart>
+                    </div>
+                )
+            }
             return (
                 <article className="examples__block" style={{marginTop: "3%"}}>
-                    <div className='ui grid' style={{fontSize: "0.95em"}}>
+                    <div className='ui grid'>
                         <div className="fifteen wide column jumbotron">
                             <div className="ui grid">
                                 <div className="five wide column examples__block__info">
@@ -491,94 +591,52 @@ class HoverMap extends React.Component {
                                 </div>
                             </div>
                             <div className='ui grid'>
-                        <div className="eight wide column">
-                            <div className="ui header centered">
-                                Confirmed cases:
+                                <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
+                                    <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
+                                        <input type="radio" name="options" id="option1" autoComplete="off" /> Total
+                                    </label>
+                                    <label onClick={this.toggleChartsDaily} className={`btn btn-primary ${this.classes.class2}`}>
+                                        <input type="radio" name="options" id="option2" autoComplete="off" /> Daily
+                                    </label>
+                                </div>
+                                <div className="btn-group btn-group-toggle" style={{marginLeft: "10%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
+                                    <label onClick={this.handleBegining} className={`btn btn-primary ${this.classes.class3}`}>
+                                        <input type="radio" name="options" id="option1" autoComplete="off" /> Begining
+                                    </label>
+                                    <label onClick={this.handleMonth} className={`btn btn-primary ${this.classes.class4}`}>
+                                        <input type="radio" name="options" id="option2" autoComplete="off" /> One Month
+                                    </label>
+                                    <label onClick={this.handleTwoWeeks} className={`btn btn-primary ${this.classes.class5}`}>
+                                        <input type="radio" name="options" id="option2" autoComplete="off" /> Two Weeks
+                                    </label>
+                                </div>
+                                {daily}
                             </div>
-                            <BarChart width={350} height={250} data={this.state.totalCases} syncId="anyId"
-                                margin={{top: 0, right: 30, left: 0, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis dataKey="" />
-                            <Tooltip/>
-                            <Legend />
-                            <Bar type='monotone' dataKey="totalconfirmed" stroke='#7900fa' fill='#7900fa' />
-                            </BarChart>
-                        </div>
-                        <div className="eight wide column">
-                            <div className="ui header centered">
-                                Active cases:
-                            </div>
-                            <BarChart width={350} height={250} data={this.state.totalCases} syncId="anyId"
-                                margin={{top: 0, right: 0, left: 30, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis/>
-                            <Tooltip/>
-                            <Legend />
-                            <Bar type='monotone' dataKey="totalactive" stroke='#fc030f' fill='#fc030f' />
-                            </BarChart>
-                        </div>
-                        <div className="eight wide column">
-                            <div className="ui header centered">
-                                Recovered:
-                            </div>
-                            <BarChart width={350} height={250} data={this.state.totalCases} syncId="anyId"
-                                margin={{top: 0, right: 30, left: 0, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis/>
-                            <Tooltip/>
-                            <Legend />
-                            <Bar type='monotone' dataKey="totalrecovered" stroke='#9dfc03' fill='#9dfc03' />
-                            </BarChart>
-                        </div>
-                        <div className="eight wide column">
-                            <div className="ui header centered">
-                                Deaths:
-                            </div>
-                            <BarChart width={350} height={250} data={this.state.totalCases} syncId="anyId"
-                                margin={{top: 0, right: 0, left: 30, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis/>
-                            <Tooltip/>
-                            <Legend />
-                            {/* <Brush /> */}
-                            <Bar type='monotone' dataKey="totaldeceased" stroke='#949ea8' fill='#949ea8' />
-                            </BarChart>
-                        </div>
-                    </div>
                         </div>
                         <div className="one wide column">
                             <table style={{borderCollapse: "seperated"}}>
                                 <thead>
                                     <tr>
-                                    <th onClick={() => this.sortData("state")} style={{cursor: "default"}}>
-                                        State/UT
-                                        <br/>
-                                        {(this.state.sortConfig.key==="state") ? v : "⏹️"}
-                                    </th>
-                                    <th onClick={() => this.sortData("confirmed")} style={{cursor: "default"}}>
-                                        Confirmed
-                                        <br/>
-                                        {(this.state.sortConfig.key==="confirmed") ? v : "⏹️"}
-                                    </th>
-                                    <th onClick={() => this.sortData("active")} style={{cursor: "default"}}>
-                                        Active
-                                        <br/>
-                                        {(this.state.sortConfig.key==="active") ? v : "⏹️"}
-                                    </th>
-                                    <th onClick={() => this.sortData("recovered")} style={{cursor: "default"}}>
-                                        Recovered
-                                        <br/>
-                                        {(this.state.sortConfig.key==="recovered") ? v : "⏹️"}
-                                    </th>
-                                    <th onClick={() => this.sortData("deaths")} style={{cursor: "default"}}>
-                                        Deaths
-                                        <br/>
-                                        {(this.state.sortConfig.key==="deaths") ? v : "⏹️"}
-                                    </th>
+                                        <th onClick={() => this.sortData("state")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                            State/UT
+                                            {(this.state.sortConfig.key==="state") ? v : ""}
+                                        </th>
+                                        <th onClick={() => this.sortData("confirmed")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                            Confirmed
+                                            {(this.state.sortConfig.key==="confirmed") ? v : ""}
+                                        </th>
+                                        <th onClick={() => this.sortData("active")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                            Active
+                                            {(this.state.sortConfig.key==="active") ? v : ""}
+                                        </th>
+                                        <th onClick={() => this.sortData("recovered")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                            Recovered
+                                            {(this.state.sortConfig.key==="recovered") ? v : ""}
+                                        </th>
+                                        <th onClick={() => this.sortData("deaths")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                            Deaths
+                                            {(this.state.sortConfig.key==="deaths") ? v : ""}
+                                        </th>
                                     </tr>
                                 </thead>
                                 {this.showStats()}
