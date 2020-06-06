@@ -196,7 +196,7 @@ class HoverMap extends React.Component {
         let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
         this.state.totalCases.map(d => {
             conf.push({date: d.date, cases: parseInt(d.totalconfirmed)});
-            confDaily.push({date: d.date, cases: parseInt(d.dailyactive)});
+            confDaily.push({date: d.date, cases: parseInt(d.dailyconfirmed)});
             dec.push({date: d.date, cases: parseInt(d.totaldeceased)});
             decDaily.push({date: d.date, cases: parseInt(d.dailydeceased)});
             act.push({date: d.date, cases: parseInt(d.totalactive)});
@@ -221,7 +221,7 @@ class HoverMap extends React.Component {
         this.state.totalCases.filter(d => {
             if(new Date(d.date)>=res2) {
                 conf.push({date: d.date, cases: parseInt(d.totalconfirmed)});
-                confDaily.push({date: d.date, cases: parseInt(d.dailyactive)});
+                confDaily.push({date: d.date, cases: parseInt(d.dailyconfirmed)});
                 dec.push({date: d.date, cases: parseInt(d.totaldeceased)});
                 decDaily.push({date: d.date, cases: parseInt(d.dailydeceased)});
                 act.push({date: d.date, cases: parseInt(d.totalactive)});
@@ -246,7 +246,7 @@ class HoverMap extends React.Component {
         this.state.totalCases.filter(d => {
             if(new Date(d.date)>=res2) {
                 conf.push({date: d.date, cases: parseInt(d.totalconfirmed)});
-                confDaily.push({date: d.date, cases: parseInt(d.dailyactive)});
+                confDaily.push({date: d.date, cases: parseInt(d.dailyconfirmed)});
                 dec.push({date: d.date, cases: parseInt(d.totaldeceased)});
                 decDaily.push({date: d.date, cases: parseInt(d.dailydeceased)});
                 act.push({date: d.date, cases: parseInt(d.totalactive)});
@@ -482,7 +482,7 @@ class HoverMap extends React.Component {
             </div>
         )
         if(!this.state.clickedLocation) {
-            console.log(this.classes)
+            console.log(this.state)
             if(!this.state.isDaily) {
                 daily= (
                     <div>
