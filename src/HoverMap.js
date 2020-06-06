@@ -58,6 +58,9 @@ class HoverMap extends React.Component {
             // console.log(res.data.cases_time_series)
             let cas=res.data.cases_time_series;
             let c=cas.map(ca => {
+                let x={...ca};
+                x.date+="20";
+                ca=x;
                 return {...ca,
                     totalactive: (ca.totalconfirmed-ca.totaldeceased-ca.totalrecovered).toString(),
                     dailyactive: (ca.dailyconfirmed-ca.dailydeceased-ca.dailyrecovered).toString()
@@ -212,9 +215,6 @@ class HoverMap extends React.Component {
         let conf=[], act=[], dec=[], rec=[];
         let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
         this.state.totalCases.filter(d => {
-            let x=d.date;
-            x=x+"20"
-            d.date=x;
             if(new Date(d.date)>=res2) {
                 conf.push({date: d.date, cases: parseInt(d.totalconfirmed)});
                 confDaily.push({date: d.date, cases: parseInt(d.dailyactive)});
@@ -429,7 +429,7 @@ class HoverMap extends React.Component {
                 <div className="ui header centered">
                     Confirmed cases:
                 </div>
-                <BarChart width={650} height={200} data={this.state.confirmedDaily} syncId="anyId"
+                <BarChart width={620} height={200} data={this.state.confirmedDaily} syncId="anyId"
                     margin={{top: 0, right: 30, left: 0, bottom: 0}}>
                 <CartesianGrid strokeDasharray="3 3"/>
                 <XAxis dataKey="date"/>
@@ -441,7 +441,7 @@ class HoverMap extends React.Component {
                 <div className="ui header centered">
                     Active cases:
                 </div>
-                <BarChart width={650} height={200} data={this.state.activeDaily} syncId="anyId"
+                <BarChart width={620} height={200} data={this.state.activeDaily} syncId="anyId"
                     margin={{top: 0, right: 0, left: 30, bottom: 0}}>
                 <CartesianGrid strokeDasharray="3 3"/>
                 <XAxis dataKey="date"/>
@@ -453,7 +453,7 @@ class HoverMap extends React.Component {
                 <div className="ui header centered">
                     Recovered:
                 </div>
-                <BarChart width={650} height={200} data={this.state.recoveredDaily} syncId="anyId"
+                <BarChart width={620} height={200} data={this.state.recoveredDaily} syncId="anyId"
                     margin={{top: 0, right: 30, left: 0, bottom: 0}}>
                 <CartesianGrid strokeDasharray="3 3"/>
                 <XAxis dataKey="date"/>
@@ -465,7 +465,7 @@ class HoverMap extends React.Component {
                 <div className="ui header centered">
                     Deaths:
                 </div>
-                <BarChart width={650} height={200} data={this.state.deathDaily} syncId="anyId"
+                <BarChart width={620} height={200} data={this.state.deathDaily} syncId="anyId"
                     margin={{top: 0, right: 0, left: 30, bottom: 0}}>
                 <CartesianGrid strokeDasharray="3 3"/>
                 <XAxis dataKey="date"/>
@@ -485,7 +485,7 @@ class HoverMap extends React.Component {
                         <div className="ui header centered">
                             Confirmed cases:
                         </div>
-                        <LineChart width={650} height={200} data={this.state.confirmed} syncId="anyId"
+                        <LineChart width={620} height={200} data={this.state.confirmed} syncId="anyId"
                             margin={{top: 0, right: 0, left: 30, bottom: 0}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
@@ -497,7 +497,7 @@ class HoverMap extends React.Component {
                         <div className="ui header centered">
                             Active cases:
                         </div>
-                        <LineChart width={650} height={200} data={this.state.active} syncId="anyId"
+                        <LineChart width={620} height={200} data={this.state.active} syncId="anyId"
                             margin={{top: 0, right: 0, left: 30, bottom: 0}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
@@ -509,7 +509,7 @@ class HoverMap extends React.Component {
                         <div className="ui header centered">
                             Recovered:
                         </div>
-                        <LineChart width={650} height={200} data={this.state.recovered} syncId="anyId"
+                        <LineChart width={620} height={200} data={this.state.recovered} syncId="anyId"
                             margin={{top: 0, right: 0, left: 30, bottom: 0}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
@@ -521,7 +521,7 @@ class HoverMap extends React.Component {
                         <div className="ui header centered">
                             Deaths:
                         </div>
-                        <LineChart width={650} height={200} data={this.state.death} syncId="anyId"
+                        <LineChart width={620} height={200} data={this.state.death} syncId="anyId"
                             margin={{top: 0, right: 0, left: 30, bottom: 0}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
