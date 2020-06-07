@@ -191,62 +191,82 @@ class States extends Component {
     render(props) {
         let daily = (
             <div className='ui grid'>
-                <div className="nine wide column">
-                    <div className="ui header centered">
-                        Confirmed cases:
+                <div className="eight wide column">
+                    <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Confirmed cases:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <BarChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
+                            margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis dataKey="" />
+                        <Tooltip/>
+                        <Legend />
+                        <Bar type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
+                        </BarChart>
                     </div>
-                    <BarChart width={600} height={250} data={this.state.confirmedDaily} syncId="anyId"
-                        margin={{top: 0, right: 30, left: 0, bottom: 0}}>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="date"/>
-                    <YAxis dataKey="" />
-                    <Tooltip/>
-                    <Legend />
-                    <Bar type='monotone' dataKey="cases" stroke='#7900fa' fill='#7900fa' />
-                    </BarChart>
                 </div>
-                <div className="seven wide column">
-                    <div className="ui header centered">
-                        Active cases:
+                <div className="eight wide column">
+                    <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Active cases:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <BarChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
+                            margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        <Bar type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
+                        </BarChart>
                     </div>
-                    <BarChart width={600} height={250} data={this.state.activeDaily} syncId="anyId"
-                        margin={{top: 0, right: 0, left: 30, bottom: 0}}>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="date"/>
-                    <YAxis/>
-                    <Tooltip/>
-                    <Legend />
-                    <Bar type='monotone' dataKey="cases" stroke='#fc030f' fill='#fc030f' />
-                    </BarChart>
                 </div>
-                <div className="nine wide column">
-                    <div className="ui header centered">
-                        Recovered:
+                <div className="eight wide column">
+                    <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Recovered:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <BarChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
+                            margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        <Bar type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
+                        </BarChart>
                     </div>
-                    <BarChart width={600} height={250} data={this.state.recoveredDaily} syncId="anyId"
-                        margin={{top: 0, right: 30, left: 0, bottom: 0}}>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="date"/>
-                    <YAxis/>
-                    <Tooltip/>
-                    <Legend />
-                    <Bar type='monotone' dataKey="cases" stroke='#03fc45' fill='#03fc45' />
-                    </BarChart>
                 </div>
-                <div className="seven wide column">
-                    <div className="ui header centered">
-                        Deaths:
+                <div className="eight wide column">
+                    <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Deaths:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <BarChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
+                            margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        {/* <Brush /> */}
+                        <Bar type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
+                        </BarChart>
                     </div>
-                    <BarChart width={600} height={250} data={this.state.deathDaily} syncId="anyId"
-                        margin={{top: 0, right: 0, left: 30, bottom: 0}}>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="date"/>
-                    <YAxis/>
-                    <Tooltip/>
-                    <Legend />
-                    {/* <Brush /> */}
-                    <Bar type='monotone' dataKey="cases" stroke='#949ea8' fill='#949ea8' />
-                    </BarChart>
                 </div>
             </div>
         )
@@ -255,62 +275,82 @@ class States extends Component {
             if(!this.state.isDaily) {
                 daily= (
                     <div className='ui grid'>
-                        <div className="nine wide column">
-                            <div className="ui header centered">
-                                Confirmed cases:
+                        <div className="eight wide column">
+                            <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Confirmed cases:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                                <LineChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
+                                    margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis dataKey="" />
+                                <Tooltip/>
+                                <Legend />
+                                <Line type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
+                                </LineChart>
                             </div>
-                            <LineChart width={600} height={250} data={this.state.confirmed} syncId="anyId"
-                                margin={{top: 0, right: 30, left: 0, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis dataKey="" />
-                            <Tooltip/>
-                            <Legend />
-                            <Line type='monotone' dataKey="cases" stroke='#7900fa' fill='#7900fa' />
-                            </LineChart>
                         </div>
-                        <div className="seven wide column">
-                            <div className="ui header centered">
-                                Active cases:
+                        <div className="eight wide column">
+                            <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Active cases:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                                <LineChart width={500} height={200} data={this.state.active} syncId="anyId"
+                                    margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis/>
+                                <Tooltip/>
+                                <Legend />
+                                <Line type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
+                                </LineChart>
                             </div>
-                            <LineChart width={600} height={250} data={this.state.active} syncId="anyId"
-                                margin={{top: 0, right: 0, left: 30, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis/>
-                            <Tooltip/>
-                            <Legend />
-                            <Line type='monotone' dataKey="cases" stroke='#fc030f' fill='#fc030f' />
-                            </LineChart>
                         </div>
-                        <div className="nine wide column">
-                            <div className="ui header centered">
-                                Recovered:
+                        <div className="eight wide column">
+                            <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Recovered:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                                <LineChart width={500} height={200} data={this.state.recovered} syncId="anyId"
+                                    margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis/>
+                                <Tooltip/>
+                                <Legend />
+                                <Line type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
+                                </LineChart>
                             </div>
-                            <LineChart width={600} height={250} data={this.state.recovered} syncId="anyId"
-                                margin={{top: 0, right: 30, left: 0, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis/>
-                            <Tooltip/>
-                            <Legend />
-                            <Line type='monotone' dataKey="cases" stroke='#03fc45' fill='#03fc45' />
-                            </LineChart>
                         </div>
-                        <div className="seven wide column">
-                            <div className="ui header centered">
-                                Deaths:
+                        <div className="eight wide column">
+                            <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Deaths:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                                <LineChart width={500} height={200} data={this.state.death} syncId="anyId"
+                                    margin={{top: 0, right: 30, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis/>
+                                <Tooltip/>
+                                <Legend />
+                                {/* <Brush /> */}
+                                <Line type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
+                                </LineChart>
                             </div>
-                            <LineChart width={600} height={250} data={this.state.death} syncId="anyId"
-                                margin={{top: 0, right: 0, left: 30, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis/>
-                            <Tooltip/>
-                            <Legend />
-                            {/* <Brush /> */}
-                            <Line type='monotone' dataKey="cases" stroke='#949ea8' fill='#949ea8' />
-                            </LineChart>
                         </div>
                     </div>
                 )
