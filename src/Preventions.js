@@ -21,11 +21,15 @@ class Preventions extends Component {
                 <h2>Covid-19 Preventions and Advice</h2>
                 <div className="row">
                     <div className="col-md-9">
+                        <div className="card">
+                                <h5 className="card-header">
+                                    Stay aware of the latest information on the COVID-19 outbreak, available on the WHO website and through your national and local pubdivc health authority.
+                                    The best way to prevent illness is to avoid being exposed to this virus. As there is not vaccine to prevent so you can protect yourself and help prevent spreading the virus to others if you do as below instruction.
+                                    It’s important to understand that even when people appear not to have symptoms of coronavirus (COVID-19), they may still be carrying the virus.
+                                </h5>
+                        </div>
                         <h4 style={{margin: "1% 0"}}>
-                            Stay aware of the latest information on the COVID-19 outbreak, available on the WHO website and through your national and local pubdivc health authority.
-                            The best way to prevent illness is to avoid being exposed to this virus. As there is not vaccine to prevent so you can protect yourself and help prevent spreading the virus to others if you do as below instruction.
-                            It’s important to understand that even when people appear not to have symptoms of coronavirus (COVID-19), they may still be carrying the virus.
-                            <br/>
+                            
                         </h4>
                         <div className="row">
                             <div className="col-md-3" style={{margin: "1% 1%"}}>
