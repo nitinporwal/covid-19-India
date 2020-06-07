@@ -76,26 +76,29 @@ class States extends Component {
         let x=0, y=0, z=0, a=0;
         this.state.daily.filter(d => {
             // console.log(d);
-            if(new Date(d.date)>=res2) {
-                if(d.status==='Confirmed') {
-                    x=parseInt(parseInt(x)+parseInt(d[`${c}`]));
+            if(d.status==='Confirmed') {
+                x=parseInt(parseInt(x)+parseInt(d[`${c}`]));
+                if(new Date(d.date)>=res2) {
                     conf.push({date: d.date, cases: x});
                     confDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
                 }
-                else if(d.status==='Deceased') {
-                    z=parseInt(parseInt(z)+parseInt(d[`${c}`]));
+            }
+            else if(d.status==='Deceased') {
+                z=parseInt(parseInt(z)+parseInt(d[`${c}`]));
+                y=x-z-a;
+                if(new Date(d.date)>=res2) {
                     dec.push({date: d.date, cases: z});
                     decDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-                    y=x-z-a;
                     act.push({date: d.date, cases: y});
                     actDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
                 }
-                else if(d.status==='Recovered') {
-                    a=parseInt(parseInt(a)+parseInt(d[`${c}`]));
+            }
+            else if(d.status==='Recovered') {
+                a=parseInt(parseInt(a)+parseInt(d[`${c}`]));
+                if(new Date(d.date)>=res2) {
                     rec.push({date: d.date, cases: a});
                     recDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
                 }
-
             }
             return null;
         })
@@ -114,26 +117,30 @@ class States extends Component {
         let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
         let x=0, y=0, z=0, a=0;
         this.state.daily.filter(d => {
-            if(new Date(d.date)>=res2) {
-                if(d.status==='Confirmed') {
-                    x=parseInt(parseInt(x)+parseInt(d[`${c}`]));
+            // console.log(d);
+            if(d.status==='Confirmed') {
+                x=parseInt(parseInt(x)+parseInt(d[`${c}`]));
+                if(new Date(d.date)>=res2) {
                     conf.push({date: d.date, cases: x});
                     confDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
                 }
-                else if(d.status==='Deceased') {
-                    z=parseInt(parseInt(z)+parseInt(d[`${c}`]));
+            }
+            else if(d.status==='Deceased') {
+                z=parseInt(parseInt(z)+parseInt(d[`${c}`]));
+                y=x-z-a;
+                if(new Date(d.date)>=res2) {
                     dec.push({date: d.date, cases: z});
                     decDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
-                    y=x-z-a;
                     act.push({date: d.date, cases: y});
                     actDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
                 }
-                else if(d.status==='Recovered') {
-                    a=parseInt(parseInt(a)+parseInt(d[`${c}`]));
+            }
+            else if(d.status==='Recovered') {
+                a=parseInt(parseInt(a)+parseInt(d[`${c}`]));
+                if(new Date(d.date)>=res2) {
                     rec.push({date: d.date, cases: a});
                     recDaily.push({date: d.date, cases: parseInt(d[`${c}`])});
                 }
-
             }
             return null;
         })
