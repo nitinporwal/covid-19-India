@@ -108,7 +108,7 @@ class HoverMap extends React.Component {
         const { history } = this.props;
         console.log(history);
         if(history) history.push({
-            pathname: `/state/${clickedLocationId}`,
+            pathname: `/state/${clickedLocationId}/${clickedLocation}`,
             state: {
                 region: {ca: r[0]}
             }
@@ -354,7 +354,7 @@ class HoverMap extends React.Component {
                             >
                             <td style={{padding: "0.2em 0.7em"}}>
                                 <Link to={{
-                                    pathname: `/state/${ca.statecode}`,
+                                    pathname: `/state/${ca.statecode}/${ca.state}`,
                                     state: {
                                         region: {ca}
                                     }
@@ -364,7 +364,7 @@ class HoverMap extends React.Component {
                             </td>
                             <td style={{padding: "0.2em 0.7em"}}>
                                 <Link to={{
-                                    pathname: `/state/${ca.statecode}`,
+                                    pathname: `/state/${ca.statecode}/${ca.state}`,
                                     state: {
                                         region: {ca}
                                     }
@@ -376,7 +376,7 @@ class HoverMap extends React.Component {
                             </td>
                             <td style={{padding: "0.2em 0.7em"}}>
                                 <Link to={{
-                                    pathname: `/state/${ca.statecode}`,
+                                    pathname: `/state/${ca.statecode}/${ca.state}`,
                                     state: {
                                         region: {ca}
                                     }
@@ -388,7 +388,7 @@ class HoverMap extends React.Component {
                             </td>
                             <td style={{padding: "0.2em 0.7em"}}>
                                 <Link to={{
-                                    pathname: `/state/${ca.statecode}`,
+                                    pathname: `/state/${ca.statecode}/${ca.state}`,
                                     state: {
                                         region: {ca}
                                     }
@@ -400,7 +400,7 @@ class HoverMap extends React.Component {
                             </td>
                             <td style={{padding: "0.2em 0.7em"}}>
                                 <Link to={{
-                                    pathname: `/state/${ca.statecode}`,
+                                    pathname: `/state/${ca.statecode}/${ca.state}`,
                                     state: {
                                         region: {ca}
                                     }

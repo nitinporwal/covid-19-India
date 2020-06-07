@@ -28,13 +28,14 @@ class States extends Component {
     }
     componentDidMount = () => {
         covid.get('/states_daily.json').then(res => {
+            console.log(res);
             return this.setState({daily: res.data.states_daily})
         }).then(() => {
             this.fetchMonth();
         })
     }
     fetchOverall = () => {
-        let c=this.props.location.state.region.ca.statecode.toString().toLowerCase();
+        let c=this.props.match.params.code.toString().toLowerCase();
         let conf=[], act=[], dec=[], rec=[];
         let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
         let x=0, y=0, z=0, a=0;
@@ -66,7 +67,7 @@ class States extends Component {
         this.setState({isDaily: dail});    
     }
     fetchMonth = () => {
-        let c=this.props.location.state.region.ca.statecode.toString().toLowerCase();
+        let c=this.props.match.params.code.toString().toLowerCase();
         let res=new Date();
         let res2=new Date();
         res2.setDate(res.getDate()-31);
@@ -74,6 +75,7 @@ class States extends Component {
         let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
         let x=0, y=0, z=0, a=0;
         this.state.daily.filter(d => {
+            // console.log(d);
             if(new Date(d.date)>=res2) {
                 if(d.status==='Confirmed') {
                     x=parseInt(parseInt(x)+parseInt(d[`${c}`]));
@@ -104,7 +106,7 @@ class States extends Component {
         this.setState({isDaily: dail});
     }
     fetchHalf = () => {
-        let c=this.props.location.state.region.ca.statecode.toString().toLowerCase();
+        let c=this.props.match.params.code.toString().toLowerCase();
         let res=new Date();
         let res2=new Date();
         res2.setDate(res.getDate()-15);
@@ -241,8 +243,8 @@ class States extends Component {
                 </div>
             </div>
         )
-        console.log(this.state)
-        if(this.props.location.state) {
+        console.log(this.props)
+        if(this.props.match.params) {
             if(!this.state.isDaily) {
                 daily= (
                     <div className='ui grid'>
@@ -309,7 +311,7 @@ class States extends Component {
         return (
                 <div className="ui container">
                     <h2>
-                        {this.props.location.state.region.ca.state}
+                        {this.props.match.params.name}
                     </h2>
                     <div className="btn-group btn-group-toggle" style={{marginLeft: "20%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
                         <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>

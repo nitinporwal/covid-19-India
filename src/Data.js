@@ -10,7 +10,6 @@ class Data extends Component {
             this.setState({
                 data: res.data.statewise
             })
-            console.log(res.data.statewise);
         })
     }
     getStats = (code) => {
