@@ -18,7 +18,13 @@ class Navbar extends Component {
                                 <a className="nav-link" href="/symptoms">Symptoms</a>
                             </li>
                             <li className="nav-item">
+                                <a className="nav-link" href="/symptoms/checker">Symptoms Checker</a>
+                            </li>
+                            <li className="nav-item">
                                 <a className="nav-link" href="/preventions">Preventions</a>
+                            </li>
+                            <li className="nav-item">
+                                <a className="nav-link" href="/faqs">FAQs</a>
                             </li>
                             <li className="nav-item">
                                 <a className="nav-link" href="/about">About</a>
