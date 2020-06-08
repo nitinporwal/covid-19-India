@@ -7,6 +7,7 @@ import Navbar from "./Navbar";
 import District from './District';
 import Preventions from "./Preventions";
 import Symptoms from "./Symptoms";
+import Checker from "./Checker";
 // import SMap from './2019_Lok_Sabha_Election_Schedule.svg'
 // import Data from "./Data";
 // import { SVGMap } from "react-svg-map";
@@ -34,6 +35,11 @@ class App extends React.Component {
                     <Route path="/symptoms" exact
                         render={(routeProps) => (
                             <Symptoms {...routeProps} />
+                        )}
+                    />
+                    <Route path="/symptoms/checker" exact
+                        render={(routeProps) => (
+                            <Checker {...routeProps} />
                         )}
                     />
                     <Route path="/preventions" exact

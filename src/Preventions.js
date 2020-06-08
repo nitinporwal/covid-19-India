@@ -23,10 +23,9 @@ class Preventions extends Component {
                 <div className="row">
                     <div className="col-md-9">
                         <div className="card">
-                                <h5 className="card-header">
-                                    Stay aware of the latest information on the COVID-19 outbreak, available on the WHO website and through your national and local pubdivc health authority.
-                                    The best way to prevent illness is to avoid being exposed to this virus. As there is not vaccine to prevent so you can protect yourself and help prevent spreading the virus to others if you do as below instruction.
+                                <h5 className="card-header" style={{padding: "4%"}}>
                                     It’s important to understand that even when people appear not to have symptoms of coronavirus (COVID-19), they may still be carrying the virus.
+                                    The best way to prevent illness is to avoid being exposed to this virus as there is not vaccine to prevent. You can protect yourself and help prevent spreading the virus to others if you do as below instruction.
                                 </h5>
                         </div>
                         <h4 style={{margin: "1% 0"}}>
@@ -62,17 +61,6 @@ class Preventions extends Component {
                                 </h5>
                                 <p>
                                     It is necessary to wear masks in communities, during home care, and in health care settings in areas that have reported cases of COVID-19.
-                                </p>
-                            </div>
-                            <div className="col-md-3" style={{margin: "1% 1%"}}>
-                                <img src={process.env.PUBLIC_URL + '/nosmoking.png'} alt="logo" style={styles} />
-                            </div>
-                            <div className="col-md-8" style={{padding: "3% 0 0 0", fontSize: "1.2em"}}>
-                                <h5 style={{fontWeight: "bold"}}>
-                                    Avoid Smoking: 
-                                </h5>
-                                <p>
-                                    Refrain from smoking and other activities that weaken the lungs because Covid 19 primarily infects the lungs in the affected individuals and in severe cases causes’ death due to ARDS and pneumonia.
                                 </p>
                             </div>
                             <div className="col-md-3" style={{margin: "1% 1%"}}>
@@ -120,6 +108,17 @@ class Preventions extends Component {
                                 <p>
                                     If you have a fever, a cough and difficulty breathing, seek medical attention. Call in advance.
                                     Follow the directions of your local health authority.
+                                </p>
+                            </div>
+                            <div className="col-md-3" style={{margin: "1% 1%"}}>
+                                <img src={process.env.PUBLIC_URL + '/nosmoking.png'} alt="logo" style={styles} />
+                            </div>
+                            <div className="col-md-8" style={{padding: "3% 0 0 0", fontSize: "1.2em"}}>
+                                <h5 style={{fontWeight: "bold"}}>
+                                    Avoid Smoking: 
+                                </h5>
+                                <p>
+                                    Refrain from smoking and other activities that weaken the lungs because Covid 19 primarily infects the lungs in the affected individuals and in severe cases causes’ death due to ARDS and pneumonia.
                                 </p>
                             </div>
                         </div>

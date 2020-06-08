@@ -10,10 +10,11 @@ class Symptoms extends Component {
             margin: "4% 0 0 10%"
         }
         let styles2 = {
+            marginBottum: "20%",
             width: "370px",
-            height: "310px",
-            border: "13px solid white",
-            borderRadius: "7%"
+            height: "960px",
+            border: "3px solid lightgray",
+            borderRadius: "40px 40px"
         }
         let videoSrc="https://www.youtube.com/embed/7zzfdYShvQU";
         return (
@@ -22,15 +23,11 @@ class Symptoms extends Component {
                 <div className="row">
                     <div className="col-md-9">
                         <div className="card">
-                                <h5 className="card-header">
-                                    Stay aware of the latest information on the COVID-19 outbreak, available on the WHO website and through your national and local pubdivc health authority.
-                                    The best way to prevent illness is to avoid being exposed to this virus. As there is not vaccine to prevent so you can protect yourself and help prevent spreading the virus to others if you do as below instruction.
-                                    It’s important to understand that even when people appear not to have symptoms of coronavirus (COVID-19), they may still be carrying the virus.
+                                <h5 className="card-header" style={{padding: "4%"}}>
+                                    People with COVID-19 have had a wide range of symptoms reported – ranging from mild symptoms to severe illness.
+                                    Symptoms may appear 2-14 days after exposure to the virus. People with these symptoms may have COVID-19:
                                 </h5>
                         </div>
-                        <h4 style={{margin: "1% 0"}}>
-                            
-                        </h4>
                         <div className="row">
                             <div className="col-md-3" style={{margin: "1% 1%"}}>
                                 <img src={process.env.PUBLIC_URL + '/cough.png'} alt="logo" style={styles} />
@@ -39,17 +36,22 @@ class Symptoms extends Component {
                                 <h5 style={{fontWeight: "bold"}}>
                                     Cough: 
                                 </h5>
-                                <p>Wash your hands regularly with soap and water, or clean them with alcohol-based hand rub because washing your hands with soap and water or using alcohol-based hand rub kills viruses that may be on your hands.</p>
+                                <p>
+                                    A dry cough does not produce mucus.
+                                    According to the United Kingdom’s National Health Service (NHS), if a person notices they are coughing a lot for over an hour, or they have three or more coughing episodes in a day, they may have coronavirus.
+                                </p>
                             </div>
                             <div className="col-md-3" style={{margin: "1% 1%"}}>
-                                <img src={process.env.PUBLIC_URL + '/sour.svg'} alt="logo" style={styles} />
+                                <img src={process.env.PUBLIC_URL + '/sore.svg'} alt="logo" style={styles} />
                             </div>
                             <div className="col-md-8" style={{padding: "3% 0 0 0", fontSize: "1.2em"}}>
                                 <h5 style={{fontWeight: "bold"}}>
-                                    Sour Throat: 
+                                    Sore Throat: 
                                 </h5>
                                 <p>
-                                    Do not touch your eyes, nose or mouth if your hands are not clean. Cover your mouth and nose when coughing or sneezing because hands touch many surfaces and can pick up viruses. Once contaminated, hands can transfer the virus to your eyes, nose or mouth. From there, the virus can enter your body and can make you sick.
+                                    A sore throat is a painful, dry, or scratchy feeling in the throat.
+                                    It may hurt more when you swallow or talk. Your throat or tonsils might also look red.
+                                    Sore throat is a very common and non-specific symptom (aka, a symptom that is self-reported and doesn't indicate a specific disease).
                                 </p>
                             </div>
                             <div className="col-md-3" style={{margin: "1% 1%"}}>
@@ -60,20 +62,12 @@ class Symptoms extends Component {
                                     Fever: 
                                 </h5>
                                 <p>
-                                    It is necessary to wear masks in communities, during home care, and in health care settings in areas that have reported cases of COVID-19.
+                                    A short-term increase in body temperature can help your body fight off illness.
+                                    Doctors consider a temperature of 100.4°F or higher to be a fever.
+                                    A person with a fever will feel hot to touch on their back or chest.
                                 </p>
                             </div>
-                            <div className="col-md-3" style={{margin: "1% 1%"}}>
-                                <img src={process.env.PUBLIC_URL + '/muscel_pain.jpg'} alt="logo" style={styles} />
-                            </div>
-                            <div className="col-md-8" style={{padding: "3% 0 0 0", fontSize: "1.2em"}}>
-                                <h5 style={{fontWeight: "bold"}}>
-                                    Muscel Pain: 
-                                </h5>
-                                <p>
-                                    Refrain from smoking and other activities that weaken the lungs because Covid 19 primarily infects the lungs in the affected individuals and in severe cases causes’ death due to ARDS and pneumonia.
-                                </p>
-                            </div>
+                            
                             <div className="col-md-3" style={{margin: "1% 1%"}}>
                                 <img src={process.env.PUBLIC_URL + '/chills.jpg'} alt="logo" style={styles} />
                             </div>
@@ -82,9 +76,7 @@ class Symptoms extends Component {
                                     Chills: 
                                 </h5>
                                 <p>
-                                    Practice physical distancing by avoiding unnecessary travel and staying away from large groups of people because social distancing is a non-pharmaceutical infection prevention and control intervention
-                                    implemented to avoid/decrease contact between those who are infected with a disease causing
-                                    pathogen.
+                                    The term “chills” refers to a feeling of being cold without an apparent cause. You get this feeling when your muscles repeatedly expand and contract and the vessels in your skin constrict. Chills can occur with a fever and cause shivering or shaking.
                                 </p>
                             </div>
                             <div className="col-md-3" style={{margin: "1% 1%"}}>
@@ -94,8 +86,7 @@ class Symptoms extends Component {
                                 <h5 style={{fontWeight: "bold"}}>
                                     Shortness of Breath or Difficulty breathing: </h5>
                                 <p>
-                                    Cover your nose and mouth with your bent elbow or a tissue when you cough or sneeze.
-                                    Droplets spread virus. By following good respiratory hygiene you protect the people around you from viruses such as cold, flu and COVID-19.
+                                    Shortness of breath is a subjective feeling. However, those experiencing shortness of breath may describe it feeling as if they are suffocating, or unable to catch their breath.
                                 </p>
                             </div>
                             <div className="col-md-3" style={{margin: "1% 1%"}}>
@@ -106,19 +97,29 @@ class Symptoms extends Component {
                                     New loss of taste or smell: 
                                 </h5>
                                 <p>
-                                    Stay home if you feel unwell because you can lower the risks of transmission by reducing the number of people you come into close contact with.
+                                    Since the start of the COVID-19 pandemic, it's become clear that many people with the infection lose their sense of smell and taste. And doctors are concerned that some will never get back to normal.
                                 </p>
                             </div>
                             <div className="col-md-3" style={{margin: "1% 1%"}}>
-                                <img src={process.env.PUBLIC_URL + '/sneez.png'} alt="logo" style={styles} />
+                                <img src={process.env.PUBLIC_URL + '/tired.png'} alt="logo" style={styles} />
                             </div>
                             <div className="col-md-8" style={{padding: "3% 0 0 0", fontSize: "1.2em"}}>
                                 <h5 style={{fontWeight: "bold"}}>
-                                    Seek Medical Attention: 
+                                    Tiredness: 
                                 </h5>
                                 <p>
-                                    If you have a fever, a cough and difficulty breathing, seek medical attention. Call in advance.
-                                    Follow the directions of your local health authority.
+                                    Fatigue is a term used to describe an overall feeling of tiredness or lack of energy. It isn’t the same as simply feeling drowsy or sleepy.A person with fatigue may feel drained, weak, or sluggish.
+                                </p>
+                            </div>
+                            <div className="col-md-3" style={{margin: "1% 1%"}}>
+                                <img src={process.env.PUBLIC_URL + '/muscel_pain.jpg'} alt="logo" style={styles} />
+                            </div>
+                            <div className="col-md-8" style={{padding: "3% 0 0 0", fontSize: "1.2em"}}>
+                                <h5 style={{fontWeight: "bold"}}>
+                                    Muscel Pain: 
+                                </h5>
+                                <p>
+                                    Muscle pain—often caused by muscle inflammation (myositis)—isn't an uncommon symptom for a viral infection.
                                 </p>
                             </div>
                         </div>
@@ -132,10 +133,16 @@ class Symptoms extends Component {
                             title="COVID-19 Stop the Spread of Germs"
                             src={videoSrc} 
                         />
-                        <img src={process.env.PUBLIC_URL + '/who1.png'} alt="logo" style={styles2} />
-                        <img src={process.env.PUBLIC_URL + '/who2.png'} alt="logo" style={styles2} />
-                        <img src={process.env.PUBLIC_URL + '/who3.png'} alt="logo" style={styles2} />
-                        <img src={process.env.PUBLIC_URL + '/who4.png'} alt="logo" style={styles2} />
+                        <div className="jumbotron" style={{width: "150%", margin: "10% 6% 15% 0%"}}>
+                            <h4>
+                                <a href="/symptoms/checker">
+                                    Covid-19 Symptoms Checker By:
+                                    <br/>
+                                    Johns Hopkins Medicine
+                                </a>
+                            </h4>
+                        </div>
+                        <img src={process.env.PUBLIC_URL + '/symptoms2.png'} alt="logo" style={styles2} />
                     </div>
                 </div>
             </div>
