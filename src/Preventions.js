@@ -11,11 +11,12 @@ class Preventions extends Component {
             margin: "4% 0 0 10%"
         }
         let styles2 = {
-            width: "380px",
-            height: "380px",
+            width: "370px",
+            height: "310px",
             border: "13px solid white",
             borderRadius: "7%"
         }
+        let videoSrc="https://youtube.com/embed/W-zhhSQDD1U";
         return (
             <div className="container">
                 <h2>Covid-19 Preventions and Advice</h2>
@@ -124,10 +125,18 @@ class Preventions extends Component {
                         </div>
                     </div>
                     <div className="col-md-3">
-                    <img src={process.env.PUBLIC_URL + '/who1.png'} alt="logo" style={styles2} />
-                    <img src={process.env.PUBLIC_URL + '/who2.png'} alt="logo" style={styles2} />
-                    <img src={process.env.PUBLIC_URL + '/who3.png'} alt="logo" style={styles2} />
-                    <img src={process.env.PUBLIC_URL + '/who4.png'} alt="logo" style={styles2} />
+                        <iframe width="370" height="310" allowFullScreen="allowFullScreen"
+                            mozallowfullscreen="mozallowfullscreen" 
+                            msallowfullscreen="msallowfullscreen" 
+                            oallowfullscreen="oallowfullscreen" 
+                            webkitallowfullscreen="webkitallowfullscreen" 
+                            title="COVID-19 Stop the Spread of Germs"
+                            src={videoSrc} 
+                        />
+                        <img src={process.env.PUBLIC_URL + '/who1.png'} alt="logo" style={styles2} />
+                        <img src={process.env.PUBLIC_URL + '/who2.png'} alt="logo" style={styles2} />
+                        <img src={process.env.PUBLIC_URL + '/who3.png'} alt="logo" style={styles2} />
+                        <img src={process.env.PUBLIC_URL + '/who4.png'} alt="logo" style={styles2} />
                     </div>
                 </div>
             </div>

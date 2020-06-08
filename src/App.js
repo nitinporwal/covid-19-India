@@ -6,6 +6,7 @@ import States from "./States";
 import Navbar from "./Navbar";
 import District from './District';
 import Preventions from "./Preventions";
+import Symptoms from "./Symptoms";
 // import SMap from './2019_Lok_Sabha_Election_Schedule.svg'
 // import Data from "./Data";
 // import { SVGMap } from "react-svg-map";
@@ -28,6 +29,11 @@ class App extends React.Component {
                         path="/distict/:name" exact
                         render={(routeProps) => (
                             <District {...routeProps} />
+                        )}
+                    />
+                    <Route path="/symptoms" exact
+                        render={(routeProps) => (
+                            <Symptoms {...routeProps} />
                         )}
                     />
                     <Route path="/preventions" exact
