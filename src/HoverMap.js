@@ -82,9 +82,9 @@ class HoverMap extends React.Component {
             this.fetchMonth()
         }))
     }
-    getDateDiff = () => {
+    getDateDiff = (name) => {
         let x=this.state.cases.filter((c) => {
-            return c.state===this.state.pointedLocation
+            return c.state===name
         })
         let date1;
         let a="";
@@ -491,7 +491,7 @@ class HoverMap extends React.Component {
                         <div className="card-body">
                             <div className="ui header">
                                 Confirmed cases:
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
@@ -508,7 +508,7 @@ class HoverMap extends React.Component {
                         <div className="card-body">
                             <div className="ui header">
                                 Active cases:
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
@@ -526,7 +526,7 @@ class HoverMap extends React.Component {
                         <div className="card-body">
                             <div className="ui header">
                                 Recovered:
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
@@ -544,7 +544,7 @@ class HoverMap extends React.Component {
                         <div className="card-body">
                             <div className="ui header">
                                 Deaths:
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
@@ -569,7 +569,7 @@ class HoverMap extends React.Component {
                         <div className="card-body">
                             <div className="ui header">
                                 Confirmed cases:
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
@@ -586,7 +586,7 @@ class HoverMap extends React.Component {
                         <div className="card-body">
                             <div className="ui header">
                                 Active cases:
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
@@ -604,7 +604,7 @@ class HoverMap extends React.Component {
                         <div className="card-body">
                             <div className="ui header">
                                 Recovered:
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
@@ -622,7 +622,7 @@ class HoverMap extends React.Component {
                         <div className="card-body">
                             <div className="ui header">
                                 Deaths:
-                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
@@ -650,7 +650,7 @@ class HoverMap extends React.Component {
                                 <div className="card-body">
                                     <div className="ui header">
                                         Confirmed cases:
-                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
@@ -668,7 +668,7 @@ class HoverMap extends React.Component {
                                 <div className="card-body">
                                     <div className="ui header">
                                         Active cases:
-                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.active} syncId="anyId"
@@ -686,7 +686,7 @@ class HoverMap extends React.Component {
                                 <div className="card-body">
                                     <div className="ui header">
                                         Recovered:
-                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.recovered} syncId="anyId"
@@ -704,7 +704,7 @@ class HoverMap extends React.Component {
                                 <div className="card-body">
                                     <div className="ui header">
                                         Deaths:
-                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.death} syncId="anyId"
@@ -728,7 +728,7 @@ class HoverMap extends React.Component {
                                 <div className="card-body">
                                     <div className="ui header">
                                         Confirmed cases:
-                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
@@ -746,7 +746,7 @@ class HoverMap extends React.Component {
                                 <div className="card-body">
                                     <div className="ui header">
                                         Active cases:
-                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.active} syncId="anyId"
@@ -764,7 +764,7 @@ class HoverMap extends React.Component {
                                 <div className="card-body">
                                     <div className="ui header">
                                         Recovered:
-                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.recovered} syncId="anyId"
@@ -782,7 +782,7 @@ class HoverMap extends React.Component {
                                 <div className="card-body">
                                     <div className="ui header">
                                         Deaths:
-                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.death} syncId="anyId"
@@ -818,7 +818,7 @@ class HoverMap extends React.Component {
                                         "India"}
                                     </h5>
                                     <p>
-                                        Last Updated: {this.getDateDiff()}
+                                        Last Updated: {this.getDateDiff(this.state.pointedLocation)}
                                     </p>
                                 </div>
                                 <div className="row no-gutters">
@@ -849,7 +849,7 @@ class HoverMap extends React.Component {
                         </div>
                     </div>
                     <div className='row'>
-                        <div className="col-lg-6 col-md-8 cd-sm-8 jumbotron" style={{marginTop:"-15.5%"}}>
+                        <div className="col-lg-6 col-md-8 cd-sm-8 jumbotron" style={{marginTop:"-17.5%"}}>
                             <div className="row">
                                 <h3 style={{margin:"-4% 0 1% 40%"}}>
                                     Map of India
@@ -877,7 +877,7 @@ class HoverMap extends React.Component {
                             </div>
                             <div className='row'>
 
-                                <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
+                                <div className="btn-group btn-group-toggle" style={{marginLeft: "9%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
                                     <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
                                         <input type="radio" name="options" id="option1" autoComplete="off" /> Total
                                     </label>
@@ -885,7 +885,7 @@ class HoverMap extends React.Component {
                                         <input type="radio" name="options" id="option2" autoComplete="off" /> Daily
                                     </label>
                                 </div>
-                                <div className="btn-group btn-group-toggle" style={{marginLeft: "10%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
+                                <div className="btn-group btn-group-toggle" style={{marginLeft: "5%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
                                     <label onClick={this.handleBegining} className={`btn btn-primary ${this.classes.class3}`}>
                                         <input type="radio" name="options" id="option1" autoComplete="off" /> Begining
                                     </label>
@@ -896,7 +896,7 @@ class HoverMap extends React.Component {
                                         <input type="radio" name="options" id="option2" autoComplete="off" /> Two Weeks
                                     </label>
                                 </div>
-                                <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
+                                <div className="btn-group btn-group-toggle" style={{marginLeft: "5%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
                                     <label onClick={this.toggleLine} className={`btn btn-primary ${this.classes.class6}`}>
                                         <input type="radio" name="options" id="option1" autoComplete="off" /> Line
                                     </label>

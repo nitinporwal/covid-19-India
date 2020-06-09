@@ -1,6 +1,7 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, BarChart } from 'recharts';
 import React, { Component } from 'react';
 import { covid } from './api/covid';
+import moment from 'moment'
 
 class States extends Component {
     constructor(props) {
@@ -17,6 +18,7 @@ class States extends Component {
             confirmedDaily: [],
             recoveredDaily: [],
             deathDaily: [],
+            lastUpdatedTime: [],
             type: "line"
         }
         this.classes = {
@@ -36,6 +38,38 @@ class States extends Component {
         }).then(() => {
             this.fetchMonth();
         })
+        covid.get('/data.json').then((res) => {
+            let ar=[];
+            ar=res.data.statewise.map((st) => {
+                return {
+                    state: st.state, 
+                    lastUpdated: st.lastupdatedtime
+                }
+            })
+            console.log(ar);
+            this.setState({lastUpdatedTime: ar});
+            return ar;
+        })
+    }
+    getDateDiff = (name) => {
+        let x=this.state.lastUpdatedTime.filter((c) => {
+            return c.state===name
+        })
+        console.log(x);
+        let date1;
+        let a="";
+        if(x[0]) {
+            date1 = x[0].lastUpdated;
+            a+=(date1.charAt(3));
+            a+=(date1.charAt(4));
+            a+=(date1.charAt(2));
+            a+=(date1.charAt(0));
+            a+=(date1.charAt(1));
+            for(let x=5; x<date1.length; x++) {
+                a+=(date1.charAt(x));
+            }
+        }
+        return (moment(a).fromNow());
     }
     fetchOverall = () => {
         let c=this.props.match.params.code.toString().toLowerCase();
@@ -124,7 +158,6 @@ class States extends Component {
         let confDaily=[], actDaily=[], decDaily=[], recDaily=[];
         let x=0, y=0, z=0, a=0;
         this.state.daily.filter(d => {
-            // console.log(d);
             if(d.status==='Confirmed') {
                 x=parseInt(parseInt(x)+parseInt(d[`${c}`]));
                 if(new Date(d.date)>=res2) {
@@ -219,7 +252,7 @@ class States extends Component {
                             <div className="card-body">
                                 <div className="ui header">
                                     Confirmed cases:
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                    <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                 </div>
                             </div>
                             <BarChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
@@ -238,7 +271,7 @@ class States extends Component {
                             <div className="card-body">
                                 <div className="ui header">
                                     Active cases:
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                    <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                 </div>
                             </div>
                             <BarChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
@@ -257,7 +290,7 @@ class States extends Component {
                             <div className="card-body">
                                 <div className="ui header">
                                     Recovered:
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                    <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                 </div>
                             </div>
                             <BarChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
@@ -276,7 +309,7 @@ class States extends Component {
                             <div className="card-body">
                                 <div className="ui header">
                                     Deaths:
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                    <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                 </div>
                             </div>
                             <BarChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
@@ -302,7 +335,7 @@ class States extends Component {
                             <div className="card-body">
                                 <div className="ui header">
                                     Confirmed cases:
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                    <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                 </div>
                             </div>
                             <LineChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
@@ -321,7 +354,7 @@ class States extends Component {
                             <div className="card-body">
                                 <div className="ui header">
                                     Active cases:
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                    <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                 </div>
                             </div>
                             <LineChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
@@ -340,7 +373,7 @@ class States extends Component {
                             <div className="card-body">
                                 <div className="ui header">
                                     Recovered:
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                    <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                 </div>
                             </div>
                             <LineChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
@@ -359,7 +392,7 @@ class States extends Component {
                             <div className="card-body">
                                 <div className="ui header">
                                     Deaths:
-                                    <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                    <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                 </div>
                             </div>
                             <LineChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
@@ -388,7 +421,7 @@ class States extends Component {
                                     <div className="card-body">
                                         <div className="ui header">
                                             Confirmed cases:
-                                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                            <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                         </div>
                                     </div>
                                     <LineChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
@@ -407,7 +440,7 @@ class States extends Component {
                                     <div className="card-body">
                                         <div className="ui header">
                                             Active cases:
-                                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                            <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                         </div>
                                     </div>
                                     <LineChart width={500} height={200} data={this.state.active} syncId="anyId"
@@ -426,7 +459,7 @@ class States extends Component {
                                     <div className="card-body">
                                         <div className="ui header">
                                             Recovered:
-                                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                            <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                         </div>
                                     </div>
                                     <LineChart width={500} height={200} data={this.state.recovered} syncId="anyId"
@@ -445,7 +478,7 @@ class States extends Component {
                                     <div className="card-body">
                                         <div className="ui header">
                                             Deaths:
-                                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                            <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                         </div>
                                     </div>
                                     <LineChart width={500} height={200} data={this.state.death} syncId="anyId"
@@ -471,7 +504,7 @@ class States extends Component {
                                     <div className="card-body">
                                         <div className="ui header">
                                             Confirmed cases:
-                                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                            <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                         </div>
                                     </div>
                                     <BarChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
@@ -490,7 +523,7 @@ class States extends Component {
                                     <div className="card-body">
                                         <div className="ui header">
                                             Active cases:
-                                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                            <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                         </div>
                                     </div>
                                     <BarChart width={500} height={200} data={this.state.active} syncId="anyId"
@@ -509,7 +542,7 @@ class States extends Component {
                                     <div className="card-body">
                                         <div className="ui header">
                                             Recovered:
-                                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                            <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                         </div>
                                     </div>
                                     <BarChart width={500} height={200} data={this.state.recovered} syncId="anyId"
@@ -528,7 +561,7 @@ class States extends Component {
                                     <div className="card-body">
                                         <div className="ui header">
                                             Deaths:
-                                            <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
+                                            <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff(this.props.match.params.name)}</small></p>
                                         </div>
                                     </div>
                                     <BarChart width={500} height={200} data={this.state.death} syncId="anyId"
@@ -553,8 +586,8 @@ class States extends Component {
                     <h2>
                         {this.props.match.params.name}
                     </h2>
-                    
-                    <div className="btn-group btn-group-toggle" style={{marginLeft: "20%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
+
+                    <div className="btn-group btn-group-toggle" style={{marginLeft: "20%", marginBottom: "2%", marginTop: "2%", marginBottom: "3%"}} data-toggle="buttons">
                         <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
                             <input type="radio" name="options" id="option1" autoComplete="off" /> Total
                         </label>
@@ -562,7 +595,7 @@ class States extends Component {
                             <input type="radio" name="options" id="option2" autoComplete="off" /> Daily
                         </label>
                     </div>
-                    <div className="btn-group btn-group-toggle" style={{marginLeft: "40%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
+                    <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginBottom: "2%", marginTop: "2%", marginBottom: "3%"}} data-toggle="buttons">
                         <label onClick={this.handleBegining} className={`btn btn-primary ${this.classes.class4}`}>
                             <input type="radio" name="options" id="option1" autoComplete="off" /> Begining
                         </label>
@@ -573,7 +606,7 @@ class States extends Component {
                             <input type="radio" name="options" id="option2" autoComplete="off" /> Two Weeks
                         </label>
                     </div>
-                    <div className="btn-group btn-group-toggle" style={{marginLeft: "20%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
+                    <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginBottom: "2%", marginTop: "2%", marginBottom: "3%"}} data-toggle="buttons">
                         <label onClick={this.toggleLine} className={`btn btn-primary ${this.classes.class6}`}>
                             <input type="radio" name="options" id="option1" autoComplete="off" /> Line
                         </label>
