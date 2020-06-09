@@ -6,7 +6,8 @@ import Data from "./Data";
 import { covid } from "./api/covid";
 import { Link} from "react-router-dom";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, BarChart } from 'recharts';
-
+import Loader from 'react-loader-spinner';
+import { trackPromise } from 'react-promise-tracker';
  
 class HoverMap extends React.Component {
     constructor(props) {
@@ -38,7 +39,8 @@ class HoverMap extends React.Component {
             },
             isDaily: false,
             whichClicked: "confirmed",
-            type: "line"
+            type: "line",
+            delyed: true
         };
         
         this.classes = {
@@ -57,6 +59,7 @@ class HoverMap extends React.Component {
 		// this.handleLocationBlur = this.handleLocationBlur.bind(this);
     }
     componentDidMount = () => {
+        trackPromise(
         covid.get('/data.json').then(res => {
             // console.log(res.data.cases_time_series)
             let cas=res.data.cases_time_series;
@@ -76,7 +79,7 @@ class HoverMap extends React.Component {
             this.setState({cases: cc, totalCases: c});
         }).then(() => {
             this.fetchMonth()
-        })
+        }))
     }
     getLocationSelected(event) {
         return event.target.attributes['aria-checked'].value === 'true';
@@ -118,7 +121,19 @@ class HoverMap extends React.Component {
         });
 
     }
-    
+    showLoader = () => {
+        setTimeout(() => 
+            { 
+                return (
+                    this.setState({delyed: false})
+                )
+            }
+            , 2000
+        );
+        return (
+            <Loader type="ThreeDots" color="#0278f5" height="100" width="100" />
+        )
+    }
 	// handleLocationFocus(event) {
 	// 	const focusedLocation = this.getLocationName(event);
     //     this.setState({ focusedLocation: focusedLocation });
@@ -752,6 +767,10 @@ class HoverMap extends React.Component {
                 }
             }
             return (
+                // (this.state.delyed) ?
+                //     this.showLoader()
+                //     :
+                //     (
                 <article className="examples__block" style={{marginTop: "3%", marginLeft:"5%"}}>
                     <div className="row">
                         <div className="examples__block__info" style={{marginLeft:"49%", minHeight: "187px"}}>
@@ -767,7 +786,9 @@ class HoverMap extends React.Component {
                                 </div>
                                 <div class="row no-gutters">
                                     <div class="card-body" style={{minHeight: "123px"}}>
-                                        <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />
+                                        {(this.state.delyed) ?
+                                        this.showLoader() :
+                                        <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />}
                                     </div>
                                 </div>
                             </div>
@@ -818,6 +839,7 @@ class HoverMap extends React.Component {
                                 </div>
                             </div>
                             <div className='row'>
+
                                 <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
                                     <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
                                         <input type="radio" name="options" id="option1" autoComplete="off" /> Total
@@ -845,7 +867,11 @@ class HoverMap extends React.Component {
                                         <input type="radio" name="options" id="option2" autoComplete="off" /> Bar
                                     </label>
                                 </div>
-                                {daily}
+                                {
+                                    (this.state.delyed) ?
+                                    this.showLoader() :
+                                    daily
+                                }
                             </div>
                         </div>
                         <div className="col-lg-5 col-md-12" style={{marginLeft:"4%"}}>
@@ -874,11 +900,17 @@ class HoverMap extends React.Component {
                                         </th>
                                     </tr>
                                 </thead>
-                                {this.showStats()}
+
+                                {
+                                    (this.state.delyed) ?
+                                    this.showLoader() :
+                                    this.showStats()
+                                }
                             </table>
                         </div>
                     </div>
                 </article>
+            // )
             );
         }
         // else {
