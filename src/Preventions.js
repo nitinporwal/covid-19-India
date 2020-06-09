@@ -88,7 +88,7 @@ class Preventions extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3" style={{margin: "1% 1%"}}>
-                                <img src={process.env.PUBLIC_URL + '/stayhome.jpeg'} alt="logo" style={styles} />
+                                <img src={process.env.PUBLIC_URL + '/stayhome.jpg'} alt="logo" style={styles} />
                             </div>
                             <div className="col-lg-8" style={{padding: "3% 3% 0 0", fontSize: "1.2em"}}>
                                 <h5 style={{fontWeight: "bold"}}>
