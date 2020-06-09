@@ -553,6 +553,7 @@ class States extends Component {
                     <h2>
                         {this.props.match.params.name}
                     </h2>
+                    
                     <div className="btn-group btn-group-toggle" style={{marginLeft: "20%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
                         <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
                             <input type="radio" name="options" id="option1" autoComplete="off" /> Total

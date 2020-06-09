@@ -8,6 +8,7 @@ import { Link} from "react-router-dom";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, BarChart } from 'recharts';
 import Loader from 'react-loader-spinner';
 import { trackPromise } from 'react-promise-tracker';
+import moment from 'moment'
  
 class HoverMap extends React.Component {
     constructor(props) {
@@ -81,6 +82,25 @@ class HoverMap extends React.Component {
             this.fetchMonth()
         }))
     }
+    getDateDiff = () => {
+        let x=this.state.cases.filter((c) => {
+            return c.state===this.state.pointedLocation
+        })
+        let date1;
+        let a="";
+        if(x[0]) {
+            date1 = x[0].lastupdatedtime;
+            a+=(date1.charAt(3));
+            a+=(date1.charAt(4));
+            a+=(date1.charAt(2));
+            a+=(date1.charAt(0));
+            a+=(date1.charAt(1));
+            for(let x=5; x<date1.length; x++) {
+                a+=(date1.charAt(x));
+            }
+        }
+        return (moment(a).fromNow());
+    }
     getLocationSelected(event) {
         return event.target.attributes['aria-checked'].value === 'true';
     }
@@ -103,16 +123,16 @@ class HoverMap extends React.Component {
 		const clickedLocation = this.getLocationName(event);
 		const clickedLocationId = this.getLocationId(event);
         this.setState({ clickedLocation: clickedLocation });
-        console.log(clickedLocationId);
+        // console.log(clickedLocationId);
         let r=this.state.cases.filter(c=> {
             return c.state===clickedLocation
         })
-        console.log(r);
+        // console.log(r);
 		// window.open(this.links[clickedLocationId]);
         this.setState({clickedLocationCode: clickedLocationId});
-        console.log(this.state);
+        // console.log(this.state);
         const { history } = this.props;
-        console.log(history);
+        // console.log(history);
         if(history) history.push({
             pathname: `/state/${clickedLocationId}/${clickedLocation}`,
             state: {
@@ -323,7 +343,7 @@ class HoverMap extends React.Component {
     dynamicsort = (key, direction) => {
         return (a, b) => {
             if(a.statecode==="TT") {
-                console.log("YES");
+                // console.log("YES");
                 return direction === 'asc' ? -1 : -1;
             }
             else if(b.statecode==="TT") {
@@ -354,11 +374,11 @@ class HoverMap extends React.Component {
         }
         this.setState({sortConfig: {key: key, direction: direction}});
         let x=this.state.cases;
-        console.log(key, direction)
+        // console.log(key, direction)
         x.sort(this.dynamicsort(key, direction));
     }
     getWhichClicked= (which) => {
-        console.log(which);
+        // console.log(which);
         this.setState({whichClicked: which});
     }
     showStats = () => {
@@ -370,6 +390,7 @@ class HoverMap extends React.Component {
                     // p=ca.active-p;
                     // r=ca.recovered-r;
                     // s=ca.deaths-s;
+                    // console.log(ca)
                     return (
                         <tr key={ca.statecode}
                             onMouseOver={() => this.handleHover(ca)}
@@ -394,6 +415,9 @@ class HoverMap extends React.Component {
                                     }
                                 }} style={{textDecoration: "none"}}>
                                     {ca.confirmed}
+                                    <sup style={{color: "green"}}>
+                                        {`+${ca.deltaconfirmed}`}
+                                    </sup>
                                     {/* <br/>
                                     {q} */}
                                 </Link>
@@ -406,6 +430,7 @@ class HoverMap extends React.Component {
                                     }
                                 }} style={{textDecoration: "none"}}>
                                     {ca.active}
+                                    {(parseInt(ca.deltaactive)>=0) ? `+${ca.deltaactive}` : ca.deltaactive}
                                     {/* <br/>
                                     {p} */}
                                 </Link>
@@ -418,6 +443,9 @@ class HoverMap extends React.Component {
                                     }
                                 }} style={{textDecoration: "none"}}>
                                     {ca.recovered}
+                                    <sup style={{color: "green"}}>
+                                        {`+${ca.deltarecovered}`}
+                                    </sup>
                                     {/* <br/>
                                     {r} */}
                                 </Link>
@@ -430,6 +458,9 @@ class HoverMap extends React.Component {
                                     }
                                 }}>
                                     {ca.deaths}
+                                    <sup style={{color: "green"}}>
+                                        {`+${ca.deltadeaths}`}
+                                    </sup>
                                     {/* <br/>
                                     {s} */}
                                 </Link>
@@ -786,6 +817,9 @@ class HoverMap extends React.Component {
                                         this.state.pointedLocation :
                                         "India"}
                                     </h5>
+                                    <p>
+                                        Last Updated: {this.getDateDiff()}
+                                    </p>
                                 </div>
                                 <div className="row no-gutters">
                                     <div className="card-body" style={{minHeight: "123px"}}>
