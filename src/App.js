@@ -19,7 +19,7 @@ class App extends React.Component {
         return (
             <>
             <Navbar />
-            <div className="container">
+            <div>
                 <BrowserRouter>
                     <Route path="/" exact component={HoverMap} />
                     <Route 

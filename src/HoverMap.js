@@ -578,8 +578,7 @@ class HoverMap extends React.Component {
             return (
                 <article className="examples__block" style={{marginTop: "3%", marginLeft:"5%"}}>
                     <div className='row'>
-                        <div className="col-lg-11 col-md-12 jumbotron">
-                            <div className="row">
+                        <div className="col-lg-6 col-md-12 jumbotron">
                                 <div className="row">
                                     <div className="examples__block__info">
                                         <div className="card bg-light mb-3" style={{maxWidth: "80rem", minWidth: "40rem", margin: "-2% 0 0 12%"}}>
@@ -618,6 +617,7 @@ class HoverMap extends React.Component {
                                     </div>
 
                                 </div>
+                            <div className="row">
                                 <div className="row">
                                     <div className="examples__block__map examples__block__map--usa">
                                         <SVGMap 
@@ -664,7 +664,7 @@ class HoverMap extends React.Component {
                                 {daily}
                             </div>
                         </div>
-                        <div className="col-lg-1 col-md-12">
+                        <div className="col-lg-5 col-md-12" style={{marginLeft:"4%"}}>
                             <table style={{borderCollapse: "seperated"}}>
                                 <thead>
                                     <tr>
