@@ -420,7 +420,7 @@ class HoverMap extends React.Component {
         }
         let daily = (
             <div>
-                <div class="card" style={{margin: "3% 24% 3% 18%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                     <div class="card-body">
                         <div className="ui header">
                             Confirmed cases:
@@ -437,7 +437,7 @@ class HoverMap extends React.Component {
                     <Bar type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
                     </BarChart>
                 </div>
-                <div class="card" style={{margin: "3% 24% 3% 18%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                     <div class="card-body">
                         <div className="ui header">
                             Active cases:
@@ -455,7 +455,7 @@ class HoverMap extends React.Component {
                     </BarChart>
                     
                 </div>
-                <div class="card" style={{margin: "3% 24% 3% 18%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                     <div class="card-body">
                         <div className="ui header">
                             Recovered:
@@ -473,7 +473,7 @@ class HoverMap extends React.Component {
                     </BarChart>
                     
                 </div>
-                <div class="card" style={{margin: "3% 24% 3% 18%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                     <div class="card-body">
                         <div className="ui header">
                             Deaths:
@@ -499,7 +499,7 @@ class HoverMap extends React.Component {
             if(!this.state.isDaily) {
                 daily= (
                     <div>
-                        <div class="card" style={{margin: "3% 24% 3% 18%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                        <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                             <div class="card-body">
                                 <div className="ui header">
                                     Confirmed cases:
@@ -517,7 +517,7 @@ class HoverMap extends React.Component {
                             </LineChart>
                             
                         </div>
-                        <div class="card" style={{margin: "3% 24% 3% 18%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                        <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                             <div class="card-body">
                                 <div className="ui header">
                                     Active cases:
@@ -535,7 +535,7 @@ class HoverMap extends React.Component {
                             </LineChart>
                             
                         </div>
-                        <div class="card" style={{margin: "3% 24% 3% 18%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                        <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                             <div class="card-body">
                                 <div className="ui header">
                                     Recovered:
@@ -553,7 +553,7 @@ class HoverMap extends React.Component {
                             </LineChart>
                             
                         </div>
-                        <div class="card" style={{margin: "3% 24% 3% 18%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                        <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                             <div class="card-body">
                                 <div className="ui header">
                                     Deaths:
@@ -576,63 +576,71 @@ class HoverMap extends React.Component {
                 )
             }
             return (
-                <article className="examples__block" style={{marginTop: "3%"}}>
-                    <div className='ui grid'>
-                        <div className="fifteen wide column jumbotron">
-                            <div className="ui grid">
-                                <div className="five wide column examples__block__info">
-                                <div className="card bg-light mb-3" style={{maxWidth: "18rem", minWidth: "14rem"}}>
-                                    <div className="card-header">
-                                        <h5>
-                                            Pointed State:
-                                            <br/>
-                                            {(this.state.pointedLocation!=="Total") ? 
-                                            this.state.pointedLocation :
-                                            "India"}
-                                        </h5>
-                                    </div>
-                                    <div className="card-body">
-                                        <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />
-                                    </div>
-                                    </div>
-                                    {/* <div className="ui cards">
-                                        <div className="card">
-                                            <div className="content">
-                                                <div className="header examples__block__info__item">
-                                                    Pointed location:
+                <article className="examples__block" style={{marginTop: "3%", marginLeft:"5%"}}>
+                    <div className='row'>
+                        <div className="col-lg-11 col-md-12 jumbotron">
+                            <div className="row">
+                                <div className="row">
+                                    <div className="examples__block__info">
+                                        <div className="card bg-light mb-3" style={{maxWidth: "80rem", minWidth: "40rem", margin: "-2% 0 0 12%"}}>
+                                            <div className="card-header">
+                                                <h5>
+                                                    Pointed State:
                                                     <br/>
                                                     {(this.state.pointedLocation!=="Total") ? 
                                                     this.state.pointedLocation :
                                                     "India"}
-                                                </div>
-                                                <hr />
-                                                <div className="description">
-                                                    <Data code={this.state.pointedLocation} />
+                                                </h5>
+                                            </div>
+                                            <div class="row no-gutters">
+                                                <div class="card-body">
+                                                    <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />
                                                 </div>
                                             </div>
                                         </div>
-                                    </div> */}
+                                        {/* <div className="ui cards">
+                                            <div className="card">
+                                                <div className="content">
+                                                    <div className="header examples__block__info__item">
+                                                        Pointed location:
+                                                        <br/>
+                                                        {(this.state.pointedLocation!=="Total") ? 
+                                                        this.state.pointedLocation :
+                                                        "India"}
+                                                    </div>
+                                                    <hr />
+                                                    <div className="description">
+                                                        <Data code={this.state.pointedLocation} />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div> */}
+                                    </div>
+
                                 </div>
-                                <div className="eleven wide column examples__block__map examples__block__map--usa">
-                                    <SVGMap 
-                                        map={world}
-                                        onLocationMouseOver={this.handleLocationMouseOver}
-                                        onLocationMouseOut={this.handleLocationMouseOut}
-                                        onLocationClick={(event) => this.handleLocationClick(event)}
-                                        onLocationFocus={this.handleLocationFocus}
-                                        onLocationBlur={this.handleLocationBlur}
-                                        locationClassName={(location, index) =>this.getLocationClassName(location, index)}
-                                        // onLocationMouseMove={this.handleLocationMouseMove}
-                                         />
-                                    {/* <div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
-                                        <div className="ui header">
-                                            {this.state.pointedLocation}
-                                        </div>
-                                        <Data code={this.state.pointedLocation} />
-                                    </div> */}
+                                <div className="row">
+                                    <div className="examples__block__map examples__block__map--usa">
+                                        <SVGMap 
+                                            map={world}
+                                            onLocationMouseOver={this.handleLocationMouseOver}
+                                            onLocationMouseOut={this.handleLocationMouseOut}
+                                            onLocationClick={(event) => this.handleLocationClick(event)}
+                                            onLocationFocus={this.handleLocationFocus}
+                                            onLocationBlur={this.handleLocationBlur}
+                                            locationClassName={(location, index) =>this.getLocationClassName(location, index)}
+                                            // onLocationMouseMove={this.handleLocationMouseMove}
+                                            />
+                                        {/* <div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
+                                            <div className="ui header">
+                                                {this.state.pointedLocation}
+                                            </div>
+                                            <Data code={this.state.pointedLocation} />
+                                        </div> */}
+                                    </div>
+
                                 </div>
                             </div>
-                            <div className='ui grid'>
+                            <div className='row'>
                                 <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
                                     <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
                                         <input type="radio" name="options" id="option1" autoComplete="off" /> Total
@@ -656,7 +664,7 @@ class HoverMap extends React.Component {
                                 {daily}
                             </div>
                         </div>
-                        <div className="one wide column">
+                        <div className="col-lg-1 col-md-12">
                             <table style={{borderCollapse: "seperated"}}>
                                 <thead>
                                     <tr>

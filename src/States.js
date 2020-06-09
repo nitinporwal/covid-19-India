@@ -191,7 +191,7 @@ class States extends Component {
     render(props) {
         let daily = (
             <div className='ui grid'>
-                <div className="eight wide column">
+                <div className="col-md-6">
                     <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                         <div class="card-body">
                             <div className="ui header">
@@ -210,7 +210,7 @@ class States extends Component {
                         </BarChart>
                     </div>
                 </div>
-                <div className="eight wide column">
+                <div className="col-md-6">
                     <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                         <div class="card-body">
                             <div className="ui header">
@@ -229,7 +229,7 @@ class States extends Component {
                         </BarChart>
                     </div>
                 </div>
-                <div className="eight wide column">
+                <div className="col-md-6">
                     <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                         <div class="card-body">
                             <div className="ui header">
@@ -248,7 +248,7 @@ class States extends Component {
                         </BarChart>
                     </div>
                 </div>
-                <div className="eight wide column">
+                <div className="col-md-6">
                     <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                         <div class="card-body">
                             <div className="ui header">
@@ -275,7 +275,7 @@ class States extends Component {
             if(!this.state.isDaily) {
                 daily= (
                     <div className='ui grid'>
-                        <div className="eight wide column">
+                        <div className="col-md-6">
                             <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                                 <div class="card-body">
                                     <div className="ui header">
@@ -294,7 +294,7 @@ class States extends Component {
                                 </LineChart>
                             </div>
                         </div>
-                        <div className="eight wide column">
+                        <div className="col-md-6">
                             <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                                 <div class="card-body">
                                     <div className="ui header">
@@ -313,7 +313,7 @@ class States extends Component {
                                 </LineChart>
                             </div>
                         </div>
-                        <div className="eight wide column">
+                        <div className="col-md-6">
                             <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                                 <div class="card-body">
                                     <div className="ui header">
@@ -332,7 +332,7 @@ class States extends Component {
                                 </LineChart>
                             </div>
                         </div>
-                        <div className="eight wide column">
+                        <div className="col-md-6">
                             <div class="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                                 <div class="card-body">
                                     <div className="ui header">

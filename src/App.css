@@ -3,9 +3,11 @@
     margin-left: 2.5%;
 }
 .svg-map {
-    width: 96%;
-    float: right;
-    height: auto;
+    margin: 2% 2% 3% 10%;
+    width: 600px;
+    height: 600px;
+    /* width: 96%;
+    height: auto; */
     stroke: rgb(255, 255, 255);
     stroke-width: 1;
     stroke-linecap: round;
@@ -18,7 +20,7 @@
     text-align: center;
 }
 .examples__block {
-    max-width: 800px;
+    max-width: 700px;
     /* opacity: 0.75; */
 }
 .examples__block__info {
@@ -30,9 +32,8 @@
 .examples__block__map--australia .svg-map {
     stroke-width: 0.5;
 }
-.examples__block__map--usa {
-    width: 800px;
-}
+/* .svg-map {
+} */
 .examples__block__map--usa .svg-map__location--heat_active0 {
     fill: rgb(255, 0, 0);
 }
