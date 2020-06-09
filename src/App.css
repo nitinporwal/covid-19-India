@@ -33,55 +33,220 @@
 .examples__block__map--usa {
     width: 800px;
 }
-.examples__block__map--usa .svg-map__location--heat0 {
-    fill: rgb(111, 0, 255);
+.examples__block__map--usa .svg-map__location--heat_active0 {
+    fill: rgb(255, 0, 0);
 }
-.examples__block__map--usa .svg-map__location--heat0:hover {
+.examples__block__map--usa .svg-map__location--heat_active0:hover {
     stroke: yellow;
     fill: yellow;
     stroke-width: 1;
     opacity: 1;
 }
-.examples__block__map--usa .svg-map__location--heat1 {
-    fill: rgb(111, 0, 255);
+.examples__block__map--usa .svg-map__location--heat_active1 {
+    fill: rgb(252, 36, 36);
 }
-.examples__block__map--usa .svg-map__location--heat1:hover {
+.examples__block__map--usa .svg-map__location--heat_active1:hover {
     stroke: yellow;
     fill: yellow;
     stroke-width: 1;
     opacity: 0.9;
 }
-.examples__block__map--usa .svg-map__location--heat2 {
-    fill: rgb(161, 91, 252);
+.examples__block__map--usa .svg-map__location--heat_active2 {
+    fill: rgb(253, 78, 78);
 }
-.examples__block__map--usa .svg-map__location--heat2:hover {
+.examples__block__map--usa .svg-map__location--heat_active2:hover {
     stroke: yellow;
     fill: yellow;
     stroke-width: 1;
     opacity: 0.8;
 }
-.examples__block__map--usa .svg-map__location--heat3 {
-    fill: rgb(161, 91, 252);
+.examples__block__map--usa .svg-map__location--heat_active3 {
+    fill: rgb(250, 103, 103);
 }
-.examples__block__map--usa .svg-map__location--heat3:hover {
+.examples__block__map--usa .svg-map__location--heat_active3:hover {
     stroke: yellow;
     fill: yellow;
     stroke-width: 1;
     opacity: 0.7;
 }
-.examples__block__map--usa .svg-map__location--heat4 {
-    fill: rgb(199, 156, 255);
+.examples__block__map--usa .svg-map__location--heat_active4 {
+    fill: rgb(255, 156, 156);
 }
-.examples__block__map--usa .svg-map__location--heat4:hover {
+.examples__block__map--usa .svg-map__location--heat_active4:hover {
     stroke: yellow;
     fill: yellow;
     stroke-width: 1;
     opacity: 0.6;
 }
-.examples__block__map--usa .svg-map__location--heat5 {
+.examples__block__map--usa .svg-map__location--heat_active5 {
+    fill: rgb(248, 191, 191);
+}
+.examples__block__map--usa .svg-map__location--heat_active5:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.5;
+}
+
+.examples__block__map--usa .svg-map__location--heat_recovered0 {
+    fill: rgb(0, 130, 0);
+}
+.examples__block__map--usa .svg-map__location--heat_recovered0:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 1;
+}
+.examples__block__map--usa .svg-map__location--heat_recovered1 {
+    fill: rgb(20, 150, 20);
+}
+.examples__block__map--usa .svg-map__location--heat_recovered1:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.9;
+}
+.examples__block__map--usa .svg-map__location--heat_recovered2 {
+    fill: rgb(40, 170, 40);
+}
+.examples__block__map--usa .svg-map__location--heat_recovered2:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.8;
+}
+.examples__block__map--usa .svg-map__location--heat_recovered3 {
+    fill: rgb(60, 190, 60);
+}
+.examples__block__map--usa .svg-map__location--heat_recovered3:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.7;
+}
+.examples__block__map--usa .svg-map__location--heat_recovered4 {
+    fill: rgb(80, 210, 80);
+}
+.examples__block__map--usa .svg-map__location--heat_recovered4:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.6;
+}
+.examples__block__map--usa .svg-map__location--heat_recovered5 {
+    fill: rgb(100, 230, 100);
+}
+.examples__block__map--usa .svg-map__location--heat_recovered5:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.5;
+}
+
+.examples__block__map--usa .svg-map__location--heat_deaths0 {
+    fill: rgb(30, 30, 30);
+}
+.examples__block__map--usa .svg-map__location--heat_deaths0:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 1;
+}
+.examples__block__map--usa .svg-map__location--heat_deaths1 {
+    fill: rgb(70, 70, 70);
+}
+.examples__block__map--usa .svg-map__location--heat_deaths1:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.9;
+}
+.examples__block__map--usa .svg-map__location--heat_deaths2 {
+    fill: rgb(110, 110, 110);
+}
+.examples__block__map--usa .svg-map__location--heat_deaths2:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.8;
+}
+.examples__block__map--usa .svg-map__location--heat_deaths3 {
+    fill: rgb(150, 150, 150);
+}
+.examples__block__map--usa .svg-map__location--heat_deaths3:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.7;
+}
+.examples__block__map--usa .svg-map__location--heat_deaths4 {
+    fill: rgb(190, 190, 190);
+}
+.examples__block__map--usa .svg-map__location--heat_deaths4:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.6;
+}
+.examples__block__map--usa .svg-map__location--heat_deaths5 {
+    fill: rgb(230, 230, 230);
+}
+.examples__block__map--usa .svg-map__location--heat_deaths5:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.5;
+}
+
+.examples__block__map--usa .svg-map__location--heat_confirmed0 {
+    fill: rgb(0, 0, 255);
+}
+.examples__block__map--usa .svg-map__location--heat_confirmed0:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 1;
+}
+.examples__block__map--usa .svg-map__location--heat_confirmed1 {
+    fill: rgb(111, 0, 255);
+}
+.examples__block__map--usa .svg-map__location--heat_confirmed1:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.9;
+}
+.examples__block__map--usa .svg-map__location--heat_confirmed2 {
+    fill: rgb(142, 60, 250);
+}
+.examples__block__map--usa .svg-map__location--heat_confirmed2:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.8;
+}
+.examples__block__map--usa .svg-map__location--heat_confirmed3 {
+    fill: rgb(161, 91, 252);
+}
+.examples__block__map--usa .svg-map__location--heat_confirmed3:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.7;
+}
+.examples__block__map--usa .svg-map__location--heat_confirmed4 {
+    fill: rgb(199, 156, 255);
+}
+.examples__block__map--usa .svg-map__location--heat_confirmed4:hover {
+    stroke: yellow;
+    fill: yellow;
+    stroke-width: 1;
+    opacity: 0.6;
+}
+.examples__block__map--usa .svg-map__location--heat_confirmed5 {
     fill: rgb(216, 191, 248);
 }
-.examples__block__map--usa .svg-map__location--heat5:hover {
+.examples__block__map--usa .svg-map__location--heat_confirmed5:hover {
     stroke: yellow;
     fill: yellow;
     stroke-width: 1;
@@ -100,7 +265,7 @@
     display: inline-block;
     width: 500px;
 }
-/* .examples__block__map .svg-map__location--heat0:focus, .examples__block__map--usa .svg-map__location--heat0:hover, .examples__block__map--usa .svg-map__location--heat1:hover, .examples__block__map--usa .svg-map__location--heat2:hover, .examples__block__map--usa .svg-map__location--heat3:hover, .examples__block__map--usa .svg-map__location--heat4:hover, .examples__block__map--usa .svg-map__location--heat5:hover {
+/* .examples__block__map .svg-map__location--heat_confirmed0:focus, .examples__block__map--usa .svg-map__location--heat_confirmed0:hover, .examples__block__map--usa .svg-map__location--heat_confirmed1:hover, .examples__block__map--usa .svg-map__location--heat_confirmed2:hover, .examples__block__map--usa .svg-map__location--heat_confirmed3:hover, .examples__block__map--usa .svg-map__location--heat_confirmed4:hover, .examples__block__map--usa .svg-map__location--heat_confirmed5:hover {
     opacity: 0.75;
 } */
 .examples__block__map__tooltip {

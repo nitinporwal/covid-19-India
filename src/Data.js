@@ -26,25 +26,25 @@ class Data extends Component {
                 toolpick=(
                     <div>
                         <div className="card text-white bg-red" style={{margin: "2% 0", padding: "0", backgroundColor: "rgb(245, 210, 253)", }}>
-                            <div className="card-body" style={{color: "rgb(139, 0, 139)"}}>
+                            <div className="card-body" style={{color: "rgb(139, 0, 139)"}} onClick={()=> this.props.onClick("confirmed")}>
                                 <h5 className="card-title">Confirmed: </h5>
                                 <p className="card-text">{stats.confirmed}</p>
                             </div>
                         </div>
                         <div className="card text-white bg-red" style={{margin: "2% 0", padding: "0", backgroundColor: "rgb(252, 200, 200)", }}>
-                            <div className="card-body" style={{color: "rgb(255, 0, 0)"}}>
+                            <div className="card-body" style={{color: "rgb(255, 0, 0)"}} onClick={()=> this.props.onClick("active")}>
                                 <h5 className="card-title">Active: </h5>
                                 <p className="card-text">{stats.active}</p>
                             </div>
                         </div>
                         <div className="card text-white bg-red" style={{margin: "2% 0", padding: "0", backgroundColor: "rgb(197, 250, 197)", }}>
-                            <div className="card-body" style={{color: "rgb(0, 102, 0)"}}>
+                            <div className="card-body" style={{color: "rgb(0, 102, 0)"}} onClick={()=> this.props.onClick("recovered")}>
                                 <h5 className="card-title">Recovered: </h5>
                                 <p className="card-text">{stats.recovered}</p>
                             </div>
                         </div>
                         <div className="card text-white bg-red" style={{margin: "2% 0", padding: "0", backgroundColor: "rgb(221, 221, 221)", }}>
-                            <div className="card-body" style={{color: "rgb(64, 74, 66)"}}>
+                            <div className="card-body" style={{color: "rgb(64, 74, 66)"}} onClick={()=> this.props.onClick("deaths")}>
                                 <h5 className="card-title">Deaths: </h5>
                                 <p className="card-text">{stats.deaths}</p>
                             </div>

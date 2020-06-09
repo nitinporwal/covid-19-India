@@ -37,6 +37,7 @@ class HoverMap extends React.Component {
                 direction: "desc"
             },
             isDaily: false,
+            whichClicked: "confirmed"
         };
         
         this.classes = {
@@ -48,7 +49,7 @@ class HoverMap extends React.Component {
         }
 		this.handleLocationMouseOver = this.handleLocationMouseOver.bind(this);
 		this.handleLocationMouseOut = this.handleLocationMouseOut.bind(this);
-		this.handleLocationMouseMove = this.handleLocationMouseMove.bind(this);
+		// this.handleLocationMouseMove = this.handleLocationMouseMove.bind(this);
 		this.handleLocationClick = this.handleLocationClick.bind(this);
 		// this.handleLocationFocus = this.handleLocationFocus.bind(this);
 		// this.handleLocationBlur = this.handleLocationBlur.bind(this);
@@ -70,12 +71,10 @@ class HoverMap extends React.Component {
             let cc=caes.filter(ca => {
                 return ca.statecode!=="UN"
             })
-            // console.log(c);
             this.setState({cases: cc, totalCases: c});
         }).then(() => {
             this.fetchMonth()
         })
-        // .then(() => this.fetchTotal())
     }
     getLocationSelected(event) {
         return event.target.attributes['aria-checked'].value === 'true';
@@ -88,7 +87,9 @@ class HoverMap extends React.Component {
     }
 	handleLocationMouseOver(event) {
         const pointedLocation = this.getLocationName(event);
-		this.setState({ pointedLocation });
+        if(this.state.pointedLocation!==pointedLocation) {
+            this.setState({ pointedLocation });
+        }
 	}
 	handleLocationMouseOut() {
 		this.setState({ pointedLocation: "Total", tooltipStyle: { display: 'none' } });
@@ -125,63 +126,48 @@ class HoverMap extends React.Component {
 	// 	this.setState({ focusedLocation: null });
 	// }
 
-	handleLocationMouseMove(event) {
-		const tooltipStyle = {
-			display: 'block',
-			top: event.clientY + 10,
-			left: event.clientX - 100
-		};
-		this.setState({ tooltipStyle });
-    }
-    // fetchTotal = () => {
-    //     let a=[], b=[], c=[], d=[], x=0, y=0, z=0;
-    //     this.state.totalCases.map(t => {
-    //         let r=t.totalconfirmed-x, s=t.totalrecovered-y, u=t.totaldeceased-z;
-    //         x=parseInt(t.totalconfirmed);
-    //         y=parseInt(t.totalrecovered)
-    //         z=parseInt(t.totaldeceased);
-    //         a=this.state.totalConfirmed;
-    //         a.push({date: t.date, cases: x, delta: r});
-    //         b=this.state.totalRecovered;
-    //         b.push({date: t.date, cases: y, delta: s});
-    //         c=this.state.totalDeath;
-    //         c.push({date: t.date, cases: z, delta: u});
-    //         d=this.state.totalActive;
-    //         d.push({date: t.date, cases: x-y-z, delat: r-s-u});
-    //     })
-    //     this.setState({totalActive: d, totalConfirmed: a, totalDeath: c, totalRecovered: b})
+	// handleLocationMouseMove(event) {
+	// 	const tooltipStyle = {
+	// 		display: 'block',
+	// 		top: event.clientY + 10,
+	// 		left: event.clientX - 100
+	// 	};
+	// 	this.setState({ tooltipStyle });
     // }
 	getLocationClassName = (location, index) => {
         // console.log(location, index)
         // console.log(this.state)
-        let cases, max;
+        let cases, max, wh=this.state.whichClicked;
+        // console.log(wh.which)
         this.state.cases.filter(c=> {
+            // console.log(c.wh);
+            // console.log(c);
             if(c.statecode==='TT') {
-                max=c.confirmed;
+                max=c[wh];
             }
             if(c.state===location.name) {
-                cases=c.confirmed;
+                cases=c[wh];
             }
             return c.state===location.name
         })
         // Generate random heat map
         if(cases<2*(max)/100) {
-            return `svg-map__location svg-map__location--heat4`;
+            return `svg-map__location svg-map__location--heat_${wh}4`;
         }
         else if(cases<4*(max)/100) {
-            return `svg-map__location svg-map__location--heat3`;
+            return `svg-map__location svg-map__location--heat_${wh}3`;
         }
         else if(cases<8*(max)/100) {
-            return `svg-map__location svg-map__location--heat2`;
+            return `svg-map__location svg-map__location--heat_${wh}2`;
         }
         else if(cases<16*(max)/100) {
-            return `svg-map__location svg-map__location--heat1`;
+            return `svg-map__location svg-map__location--heat_${wh}1`;
         }
         else if(cases<32*(max)/100) {
-            return `svg-map__location svg-map__location--heat0`;
+            return `svg-map__location svg-map__location--heat_${wh}0`;
         }
         else {
-            return `svg-map__location svg-map__location--heat0`;
+            return `svg-map__location svg-map__location--heat_${wh}0`;
         }
     }
     handleHover = (ca) => {
@@ -336,6 +322,10 @@ class HoverMap extends React.Component {
         let x=this.state.cases;
         console.log(key, direction)
         x.sort(this.dynamicsort(key, direction));
+    }
+    getWhichClicked= (which) => {
+        console.log(which);
+        this.setState({whichClicked: which});
     }
     showStats = () => {
         // let p=0, q=0, r=0, s=0;
@@ -602,7 +592,7 @@ class HoverMap extends React.Component {
                                         </h5>
                                     </div>
                                     <div className="card-body">
-                                        <Data code={this.state.pointedLocation} />
+                                        <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />
                                     </div>
                                     </div>
                                     {/* <div className="ui cards">
@@ -632,7 +622,8 @@ class HoverMap extends React.Component {
                                         onLocationFocus={this.handleLocationFocus}
                                         onLocationBlur={this.handleLocationBlur}
                                         locationClassName={(location, index) =>this.getLocationClassName(location, index)}
-                                        onLocationMouseMove={this.handleLocationMouseMove} />
+                                        // onLocationMouseMove={this.handleLocationMouseMove}
+                                         />
                                     {/* <div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
                                         <div className="ui header">
                                             {this.state.pointedLocation}
