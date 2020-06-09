@@ -40,7 +40,7 @@ class HoverMap extends React.Component {
             isDaily: false,
             whichClicked: "confirmed",
             type: "line",
-            delyed: true
+            delayed: true
         };
         
         this.classes = {
@@ -125,13 +125,16 @@ class HoverMap extends React.Component {
         setTimeout(() => 
             { 
                 return (
-                    this.setState({delyed: false})
+                    this.setState({delayed: false})
                 )
             }
             , 2000
         );
         return (
-            <Loader type="ThreeDots" color="#0278f5" height="100" width="100" />
+            <div>
+                <Loader type="ThreeDots" color="#0278f5" height="100" width="100" style={{margin:"0 0 0 40%"}} />
+
+            </div>
         )
     }
 	// handleLocationFocus(event) {
@@ -453,7 +456,7 @@ class HoverMap extends React.Component {
         if(this.state.type==="bar") {
             daily = (
                 <div>
-                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                         <div class="card-body">
                             <div className="ui header">
                                 Confirmed cases:
@@ -461,7 +464,7 @@ class HoverMap extends React.Component {
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
                         <YAxis dataKey="" />
@@ -470,7 +473,7 @@ class HoverMap extends React.Component {
                         <Bar type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
                         </BarChart>
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                         <div class="card-body">
                             <div className="ui header">
                                 Active cases:
@@ -478,7 +481,7 @@ class HoverMap extends React.Component {
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
                         <YAxis/>
@@ -488,7 +491,7 @@ class HoverMap extends React.Component {
                         </BarChart>
                         
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                         <div class="card-body">
                             <div className="ui header">
                                 Recovered:
@@ -496,7 +499,7 @@ class HoverMap extends React.Component {
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
                         <YAxis/>
@@ -506,7 +509,7 @@ class HoverMap extends React.Component {
                         </BarChart>
                         
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                         <div class="card-body">
                             <div className="ui header">
                                 Deaths:
@@ -514,7 +517,7 @@ class HoverMap extends React.Component {
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
                         <YAxis/>
@@ -531,7 +534,7 @@ class HoverMap extends React.Component {
         else if(this.state.type==="line") {
             daily = (
                 <div>
-                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                         <div class="card-body">
                             <div className="ui header">
                                 Confirmed cases:
@@ -539,7 +542,7 @@ class HoverMap extends React.Component {
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
                         <YAxis dataKey="" />
@@ -548,7 +551,7 @@ class HoverMap extends React.Component {
                         <Line type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
                         </LineChart>
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                         <div class="card-body">
                             <div className="ui header">
                                 Active cases:
@@ -556,7 +559,7 @@ class HoverMap extends React.Component {
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
                         <YAxis/>
@@ -566,7 +569,7 @@ class HoverMap extends React.Component {
                         </LineChart>
                         
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                         <div class="card-body">
                             <div className="ui header">
                                 Recovered:
@@ -574,7 +577,7 @@ class HoverMap extends React.Component {
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
                         <YAxis/>
@@ -584,7 +587,7 @@ class HoverMap extends React.Component {
                         </LineChart>
                         
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", minWidth: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                         <div class="card-body">
                             <div className="ui header">
                                 Deaths:
@@ -592,7 +595,7 @@ class HoverMap extends React.Component {
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                         <CartesianGrid strokeDasharray="3 3"/>
                         <XAxis dataKey="date"/>
                         <YAxis/>
@@ -612,7 +615,7 @@ class HoverMap extends React.Component {
                 if(this.state.type==="line") {
                     daily = (
                         <div>
-                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                                 <div class="card-body">
                                     <div className="ui header">
                                         Confirmed cases:
@@ -620,7 +623,7 @@ class HoverMap extends React.Component {
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <XAxis dataKey="date"/>
                                 <YAxis dataKey="" />
@@ -630,7 +633,7 @@ class HoverMap extends React.Component {
                                 </LineChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                                 <div class="card-body">
                                     <div className="ui header">
                                         Active cases:
@@ -638,7 +641,7 @@ class HoverMap extends React.Component {
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.active} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <XAxis dataKey="date"/>
                                 <YAxis/>
@@ -648,7 +651,7 @@ class HoverMap extends React.Component {
                                 </LineChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                                 <div class="card-body">
                                     <div className="ui header">
                                         Recovered:
@@ -656,7 +659,7 @@ class HoverMap extends React.Component {
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.recovered} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <XAxis dataKey="date"/>
                                 <YAxis/>
@@ -666,7 +669,7 @@ class HoverMap extends React.Component {
                                 </LineChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                                 <div class="card-body">
                                     <div className="ui header">
                                         Deaths:
@@ -674,7 +677,7 @@ class HoverMap extends React.Component {
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.death} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <XAxis dataKey="date"/>
                                 <YAxis/>
@@ -690,7 +693,7 @@ class HoverMap extends React.Component {
                 else if(this.state.type==="bar") {
                     daily = (
                         <div>
-                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                                 <div class="card-body">
                                     <div className="ui header">
                                         Confirmed cases:
@@ -698,7 +701,7 @@ class HoverMap extends React.Component {
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <XAxis dataKey="date"/>
                                 <YAxis dataKey="" />
@@ -708,7 +711,7 @@ class HoverMap extends React.Component {
                                 </BarChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                                 <div class="card-body">
                                     <div className="ui header">
                                         Active cases:
@@ -716,7 +719,7 @@ class HoverMap extends React.Component {
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.active} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <XAxis dataKey="date"/>
                                 <YAxis/>
@@ -726,7 +729,7 @@ class HoverMap extends React.Component {
                                 </BarChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                                 <div class="card-body">
                                     <div className="ui header">
                                         Recovered:
@@ -734,7 +737,7 @@ class HoverMap extends React.Component {
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.recovered} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <XAxis dataKey="date"/>
                                 <YAxis/>
@@ -744,7 +747,7 @@ class HoverMap extends React.Component {
                                 </BarChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", minWidth: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                                 <div class="card-body">
                                     <div className="ui header">
                                         Deaths:
@@ -752,7 +755,7 @@ class HoverMap extends React.Component {
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.death} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
                                 <CartesianGrid strokeDasharray="3 3"/>
                                 <XAxis dataKey="date"/>
                                 <YAxis/>
@@ -767,7 +770,7 @@ class HoverMap extends React.Component {
                 }
             }
             return (
-                // (this.state.delyed) ?
+                // (this.state.delayed) ?
                 //     this.showLoader()
                 //     :
                 //     (
@@ -786,7 +789,7 @@ class HoverMap extends React.Component {
                                 </div>
                                 <div class="row no-gutters">
                                     <div class="card-body" style={{minHeight: "123px"}}>
-                                        {(this.state.delyed) ?
+                                        {(this.state.delayed) ?
                                         this.showLoader() :
                                         <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />}
                                     </div>
@@ -867,8 +870,10 @@ class HoverMap extends React.Component {
                                         <input type="radio" name="options" id="option2" autoComplete="off" /> Bar
                                     </label>
                                 </div>
+                            </div>
+                            <div>
                                 {
-                                    (this.state.delyed) ?
+                                    (this.state.delayed) ?
                                     this.showLoader() :
                                     daily
                                 }
@@ -902,7 +907,7 @@ class HoverMap extends React.Component {
                                 </thead>
 
                                 {
-                                    (this.state.delyed) ?
+                                    (this.state.delayed) ?
                                     this.showLoader() :
                                     this.showStats()
                                 }
