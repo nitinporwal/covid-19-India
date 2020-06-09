@@ -570,74 +570,74 @@ class HoverMap extends React.Component {
                             {/* <Brush /> */}
                             <Line type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
                             </LineChart>
-                            
                         </div>
                     </div>
                 )
             }
             return (
                 <article className="examples__block" style={{marginTop: "3%", marginLeft:"5%"}}>
-                    <div className='row'>
-                        <div className="col-lg-6 col-md-12 jumbotron">
-                                <div className="row">
-                                    <div className="examples__block__info">
-                                        <div className="card bg-light mb-3" style={{maxWidth: "80rem", minWidth: "40rem", margin: "-2% 0 0 12%"}}>
-                                            <div className="card-header">
-                                                <h5>
-                                                    Pointed State:
-                                                    <br/>
-                                                    {(this.state.pointedLocation!=="Total") ? 
-                                                    this.state.pointedLocation :
-                                                    "India"}
-                                                </h5>
-                                            </div>
-                                            <div class="row no-gutters">
-                                                <div class="card-body">
-                                                    <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        {/* <div className="ui cards">
-                                            <div className="card">
-                                                <div className="content">
-                                                    <div className="header examples__block__info__item">
-                                                        Pointed location:
-                                                        <br/>
-                                                        {(this.state.pointedLocation!=="Total") ? 
-                                                        this.state.pointedLocation :
-                                                        "India"}
-                                                    </div>
-                                                    <hr />
-                                                    <div className="description">
-                                                        <Data code={this.state.pointedLocation} />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div> */}
-                                    </div>
-
+                    <div className="row">
+                        <div className="examples__block__info" style={{marginLeft:"49%", minHeight: "187px"}}>
+                            <div className="card bg-light mb-3" style={{maxWidth: "80rem", minWidth: "40rem", margin: "-2% 0 0 12%"}}>
+                                <div className="card-header">
+                                    <h5>
+                                        Pointed State:
+                                        <br/>
+                                        {(this.state.pointedLocation!=="Total") ? 
+                                        this.state.pointedLocation :
+                                        "India"}
+                                    </h5>
                                 </div>
-                            <div className="row">
-                                <div className="row">
-                                    <div className="examples__block__map examples__block__map--usa">
-                                        <SVGMap 
-                                            map={world}
-                                            onLocationMouseOver={this.handleLocationMouseOver}
-                                            onLocationMouseOut={this.handleLocationMouseOut}
-                                            onLocationClick={(event) => this.handleLocationClick(event)}
-                                            onLocationFocus={this.handleLocationFocus}
-                                            onLocationBlur={this.handleLocationBlur}
-                                            locationClassName={(location, index) =>this.getLocationClassName(location, index)}
-                                            // onLocationMouseMove={this.handleLocationMouseMove}
-                                            />
-                                        {/* <div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
-                                            <div className="ui header">
-                                                {this.state.pointedLocation}
-                                            </div>
-                                            <Data code={this.state.pointedLocation} />
-                                        </div> */}
+                                <div class="row no-gutters">
+                                    <div class="card-body" style={{minHeight: "123px"}}>
+                                        <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />
                                     </div>
-
+                                </div>
+                            </div>
+                            {/* <div className="ui cards">
+                                <div className="card">
+                                    <div className="content">
+                                        <div className="header examples__block__info__item">
+                                            Pointed location:
+                                            <br/>
+                                            {(this.state.pointedLocation!=="Total") ? 
+                                            this.state.pointedLocation :
+                                            "India"}
+                                        </div>
+                                        <hr />
+                                        <div className="description">
+                                            <Data code={this.state.pointedLocation} />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> */}
+                        </div>
+                    </div>
+                    <div className='row'>
+                        <div className="col-lg-6 col-md-8 cd-sm-8 jumbotron" style={{marginTop:"-15.5%"}}>
+                            <div className="row">
+                                <h3 style={{margin:"-4% 0 1% 40%"}}>
+                                    Map of India
+                                </h3>
+                            </div>
+                            <div className="row">
+                                <div className="examples__block__map examples__block__map--usa">
+                                    <SVGMap 
+                                        map={world}
+                                        onLocationMouseOver={this.handleLocationMouseOver}
+                                        onLocationMouseOut={this.handleLocationMouseOut}
+                                        onLocationClick={(event) => this.handleLocationClick(event)}
+                                        onLocationFocus={this.handleLocationFocus}
+                                        onLocationBlur={this.handleLocationBlur}
+                                        locationClassName={(location, index) =>this.getLocationClassName(location, index)}
+                                        // onLocationMouseMove={this.handleLocationMouseMove}
+                                        />
+                                    {/* <div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
+                                        <div className="ui header">
+                                            {this.state.pointedLocation}
+                                        </div>
+                                        <Data code={this.state.pointedLocation} />
+                                    </div> */}
                                 </div>
                             </div>
                             <div className='row'>
