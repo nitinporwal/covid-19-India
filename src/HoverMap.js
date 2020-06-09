@@ -456,11 +456,11 @@ class HoverMap extends React.Component {
         if(this.state.type==="bar") {
             daily = (
                 <div>
-                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
-                        <div class="card-body">
+                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                        <div className="card-body">
                             <div className="ui header">
                                 Confirmed cases:
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
@@ -473,11 +473,11 @@ class HoverMap extends React.Component {
                         <Bar type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
                         </BarChart>
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
-                        <div class="card-body">
+                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                        <div className="card-body">
                             <div className="ui header">
                                 Active cases:
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
@@ -491,11 +491,11 @@ class HoverMap extends React.Component {
                         </BarChart>
                         
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
-                        <div class="card-body">
+                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                        <div className="card-body">
                             <div className="ui header">
                                 Recovered:
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
@@ -509,11 +509,11 @@ class HoverMap extends React.Component {
                         </BarChart>
                         
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
-                        <div class="card-body">
+                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                        <div className="card-body">
                             <div className="ui header">
                                 Deaths:
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                         </div>
                         <BarChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
@@ -534,11 +534,11 @@ class HoverMap extends React.Component {
         else if(this.state.type==="line") {
             daily = (
                 <div>
-                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
-                        <div class="card-body">
+                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                        <div className="card-body">
                             <div className="ui header">
                                 Confirmed cases:
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
@@ -551,11 +551,11 @@ class HoverMap extends React.Component {
                         <Line type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
                         </LineChart>
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
-                        <div class="card-body">
+                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                        <div className="card-body">
                             <div className="ui header">
                                 Active cases:
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
@@ -569,11 +569,11 @@ class HoverMap extends React.Component {
                         </LineChart>
                         
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
-                        <div class="card-body">
+                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                        <div className="card-body">
                             <div className="ui header">
                                 Recovered:
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
@@ -587,11 +587,11 @@ class HoverMap extends React.Component {
                         </LineChart>
                         
                     </div>
-                    <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
-                        <div class="card-body">
+                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                        <div className="card-body">
                             <div className="ui header">
                                 Deaths:
-                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                             </div>
                         </div>
                         <LineChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
@@ -615,11 +615,11 @@ class HoverMap extends React.Component {
                 if(this.state.type==="line") {
                     daily = (
                         <div>
-                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
-                                <div class="card-body">
+                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                                <div className="card-body">
                                     <div className="ui header">
                                         Confirmed cases:
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
@@ -633,11 +633,11 @@ class HoverMap extends React.Component {
                                 </LineChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
-                                <div class="card-body">
+                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                                <div className="card-body">
                                     <div className="ui header">
                                         Active cases:
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.active} syncId="anyId"
@@ -651,11 +651,11 @@ class HoverMap extends React.Component {
                                 </LineChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
-                                <div class="card-body">
+                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                                <div className="card-body">
                                     <div className="ui header">
                                         Recovered:
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.recovered} syncId="anyId"
@@ -669,11 +669,11 @@ class HoverMap extends React.Component {
                                 </LineChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
-                                <div class="card-body">
+                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                                <div className="card-body">
                                     <div className="ui header">
                                         Deaths:
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                                     </div>
                                 </div>
                                 <LineChart width={500} height={200} data={this.state.death} syncId="anyId"
@@ -693,11 +693,11 @@ class HoverMap extends React.Component {
                 else if(this.state.type==="bar") {
                     daily = (
                         <div>
-                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
-                                <div class="card-body">
+                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                                <div className="card-body">
                                     <div className="ui header">
                                         Confirmed cases:
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
@@ -711,11 +711,11 @@ class HoverMap extends React.Component {
                                 </BarChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
-                                <div class="card-body">
+                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                                <div className="card-body">
                                     <div className="ui header">
                                         Active cases:
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.active} syncId="anyId"
@@ -729,11 +729,11 @@ class HoverMap extends React.Component {
                                 </BarChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
-                                <div class="card-body">
+                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                                <div className="card-body">
                                     <div className="ui header">
                                         Recovered:
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.recovered} syncId="anyId"
@@ -747,11 +747,11 @@ class HoverMap extends React.Component {
                                 </BarChart>
                                 
                             </div>
-                            <div class="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
-                                <div class="card-body">
+                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                                <div className="card-body">
                                     <div className="ui header">
                                         Deaths:
-                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                        <p className="card-text"><small className="text-muted">Last updated 3 mins ago</small></p>
                                     </div>
                                 </div>
                                 <BarChart width={500} height={200} data={this.state.death} syncId="anyId"
@@ -787,8 +787,8 @@ class HoverMap extends React.Component {
                                         "India"}
                                     </h5>
                                 </div>
-                                <div class="row no-gutters">
-                                    <div class="card-body" style={{minHeight: "123px"}}>
+                                <div className="row no-gutters">
+                                    <div className="card-body" style={{minHeight: "123px"}}>
                                         {(this.state.delayed) ?
                                         this.showLoader() :
                                         <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />}

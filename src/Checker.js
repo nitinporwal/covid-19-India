@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class Checker extends Component {
     render() {
         return (
-            <div class="container">
+            <div className="container">
                 <h2>Covid-19 Symptoms Checker</h2>
                 <br/>
                 <div>
