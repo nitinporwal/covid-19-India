@@ -111,7 +111,12 @@ class Preventions extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3" style={{margin: "1% 1%"}}>
-                                <img src={process.env.PUBLIC_URL + '/nosmoking.png'} alt="logo" style={styles} />
+                                <img src={process.env.PUBLIC_URL + '/nosmoking.png'} alt="logo" style={{paddingTop: "4%", width: "150px",
+                                    height: "150px",
+                                    border: "3px solid lightgray",
+                                    borderRadius: "50%",
+                                    margin: "4% 0 0 10%"}} 
+                                />
                             </div>
                             <div className="col-lg-8" style={{padding: "3% 3% 0 0", marginBottom:"5%", fontSize: "1.2em"}}>
                                 <h5 style={{fontWeight: "bold"}}>

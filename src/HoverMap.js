@@ -37,7 +37,8 @@ class HoverMap extends React.Component {
                 direction: "desc"
             },
             isDaily: false,
-            whichClicked: "confirmed"
+            whichClicked: "confirmed",
+            type: "line"
         };
         
         this.classes = {
@@ -45,7 +46,8 @@ class HoverMap extends React.Component {
             class2: "",
             class3: "",
             class4: "active focus",
-            class5: ""
+            class5: "",
+            class6: "active focus"
         }
 		this.handleLocationMouseOver = this.handleLocationMouseOver.bind(this);
 		this.handleLocationMouseOut = this.handleLocationMouseOut.bind(this);
@@ -262,6 +264,20 @@ class HoverMap extends React.Component {
             this.setState({isDaily: false});
         }
     }
+    toggleLine = () => {
+        if(this.classes.class6!=="active focus") {
+            this.classes.class6="active focus";
+            this.classes.class7="";
+            this.setState({type: "line"});
+        }
+    }
+    toggleBar = () => {
+        if(this.classes.class7!=="active focus") {
+            this.classes.class7="active focus";
+            this.classes.class6="";
+            this.setState({type: "bar"});
+        }
+    }
     handleBegining = () => {
         if(this.classes.class3!=="active focus") {
             this.classes.class3="active focus";
@@ -418,161 +434,322 @@ class HoverMap extends React.Component {
         else {
             v=" 🔼"
         }
-        let daily = (
-            <div>
-                <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
-                    <div class="card-body">
-                        <div className="ui header">
-                            Confirmed cases:
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        let daily;
+        if(this.state.type==="bar") {
+            daily = (
+                <div>
+                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Confirmed cases:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
                         </div>
+                        <BarChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis dataKey="" />
+                        <Tooltip/>
+                        <Legend />
+                        <Bar type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
+                        </BarChart>
                     </div>
-                    <BarChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
-                        margin={{top: 0, right: 30, left: 0, bottom: 0}}>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="date"/>
-                    <YAxis dataKey="" />
-                    <Tooltip/>
-                    <Legend />
-                    <Bar type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
-                    </BarChart>
-                </div>
-                <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
-                    <div class="card-body">
-                        <div className="ui header">
-                            Active cases:
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Active cases:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
                         </div>
+                        <BarChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        <Bar type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
+                        </BarChart>
+                        
                     </div>
-                    <BarChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
-                        margin={{top: 0, right: 30, left: 0, bottom: 0}}>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="date"/>
-                    <YAxis/>
-                    <Tooltip/>
-                    <Legend />
-                    <Bar type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
-                    </BarChart>
-                    
-                </div>
-                <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
-                    <div class="card-body">
-                        <div className="ui header">
-                            Recovered:
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Recovered:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
                         </div>
+                        <BarChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        <Bar type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
+                        </BarChart>
+                        
                     </div>
-                    <BarChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
-                        margin={{top: 0, right: 30, left: 0, bottom: 0}}>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="date"/>
-                    <YAxis/>
-                    <Tooltip/>
-                    <Legend />
-                    <Bar type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
-                    </BarChart>
-                    
-                </div>
-                <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
-                    <div class="card-body">
-                        <div className="ui header">
-                            Deaths:
-                            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Deaths:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
                         </div>
+                        <BarChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        {/* <Brush /> */}
+                        <Bar type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
+                        </BarChart>
+                        
                     </div>
-                    <BarChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
-                        margin={{top: 0, right: 30, left: 0, bottom: 0}}>
-                    <CartesianGrid strokeDasharray="3 3"/>
-                    <XAxis dataKey="date"/>
-                    <YAxis/>
-                    <Tooltip/>
-                    <Legend />
-                    {/* <Brush /> */}
-                    <Bar type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
-                    </BarChart>
-                    
                 </div>
-            </div>
-        )
+            )
+        }
+        else if(this.state.type==="line") {
+            daily = (
+                <div>
+                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Confirmed cases:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <LineChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis dataKey="" />
+                        <Tooltip/>
+                        <Legend />
+                        <Line type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
+                        </LineChart>
+                    </div>
+                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Active cases:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <LineChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        <Line type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
+                        </LineChart>
+                        
+                    </div>
+                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Recovered:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <LineChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        <Line type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
+                        </LineChart>
+                        
+                    </div>
+                    <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", minWidth: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                        <div class="card-body">
+                            <div className="ui header">
+                                Deaths:
+                                <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            </div>
+                        </div>
+                        <LineChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
+                            margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                        <CartesianGrid strokeDasharray="3 3"/>
+                        <XAxis dataKey="date"/>
+                        <YAxis/>
+                        <Tooltip/>
+                        <Legend />
+                        {/* <Brush /> */}
+                        <Line type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
+                        </LineChart>
+                        
+                    </div>
+                </div>
+            )
+        }
         if(!this.state.clickedLocation) {
             console.log(this.state)
             if(!this.state.isDaily) {
-                daily= (
-                    <div>
-                        <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
-                            <div class="card-body">
-                                <div className="ui header">
-                                    Confirmed cases:
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                if(this.state.type==="line") {
+                    daily = (
+                        <div>
+                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Confirmed cases:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
                                 </div>
+                                <LineChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis dataKey="" />
+                                <Tooltip/>
+                                <Legend />
+                                <Line type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
+                                </LineChart>
+                                
                             </div>
-                            <LineChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
-                                margin={{top: 0, right: 0, left: 30, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis dataKey="" />
-                            <Tooltip/>
-                            <Legend />
-                            <Line type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
-                            </LineChart>
-                            
-                        </div>
-                        <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
-                            <div class="card-body">
-                                <div className="ui header">
-                                    Active cases:
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Active cases:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
                                 </div>
+                                <LineChart width={500} height={200} data={this.state.active} syncId="anyId"
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis/>
+                                <Tooltip/>
+                                <Legend />
+                                <Line type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
+                                </LineChart>
+                                
                             </div>
-                            <LineChart width={500} height={200} data={this.state.active} syncId="anyId"
-                                margin={{top: 0, right: 0, left: 30, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis/>
-                            <Tooltip/>
-                            <Legend />
-                            <Line type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
-                            </LineChart>
-                            
-                        </div>
-                        <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
-                            <div class="card-body">
-                                <div className="ui header">
-                                    Recovered:
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Recovered:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
                                 </div>
+                                <LineChart width={500} height={200} data={this.state.recovered} syncId="anyId"
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis/>
+                                <Tooltip/>
+                                <Legend />
+                                <Line type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
+                                </LineChart>
+                                
                             </div>
-                            <LineChart width={500} height={200} data={this.state.recovered} syncId="anyId"
-                                margin={{top: 0, right: 0, left: 30, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis/>
-                            <Tooltip/>
-                            <Legend />
-                            <Line type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
-                            </LineChart>
-                            
-                        </div>
-                        <div class="card" style={{margin: "3% 24% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
-                            <div class="card-body">
-                                <div className="ui header">
-                                    Deaths:
-                                    <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Deaths:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
                                 </div>
+                                <LineChart width={500} height={200} data={this.state.death} syncId="anyId"
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis/>
+                                <Tooltip/>
+                                <Legend />
+                                {/* <Brush /> */}
+                                <Line type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
+                                </LineChart>
                             </div>
-                            <LineChart width={500} height={200} data={this.state.death} syncId="anyId"
-                                margin={{top: 0, right: 0, left: 30, bottom: 0}}>
-                            <CartesianGrid strokeDasharray="3 3"/>
-                            <XAxis dataKey="date"/>
-                            <YAxis/>
-                            <Tooltip/>
-                            <Legend />
-                            {/* <Brush /> */}
-                            <Line type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
-                            </LineChart>
                         </div>
-                    </div>
-                )
+                    )
+                }
+                else if(this.state.type==="bar") {
+                    daily = (
+                        <div>
+                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Confirmed cases:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                                <BarChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis dataKey="" />
+                                <Tooltip/>
+                                <Legend />
+                                <Bar type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
+                                </BarChart>
+                                
+                            </div>
+                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Active cases:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                                <BarChart width={500} height={200} data={this.state.active} syncId="anyId"
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis/>
+                                <Tooltip/>
+                                <Legend />
+                                <Bar type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
+                                </BarChart>
+                                
+                            </div>
+                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Recovered:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                                <BarChart width={500} height={200} data={this.state.recovered} syncId="anyId"
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis/>
+                                <Tooltip/>
+                                <Legend />
+                                <Bar type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
+                                </BarChart>
+                                
+                            </div>
+                            <div class="card" style={{margin: "3% 18% 3% 8%", padding: "1% 7% 1% 1%", minWidth: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                                <div class="card-body">
+                                    <div className="ui header">
+                                        Deaths:
+                                        <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+                                    </div>
+                                </div>
+                                <BarChart width={500} height={200} data={this.state.death} syncId="anyId"
+                                    margin={{top: 0, right: 0, left: 0, bottom: 0}}>
+                                <CartesianGrid strokeDasharray="3 3"/>
+                                <XAxis dataKey="date"/>
+                                <YAxis/>
+                                <Tooltip/>
+                                <Legend />
+                                {/* <Brush /> */}
+                                <Bar type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
+                                </BarChart>
+                            </div>
+                        </div>
+                    )
+                }
             }
             return (
                 <article className="examples__block" style={{marginTop: "3%", marginLeft:"5%"}}>
@@ -660,7 +837,14 @@ class HoverMap extends React.Component {
                                         <input type="radio" name="options" id="option2" autoComplete="off" /> Two Weeks
                                     </label>
                                 </div>
-                                
+                                <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginBottom: "2%", marginTop: "1%"}} data-toggle="buttons">
+                                    <label onClick={this.toggleLine} className={`btn btn-primary ${this.classes.class6}`}>
+                                        <input type="radio" name="options" id="option1" autoComplete="off" /> Line
+                                    </label>
+                                    <label onClick={this.toggleBar} className={`btn btn-primary ${this.classes.class7}`}>
+                                        <input type="radio" name="options" id="option2" autoComplete="off" /> Bar
+                                    </label>
+                                </div>
                                 {daily}
                             </div>
                         </div>
