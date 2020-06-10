@@ -20,19 +20,19 @@ class Navbar extends Component {
                     <a className="navbar-brand" style={{color: "blue", fontSize: "20px"}} href="/">Covid-19</a>
                     <div className="collapse navbar-collapse" id="navbarColor02">
                         <ul className="navbar-nav mr-auto">
-                            <Button variant="outlined" color="primary" style={{margin: "1% 0.5%", padding: "0%", minWidth: "8vw"}} href="/">
+                            <Button variant="contained" color="primary" style={{margin: "1% 0.5%", padding: "1%", minWidth: "8vw", color: "white"}} href="/">
                                 Home
                             </Button>
-                            <Button variant="outlined" color="primary" style={{margin: "1% 0.5%", padding: "0%", minWidth: "8vw"}} href="/symptoms">
+                            <Button variant="contained" color="primary" style={{margin: "1% 0.5%", padding: "1%", minWidth: "8vw", color: "white"}} href="/symptoms">
                                 Symptoms
                             </Button>
-                            <Button variant="outlined" color="primary" style={{margin: "1% 0.5%", padding: "0%", minWidth: "8vw"}} href="/preventions">
+                            <Button variant="contained" color="primary" style={{margin: "1% 0.5%", padding: "1%", minWidth: "8vw", color: "white"}} href="/preventions">
                                 Preventions
                             </Button>
-                            <Button variant="outlined" color="primary" style={{margin: "1% 0.5%", padding: "0%", minWidth: "8vw"}} href="/faqs">
+                            <Button variant="contained" color="primary" style={{margin: "1% 0.5%", padding: "1%", minWidth: "8vw", color: "white"}} href="/faqs">
                                 FAQs
                             </Button>
-                            <Button variant="outlined" color="primary" style={{margin: "1% 0.5%", padding: "0%", minWidth: "8vw"}} href="/about">
+                            <Button variant="contained" color="primary" style={{margin: "1% 0.5%", padding: "1%", minWidth: "8vw", color: "white"}} href="/about">
                                 About Us
                             </Button>
                         </ul>
