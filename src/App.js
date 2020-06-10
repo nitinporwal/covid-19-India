@@ -10,6 +10,7 @@ import Symptoms from "./Symptoms";
 import Checker from "./Checker";
 import About from "./About";
 import FAQs from "./FAQs";
+import Footer from "./Footer";
 // import SMap from './2019_Lok_Sabha_Election_Schedule.svg'
 // import Data from "./Data";
 // import { SVGMap } from "react-svg-map";
@@ -60,6 +61,7 @@ class App extends React.Component {
                         )}
                     />
                 </BrowserRouter>
+                <Footer />
             </div>
             </>
         )
