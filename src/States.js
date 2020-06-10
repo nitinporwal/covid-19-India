@@ -1,7 +1,8 @@
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, BarChart } from 'recharts';
 import React, { Component } from 'react';
 import { covid } from './api/covid';
-import moment from 'moment'
+import moment from 'moment';
+import StatesData from './StatesData';
 
 class States extends Component {
     constructor(props) {
@@ -248,7 +249,7 @@ class States extends Component {
             daily = (
                 <div className='ui grid'>
                     <div className="col-md-6">
-                        <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                        <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                             <div className="card-body">
                                 <div className="ui header">
                                     Confirmed cases:
@@ -267,7 +268,7 @@ class States extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                        <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                             <div className="card-body">
                                 <div className="ui header">
                                     Active cases:
@@ -286,7 +287,7 @@ class States extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                        <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                             <div className="card-body">
                                 <div className="ui header">
                                     Recovered:
@@ -305,7 +306,7 @@ class States extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                        <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                             <div className="card-body">
                                 <div className="ui header">
                                     Deaths:
@@ -331,7 +332,7 @@ class States extends Component {
             daily = (
                 <div className='ui grid'>
                     <div className="col-md-6">
-                        <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                        <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                             <div className="card-body">
                                 <div className="ui header">
                                     Confirmed cases:
@@ -350,7 +351,7 @@ class States extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                        <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                             <div className="card-body">
                                 <div className="ui header">
                                     Active cases:
@@ -369,7 +370,7 @@ class States extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                        <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                             <div className="card-body">
                                 <div className="ui header">
                                     Recovered:
@@ -388,7 +389,7 @@ class States extends Component {
                         </div>
                     </div>
                     <div className="col-md-6">
-                        <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                        <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                             <div className="card-body">
                                 <div className="ui header">
                                     Deaths:
@@ -417,7 +418,7 @@ class States extends Component {
                     daily= (
                         <div className='ui grid'>
                             <div className="col-md-6">
-                                <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                                <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                                     <div className="card-body">
                                         <div className="ui header">
                                             Confirmed cases:
@@ -436,7 +437,7 @@ class States extends Component {
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                                <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                                     <div className="card-body">
                                         <div className="ui header">
                                             Active cases:
@@ -455,7 +456,7 @@ class States extends Component {
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                                <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                                     <div className="card-body">
                                         <div className="ui header">
                                             Recovered:
@@ -474,7 +475,7 @@ class States extends Component {
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                                <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                                     <div className="card-body">
                                         <div className="ui header">
                                             Deaths:
@@ -500,7 +501,7 @@ class States extends Component {
                     daily= (
                         <div className='ui grid'>
                             <div className="col-md-6">
-                                <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
+                                <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
                                     <div className="card-body">
                                         <div className="ui header">
                                             Confirmed cases:
@@ -519,7 +520,7 @@ class States extends Component {
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
+                                <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
                                     <div className="card-body">
                                         <div className="ui header">
                                             Active cases:
@@ -538,7 +539,7 @@ class States extends Component {
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
+                                <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
                                     <div className="card-body">
                                         <div className="ui header">
                                             Recovered:
@@ -557,7 +558,7 @@ class States extends Component {
                                 </div>
                             </div>
                             <div className="col-md-6">
-                                <div className="card" style={{margin: "1% 2% 1% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
+                                <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
                                     <div className="card-body">
                                         <div className="ui header">
                                             Deaths:
@@ -586,7 +587,7 @@ class States extends Component {
                     <h2>
                         {this.props.match.params.name}
                     </h2>
-
+                    <StatesData code={this.props.match.params.name} />
                     <div className="btn-group btn-group-toggle" style={{marginLeft: "20%", marginTop: "2%", marginBottom: "3%"}} data-toggle="buttons">
                         <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
                             <input type="radio" name="options" id="option1" autoComplete="off" /> Total
