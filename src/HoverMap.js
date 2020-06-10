@@ -798,165 +798,168 @@ class HoverMap extends React.Component {
                     )
                 }
             }
-            return (
-                // (this.state.delayed) ?
-                //     this.showLoader()
-                //     :
-                //     (
-                <article className="examples__block" style={{marginTop: "3%", marginLeft:"5%"}}>
-                    <div className="row">
-                        <div className="examples__block__info" style={{marginLeft:"49%", minHeight: "187px"}}>
-                            <div className="card bg-light mb-3" style={{maxWidth: "80rem", minWidth: "40rem", margin: "-2% 0 0 12%"}}>
-                                <div className="card-header">
-                                    <h5>
-                                        Pointed State:
-                                        <br/>
-                                        {(this.state.pointedLocation!=="Total") ? 
-                                        this.state.pointedLocation :
-                                        "India"}
-                                    </h5>
-                                    <p>
-                                        Last Updated: {this.getDateDiff(this.state.pointedLocation)}
-                                    </p>
-                                </div>
-                                <div className="row no-gutters">
-                                    <div className="card-body" style={{minHeight: "123px"}}>
-                                        {(this.state.delayed) ?
-                                        this.showLoader() :
-                                        <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />}
-                                    </div>
-                                </div>
-                            </div>
-                            {/* <div className="ui cards">
-                                <div className="card">
-                                    <div className="content">
-                                        <div className="header examples__block__info__item">
-                                            Pointed location:
+            if(!this.state.cases[0]) {
+                return (
+                    <Loader type="ThreeDots" color="#0278f5" height="100" width="100" style={{margin:"0 0 0 40%"}} />
+                )
+            }
+            else {
+                return (
+                    // (this.state.delayed) ?
+                    //     this.showLoader()
+                    //     :
+                    //     (
+                    <article className="examples__block" style={{marginTop: "3%", marginLeft:"5%"}}>
+                        <div style={{fontSize: "30px", margin: "0% 0% 3% 24vw"}}>
+                            We shall win the war against Cor<span><img className="imageSpin" src={process.env.PUBLIC_URL + '/covid_logo.png'} alt="logo" /></span>na Virus.
+                        </div>
+                        <div className="row">
+                            <div className="examples__block__info" style={{marginLeft:"49%", minHeight: "187px"}}>
+                                <div className="card bg-light mb-3" style={{maxWidth: "80rem", minWidth: "40rem", margin: "-2% 0 0 12%"}}>
+                                    <div className="card-header">
+                                        <h5>
+                                            Pointed State:
                                             <br/>
                                             {(this.state.pointedLocation!=="Total") ? 
                                             this.state.pointedLocation :
                                             "India"}
-                                        </div>
-                                        <hr />
-                                        <div className="description">
-                                            <Data code={this.state.pointedLocation} />
+                                        </h5>
+                                        <p>
+                                            Last Updated: {this.getDateDiff(this.state.pointedLocation)}
+                                        </p>
+                                    </div>
+                                    <div className="row no-gutters">
+                                        <div className="card-body" style={{minHeight: "123px"}}>
+                                            {(this.state.delayed) ?
+                                            this.showLoader() :
+                                            <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />}
                                         </div>
                                     </div>
                                 </div>
-                            </div> */}
-                        </div>
-                    </div>
-                    <div className='row'>
-                        <div className="col-lg-6 col-md-8 cd-sm-8 jumbotron" style={{marginTop:"-17.5%"}}>
-                            <div className="row">
-                                <h3 style={{margin:"-4% 0 1% 40%"}}>
-                                    Map of India
-                                </h3>
-                            </div>
-                            <div className="row">
-                                <div className="examples__block__map examples__block__map--usa">
-                                    <SVGMap 
-                                        map={world}
-                                        onLocationMouseOver={this.handleLocationMouseOver}
-                                        onLocationMouseOut={this.handleLocationMouseOut}
-                                        onLocationClick={(event) => this.handleLocationClick(event)}
-                                        onLocationFocus={this.handleLocationFocus}
-                                        onLocationBlur={this.handleLocationBlur}
-                                        locationClassName={(location, index) =>this.getLocationClassName(location, index)}
-                                        // onLocationMouseMove={this.handleLocationMouseMove}
-                                        />
-                                    {/* <div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
-                                        <div className="ui header">
-                                            {this.state.pointedLocation}
+                                {/* <div className="ui cards">
+                                    <div className="card">
+                                        <div className="content">
+                                            <div className="header examples__block__info__item">
+                                                Pointed location:
+                                                <br/>
+                                                {(this.state.pointedLocation!=="Total") ? 
+                                                this.state.pointedLocation :
+                                                "India"}
+                                            </div>
+                                            <hr />
+                                            <div className="description">
+                                                <Data code={this.state.pointedLocation} />
+                                            </div>
                                         </div>
-                                        <Data code={this.state.pointedLocation} />
-                                    </div> */}
-                                </div>
-                            </div>
-                            <div className='row'>
-
-                                <div className="btn-group btn-group-toggle" style={{marginLeft: "9%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
-                                    <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
-                                        <input type="radio" name="options" id="option1" autoComplete="off" /> Total
-                                    </label>
-                                    <label onClick={this.toggleChartsDaily} className={`btn btn-primary ${this.classes.class2}`}>
-                                        <input type="radio" name="options" id="option2" autoComplete="off" /> Daily
-                                    </label>
-                                </div>
-                                <div className="btn-group btn-group-toggle" style={{marginLeft: "5%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
-                                    <label onClick={this.handleBegining} className={`btn btn-primary ${this.classes.class3}`}>
-                                        <input type="radio" name="options" id="option1" autoComplete="off" /> Begining
-                                    </label>
-                                    <label onClick={this.handleMonth} className={`btn btn-primary ${this.classes.class4}`}>
-                                        <input type="radio" name="options" id="option2" autoComplete="off" /> One Month
-                                    </label>
-                                    <label onClick={this.handleTwoWeeks} className={`btn btn-primary ${this.classes.class5}`}>
-                                        <input type="radio" name="options" id="option2" autoComplete="off" /> Two Weeks
-                                    </label>
-                                </div>
-                                <div className="btn-group btn-group-toggle" style={{marginLeft: "5%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
-                                    <label onClick={this.toggleLine} className={`btn btn-primary ${this.classes.class6}`}>
-                                        <input type="radio" name="options" id="option1" autoComplete="off" /> Line
-                                    </label>
-                                    <label onClick={this.toggleBar} className={`btn btn-primary ${this.classes.class7}`}>
-                                        <input type="radio" name="options" id="option2" autoComplete="off" /> Bar
-                                    </label>
-                                </div>
-                            </div>
-                            <div>
-                                {
-                                    (this.state.delayed) ?
-                                    this.showLoader() :
-                                    daily
-                                }
+                                    </div>
+                                </div> */}
                             </div>
                         </div>
-                        <div className="col-lg-5 col-md-12" style={{marginLeft:"4%"}}>
-                            <table style={{borderCollapse: "seperated"}}>
-                                <thead>
-                                    <tr>
-                                        <th onClick={() => this.sortData("state")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
-                                            State/UT
-                                            {(this.state.sortConfig.key==="state") ? v : ""}
-                                        </th>
-                                        <th onClick={() => this.sortData("confirmed")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
-                                            Confirmed
-                                            {(this.state.sortConfig.key==="confirmed") ? v : ""}
-                                        </th>
-                                        <th onClick={() => this.sortData("active")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
-                                            Active
-                                            {(this.state.sortConfig.key==="active") ? v : ""}
-                                        </th>
-                                        <th onClick={() => this.sortData("recovered")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
-                                            Recovered
-                                            {(this.state.sortConfig.key==="recovered") ? v : ""}
-                                        </th>
-                                        <th onClick={() => this.sortData("deaths")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
-                                            Deaths
-                                            {(this.state.sortConfig.key==="deaths") ? v : ""}
-                                        </th>
-                                    </tr>
-                                </thead>
-
-                                {
-                                    (this.state.delayed) ?
-                                    this.showLoader() :
-                                    this.showStats()
-                                }
-                            </table>
+                        <div className='row'>
+                            <div className="col-lg-6 col-md-8 cd-sm-8 jumbotron" style={{marginTop:"-17.5%"}}>
+                                <div className="row">
+                                    <h3 style={{margin:"-4% 0 1% 40%"}}>
+                                        Map of India
+                                    </h3>
+                                </div>
+                                <div className="row">
+                                    <div className="examples__block__map examples__block__map--usa">
+                                        <SVGMap 
+                                            map={world}
+                                            onLocationMouseOver={this.handleLocationMouseOver}
+                                            onLocationMouseOut={this.handleLocationMouseOut}
+                                            onLocationClick={(event) => this.handleLocationClick(event)}
+                                            onLocationFocus={this.handleLocationFocus}
+                                            onLocationBlur={this.handleLocationBlur}
+                                            locationClassName={(location, index) =>this.getLocationClassName(location, index)}
+                                            // onLocationMouseMove={this.handleLocationMouseMove}
+                                            />
+                                        {/* <div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
+                                            <div className="ui header">
+                                                {this.state.pointedLocation}
+                                            </div>
+                                            <Data code={this.state.pointedLocation} />
+                                        </div> */}
+                                    </div>
+                                </div>
+                                <div className='row'>
+    
+                                    <div className="btn-group btn-group-toggle" style={{marginLeft: "9%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
+                                        <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
+                                            <input type="radio" name="options" id="option1" autoComplete="off" /> Total
+                                        </label>
+                                        <label onClick={this.toggleChartsDaily} className={`btn btn-primary ${this.classes.class2}`}>
+                                            <input type="radio" name="options" id="option2" autoComplete="off" /> Daily
+                                        </label>
+                                    </div>
+                                    <div className="btn-group btn-group-toggle" style={{marginLeft: "5%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
+                                        <label onClick={this.handleBegining} className={`btn btn-primary ${this.classes.class3}`}>
+                                            <input type="radio" name="options" id="option1" autoComplete="off" /> Begining
+                                        </label>
+                                        <label onClick={this.handleMonth} className={`btn btn-primary ${this.classes.class4}`}>
+                                            <input type="radio" name="options" id="option2" autoComplete="off" /> One Month
+                                        </label>
+                                        <label onClick={this.handleTwoWeeks} className={`btn btn-primary ${this.classes.class5}`}>
+                                            <input type="radio" name="options" id="option2" autoComplete="off" /> Two Weeks
+                                        </label>
+                                    </div>
+                                    <div className="btn-group btn-group-toggle" style={{marginLeft: "5%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
+                                        <label onClick={this.toggleLine} className={`btn btn-primary ${this.classes.class6}`}>
+                                            <input type="radio" name="options" id="option1" autoComplete="off" /> Line
+                                        </label>
+                                        <label onClick={this.toggleBar} className={`btn btn-primary ${this.classes.class7}`}>
+                                            <input type="radio" name="options" id="option2" autoComplete="off" /> Bar
+                                        </label>
+                                    </div>
+                                </div>
+                                <div>
+                                    {
+                                        (this.state.delayed) ?
+                                        this.showLoader() :
+                                        daily
+                                    }
+                                </div>
+                            </div>
+                            <div className="col-lg-5 col-md-12" style={{marginLeft:"4%"}}>
+                                <table style={{borderCollapse: "seperated"}}>
+                                    <thead>
+                                        <tr>
+                                            <th onClick={() => this.sortData("state")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                                State/UT
+                                                {(this.state.sortConfig.key==="state") ? v : ""}
+                                            </th>
+                                            <th onClick={() => this.sortData("confirmed")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                                Confirmed
+                                                {(this.state.sortConfig.key==="confirmed") ? v : ""}
+                                            </th>
+                                            <th onClick={() => this.sortData("active")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                                Active
+                                                {(this.state.sortConfig.key==="active") ? v : ""}
+                                            </th>
+                                            <th onClick={() => this.sortData("recovered")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                                Recovered
+                                                {(this.state.sortConfig.key==="recovered") ? v : ""}
+                                            </th>
+                                            <th onClick={() => this.sortData("deaths")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                                Deaths
+                                                {(this.state.sortConfig.key==="deaths") ? v : ""}
+                                            </th>
+                                        </tr>
+                                    </thead>
+    
+                                    {
+                                        (this.state.delayed) ?
+                                        this.showLoader() :
+                                        this.showStats()
+                                    }
+                                </table>
+                            </div>
                         </div>
-                    </div>
-                </article>
-            // )
-            );
+                    </article>
+                // )
+                );
+            }
         }
-        // else {
-        //     return (
-        //         <div>
-        //             <Route to="/state" component={States} />
-        //         </div>
-        //     )
-        // }
 	}
 }
 
