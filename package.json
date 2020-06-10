@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^4.10.1",
     "@svg-maps/india": "^1.0.1",
     "@svg-maps/taiwan": "^1.1.0",
     "@svg-maps/world": "^1.0.1",

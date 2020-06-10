@@ -7,7 +7,6 @@ import { covid } from "./api/covid";
 import { Link} from "react-router-dom";
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, BarChart } from 'recharts';
 import Loader from 'react-loader-spinner';
-import { trackPromise } from 'react-promise-tracker';
 import moment from 'moment'
  
 class HoverMap extends React.Component {
@@ -60,7 +59,6 @@ class HoverMap extends React.Component {
 		// this.handleLocationBlur = this.handleLocationBlur.bind(this);
     }
     componentDidMount = () => {
-        trackPromise(
         covid.get('/data.json').then(res => {
             // console.log(res.data.cases_time_series)
             let cas=res.data.cases_time_series;
@@ -80,7 +78,7 @@ class HoverMap extends React.Component {
             this.setState({cases: cc, totalCases: c});
         }).then(() => {
             this.fetchMonth()
-        }))
+        })
     }
     getDateDiff = (name) => {
         let x=this.state.cases.filter((c) => {

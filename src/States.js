@@ -587,7 +587,7 @@ class States extends Component {
                         {this.props.match.params.name}
                     </h2>
 
-                    <div className="btn-group btn-group-toggle" style={{marginLeft: "20%", marginBottom: "2%", marginTop: "2%", marginBottom: "3%"}} data-toggle="buttons">
+                    <div className="btn-group btn-group-toggle" style={{marginLeft: "20%", marginTop: "2%", marginBottom: "3%"}} data-toggle="buttons">
                         <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
                             <input type="radio" name="options" id="option1" autoComplete="off" /> Total
                         </label>
@@ -595,7 +595,7 @@ class States extends Component {
                             <input type="radio" name="options" id="option2" autoComplete="off" /> Daily
                         </label>
                     </div>
-                    <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginBottom: "2%", marginTop: "2%", marginBottom: "3%"}} data-toggle="buttons">
+                    <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginTop: "2%", marginBottom: "3%"}} data-toggle="buttons">
                         <label onClick={this.handleBegining} className={`btn btn-primary ${this.classes.class4}`}>
                             <input type="radio" name="options" id="option1" autoComplete="off" /> Begining
                         </label>
@@ -606,7 +606,7 @@ class States extends Component {
                             <input type="radio" name="options" id="option2" autoComplete="off" /> Two Weeks
                         </label>
                     </div>
-                    <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginBottom: "2%", marginTop: "2%", marginBottom: "3%"}} data-toggle="buttons">
+                    <div className="btn-group btn-group-toggle" style={{marginLeft: "15%", marginTop: "2%", marginBottom: "3%"}} data-toggle="buttons">
                         <label onClick={this.toggleLine} className={`btn btn-primary ${this.classes.class6}`}>
                             <input type="radio" name="options" id="option1" autoComplete="off" /> Line
                         </label>

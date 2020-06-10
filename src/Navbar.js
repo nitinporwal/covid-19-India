@@ -1,38 +1,65 @@
 import React, { Component } from 'react';
+import Button from '@material-ui/core/Button';
+import Backdrop from '@material-ui/core/Backdrop';
 import './App.css';
 class Navbar extends Component {
+    state = {
+        open: false
+    }
+    handleClose = () => {
+        this.setState({open: false})
+    }
+    handleToggle = () => {
+        let x=this.state.open;
+        this.setState({open: !x});
+    }
     render() {
         return (
             <div className="bd-example">
-                <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-                    <a className="navbar-brand" href="/">Covid19</a>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="/navbarColor02" aria-controls="navbarColor02" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
+                <nav className="navbar navbar-expand-lg navbar-dark bg-light">
+                    <a className="navbar-brand" style={{color: "blue", fontSize: "20px"}} href="/">Covid-19</a>
                     <div className="collapse navbar-collapse" id="navbarColor02">
                         <ul className="navbar-nav mr-auto">
-                            <li className="nav-item active">
-                                <a className="nav-link" href="/">Home <span className="sr-only">(current)</span></a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/symptoms">Symptoms</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/symptoms/checker">Symptoms Checker</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/preventions">Preventions</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/faqs">FAQs</a>
-                            </li>
-                            <li className="nav-item">
-                                <a className="nav-link" href="/about">About</a>
-                            </li>
+                            <Button variant="outlined" color="primary" style={{margin: "1% 0.5%", padding: "0%", minWidth: "8vw"}} href="/">
+                                Home
+                            </Button>
+                            <Button variant="outlined" color="primary" style={{margin: "1% 0.5%", padding: "0%", minWidth: "8vw"}} href="/symptoms">
+                                Symptoms
+                            </Button>
+                            <Button variant="outlined" color="primary" style={{margin: "1% 0.5%", padding: "0%", minWidth: "8vw"}} href="/preventions">
+                                Preventions
+                            </Button>
+                            <Button variant="outlined" color="primary" style={{margin: "1% 0.5%", padding: "0%", minWidth: "8vw"}} href="/faqs">
+                                FAQs
+                            </Button>
+                            <Button variant="outlined" color="primary" style={{margin: "1% 0.5%", padding: "0%", minWidth: "8vw"}} href="/about">
+                                About Us
+                            </Button>
                         </ul>
                         <form className="form-inline">
-                            <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                            <button className="btn btn-outline-light my-2 my-sm-0" type="submit">Search</button>
+                            <Button variant="contained" color="secondary" onClick={this.handleToggle}>
+                                Show Covid-19 Symptoms Checker
+                            </Button>
+                            <Backdrop open={this.state.open} onClick={this.handleClose} style={{zIndex: "100", color: "white"}}>
+                                <div style={{backgroundColor: "#98fa9a", border: "3px solid lightgray", margin: "4% 20% 4% 20%"}}>
+                                    <h2 style={{color: "black"}}>Covid-19 Symptoms checker: By Johns Hopkins Medicine</h2>
+                                    <ul style={{color: "black"}}>
+                                        <h5>
+                                            <li>
+                                                Check yourself for coronavirus symptoms.
+                                            </li>
+                                            <li>
+                                                Learn how to protect yourself and others from COVID-19.
+                                            </li>
+                                            <li>
+                                                Get coronavirus information important to parents and caregivers.
+                                            </li>
+                                        </h5>
+                                    </ul>
+                                    <iframe id="checker-iframe" title="Coronavirus (COVID-19) Self-Checker" src="https://jhmcoronavirusselfchecker.azurewebsites.net/" style={{border: "0", height: "430px", width: "60vw", minWidth: "300px", border: "3px solid black", margin: "2% 2% 0% 0%", backgroundColor: "#7aabfa"}} >
+                                    </iframe>
+                                </div>
+                            </Backdrop>
                         </form>
                     </div>
                 </nav>
