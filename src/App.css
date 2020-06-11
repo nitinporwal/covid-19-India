@@ -375,7 +375,7 @@ tbody > tr:nth-of-type(even) {
     -webkit-animation-duration: 5s;
 }
 
-/* Symptoms styling */
+/* Symptoms & preventions styling */
 
 .symptoms_img {
     width: 150px;
@@ -418,4 +418,11 @@ tbody > tr:nth-of-type(even) {
 .symptoms_jumbo {
     width: 350px;
     margin: 10% 6% 15% 0%;
+}
+
+.prevention_img {
+    width: 350px;
+    height: 310px;
+    border: 13px solid white;
+    border-radius: 7%;
 }
