@@ -20,7 +20,7 @@ const Footer = () => {
                     <ul className="list-unstyled" style={{fontSize: "16px"}}>
                         <li>
                             Download the Aarogya Setu App  <img src={process.env.PUBLIC_URL + '/arogya.png'} alt="logo" style={{width: "25px"}} /> For 
-                            <a href="https://web2.eu5.org/awarness_material/awarness_eng_hind.pdf" style={{textDecoration: "none", color: "white"}}> Android <img src={process.env.PUBLIC_URL + '/android.png'} alt="logo" style={{width: "25px"}} /> </a>  For <a href="https://web2.eu5.org/awarness_material/awarness_eng_hind.pdf" style={{textDecoration: "none", color: "white"}}>iPhone <img src={process.env.PUBLIC_URL + '/apple.png'} alt="logo"  style={{width: "25px", height: "25px"}}/></a>
+                            <a href="https://play.google.com/store/apps/details?id=nic.goi.aarogyasetu&hl=en_GB" style={{textDecoration: "none", color: "white"}}> Android <img src={process.env.PUBLIC_URL + '/android.png'} alt="logo" style={{width: "25px"}} /> </a>  For <a href="https://apps.apple.com/in/app/aarogyasetu/id1505825357" style={{textDecoration: "none", color: "white"}}>iPhone <img src={process.env.PUBLIC_URL + '/apple.png'} alt="logo"  style={{width: "25px", height: "25px"}}/></a>
                         </li>
                         <li>
                             <a href="https://web2.eu5.org/awarness_material/awarness_eng_hind.pdf" style={{textDecoration: "none", color: "white"}}>Guidelines for Reducing the Risk of Novel Coronavirus COVID-19 </a>

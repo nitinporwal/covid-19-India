@@ -477,3 +477,54 @@ tbody > tr:nth-of-type(even) {
 .state_deaths_card div {
     color: rgb(64, 74, 66);
 }
+
+/* Dashboard card data */
+
+
+.dashboard_confirmed_card {
+    max-width: 124px;
+    margin: 0 1% 0 2%;
+    padding: 0;
+    background-color: rgb(245, 210, 253);
+    cursor: pointer;
+}
+
+.dashboard_confirmed_card div {
+    color: rgb(139, 0, 139);
+}
+
+.dashboard_active_card {
+    max-width: 124px;
+    margin: 0 1% 0 1%;
+    padding: 0;
+    background-color: rgb(252, 200, 200);
+    cursor: pointer;
+}
+
+.dashboard_active_card div {
+    color: rgb(255, 0, 0);
+}
+
+.dashboard_recovered_card {
+    max-width: 124px;
+    margin: 0 1% 0 1%;
+    padding: 0;
+    background-color: rgb(197, 250, 197);
+    cursor: pointer;
+}
+
+.dashboard_recovered_card div {
+    color: rgb(0, 102, 0);
+}
+
+.dashboard_deaths_card {
+    max-width: 124px;
+    margin: 0 1% 0 1%;
+    padding: 0;
+    background-color: rgb(221, 221, 221);
+    cursor: pointer;
+}
+
+.dashboard_deaths_card div {
+    color: rgb(64, 74, 66);
+}
