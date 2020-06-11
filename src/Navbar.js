@@ -4,7 +4,25 @@ import Backdrop from '@material-ui/core/Backdrop';
 import './App.css';
 class Navbar extends Component {
     state = {
-        open: false
+        open: false,
+        selected: "dash"
+    }
+    componentDidMount = () => {
+        if(this.props.location.pathname==="/" || this.props.location.state!=undefined) {
+            this.setState({selected: "dash"})
+        }
+        else if(this.props.location.pathname==="/symptoms") {
+            this.setState({selected: "sym"})
+        }
+        else if(this.props.location.pathname==="/preventions") {
+            this.setState({selected: "pre"})
+        }
+        else if(this.props.location.pathname==="/faqs") {
+            this.setState({selected: "faq"})
+        }
+        else if(this.props.location.pathname==="/about") {
+            this.setState({selected: "abt"})
+        }
     }
     handleClose = () => {
         this.setState({open: false})
@@ -13,34 +31,67 @@ class Navbar extends Component {
         let x=this.state.open;
         this.setState({open: !x});
     }
-    handleKey = (event) => {
-        console.log(event);
-        if(event.keyCode===27) {
-            this.handleClose();
-        }
-    }
     render() {
+        console.log(this.props)
+        let styles={
+            margin: "1% 0.5%", 
+            padding: "1%", 
+            minWidth: "9vw", 
+            color: "white"
+        }
+        let color1 = "primary";
+        let color2 = "secondary"
         return (
             <div className="bd-example">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-light">
-                    <a className="home_logo" href="/">Covid-19</a>
+                    <a style={{textDecoration: "none"}} className="home_logo" href="/"><img src={process.env.PUBLIC_URL + '/corona2.png'} alt="logo" style={{maxWidth: "24px", maxHeight: "24px"}} />Covid-19</a>
                     <div className="collapse navbar-collapse" id="navbarColor02">
                         <ul className="navbar-nav mr-auto">
-                            <Button variant="contained" color="primary" style={{margin: "1% 0.5%", padding: "1%", minWidth: "8vw", color: "white"}} href="/">
-                                Home
-                            </Button>
-                            <Button variant="contained" color="primary" style={{margin: "1% 0.5%", padding: "1%", minWidth: "8vw", color: "white"}} href="/symptoms">
-                                Symptoms
-                            </Button>
-                            <Button variant="contained" color="primary" style={{margin: "1% 0.5%", padding: "1%", minWidth: "8vw", color: "white"}} href="/preventions">
-                                Preventions
-                            </Button>
-                            <Button variant="contained" color="primary" style={{margin: "1% 0.5%", padding: "1%", minWidth: "8vw", color: "white"}} href="/faqs">
-                                FAQs
-                            </Button>
-                            <Button variant="contained" color="primary" style={{margin: "1% 0.5%", padding: "1%", minWidth: "8vw", color: "white"}} href="/about">
-                                About Us
-                            </Button>
+                            {(this.state.selected==="dash") ?
+                                <Button variant="contained" color={color2} style={styles} href="/">
+                                    Dashboard
+                                </Button>
+                            :
+                                <Button variant="contained" color={color1} style={styles} href="/">
+                                    Dashboard
+                                </Button>
+                            }
+                            {(this.state.selected==="sym") ?
+                                <Button variant="contained" color={color2} style={styles} href="/symptoms">
+                                    Symptoms
+                                </Button>
+                                :
+                                <Button variant="contained" color={color1} style={styles} href="/symptoms">
+                                    Symptoms
+                                </Button>
+                            }
+                            {(this.state.selected==="pre") ?
+                                <Button variant="contained" color={color2} style={styles} href="/preventions">
+                                    Preventions
+                                </Button>
+                                :
+                                <Button variant="contained" color={color1} style={styles} href="/preventions">
+                                    Preventions
+                                </Button>
+                            }
+                            {(this.state.selected==="faq") ?
+                                <Button variant="contained" color={color2} style={styles} href="/faqs">
+                                    FAQs
+                                </Button>
+                                :
+                                <Button variant="contained" color={color1} style={styles} href="/faqs">
+                                    FAQs
+                                </Button>
+                            }
+                            {(this.state.selected==="abt") ?
+                                <Button variant="contained" color={color2} style={styles} href="/about">
+                                    About Us
+                                </Button>
+                                :
+                                <Button variant="contained" color={color1} style={styles} href="/about">
+                                    About Us
+                                </Button>
+                            }
                         </ul>
                         <form className="form-inline">
                             <Button variant="contained" color="secondary" onClick={this.handleToggle}>

@@ -535,6 +535,7 @@ tbody > tr:nth-of-type(even) {
     color: blue;
     font-size: 20px;
     margin-right: 1%;
+    font-weight: bolder;
     /* border: 4px solid black; */
 }
 
