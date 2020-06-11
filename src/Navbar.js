@@ -13,11 +13,17 @@ class Navbar extends Component {
         let x=this.state.open;
         this.setState({open: !x});
     }
+    handleKey = (event) => {
+        console.log(event);
+        if(event.keyCode===27) {
+            this.handleClose();
+        }
+    }
     render() {
         return (
             <div className="bd-example">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-light">
-                    <a className="navbar-brand" style={{color: "blue", fontSize: "20px"}} href="/">Covid-19</a>
+                    <a className="home_logo" href="/">Covid-19</a>
                     <div className="collapse navbar-collapse" id="navbarColor02">
                         <ul className="navbar-nav mr-auto">
                             <Button variant="contained" color="primary" style={{margin: "1% 0.5%", padding: "1%", minWidth: "8vw", color: "white"}} href="/">
@@ -40,10 +46,10 @@ class Navbar extends Component {
                             <Button variant="contained" color="secondary" onClick={this.handleToggle}>
                                 Show Covid-19 Symptoms Checker
                             </Button>
-                            <Backdrop open={this.state.open} onClick={this.handleClose} style={{zIndex: "100", color: "white"}}>
-                                <div style={{backgroundColor: "#98fa9a", border: "3px solid lightgray", margin: "4% 20% 4% 20%"}}>
-                                    <h2 style={{color: "black"}}>Covid-19 Symptoms checker: By Johns Hopkins Medicine</h2>
-                                    <ul style={{color: "black"}}>
+                            <Backdrop open={this.state.open} onKeyDown={(e) => this.handleKey(e)} onClick={this.handleClose} style={{zIndex: "100"}}>
+                                <div className="backdrop_data">
+                                    <h2 >Covid-19 Symptoms checker: By Johns Hopkins Medicine</h2>
+                                    <ul >
                                         <h5>
                                             <li>
                                                 Check yourself for coronavirus symptoms.
@@ -54,10 +60,12 @@ class Navbar extends Component {
                                             <li>
                                                 Get coronavirus information important to parents and caregivers.
                                             </li>
+                                            <li>
+                                                Click on 'I accept' to continue.
+                                            </li>
                                         </h5>
                                     </ul>
-                                    <iframe id="checker-iframe" title="Coronavirus (COVID-19) Self-Checker" src="https://jhmcoronavirusselfchecker.azurewebsites.net/" style={{border: "0", height: "430px", width: "60vw", minWidth: "300px", border: "3px solid black", margin: "2% 2% 0% 0%", backgroundColor: "#7aabfa"}} >
-                                    </iframe>
+                                    <iframe className="checker_iframe" id="checker-iframe" title="Coronavirus (COVID-19) Self-Checker" src="https://jhmcoronavirusselfchecker.azurewebsites.net/" />
                                 </div>
                             </Backdrop>
                         </form>
