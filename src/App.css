@@ -341,23 +341,30 @@ thead > tr:last-of-type > th:nth-of-type(5) {
 tbody > tr:nth-of-type(even) {
   background-color: rgb(247, 241, 241);
 }
+
+/* animation styling */
+
 @keyframes spin {
-    from{
-    transform: rotate(0deg);
-    moz-transform: rotate(0deg);
-    ms-transform: rotate(0deg);
+    from {
+        transform: rotate(0deg);
+        moz-transform: rotate(0deg);
+        ms-transform: rotate(0deg);
     }
-    to{
-    transform: rotate(360deg);
-    moz-transform: rotate(360deg);
-    ms-transform: rotate(360deg);
+    to {
+        transform: rotate(360deg);
+        moz-transform: rotate(360deg);
+        ms-transform: rotate(360deg);
     }
-   }
-   @-webkit-keyframes spin{
-    from{-webkit-transform: rotate(0deg);}
-    to{-webkit-transform: rotate(360deg);}
-   }
-   .imageSpin{
+}
+@-webkit-keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+    }
+    to {
+        -webkit-transform: rotate(360deg);
+    }
+}
+.imageSpin {
     animation-name: spin;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
@@ -366,4 +373,49 @@ tbody > tr:nth-of-type(even) {
     -webkit-animation-timing-function: linear;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-duration: 5s;
-   }
+}
+
+/* Symptoms styling */
+
+.symptoms_img {
+    width: 150px;
+    height: 150px;
+    border: 3px solid lightgray;
+    border-radius: 50%;
+    margin: 4% 0 0 10%;
+}
+
+.symptoms2_img {
+    margin-top: 30%;
+    margin-bottom: 20%;
+    width: 350px;
+    height: 960px;
+    border: 3px solid lightgray;
+    border-radius: 40px 40px;
+}
+
+.img_container {
+    margin: 1%;
+}
+
+.detail_container {
+    padding: 3% 3% 0 0;
+    font-size: 1.2em;
+}
+
+.header_container {
+    max-width: 95%;
+}
+
+.header_details {
+    padding: 4%;
+}
+
+.symptoms_header5 {
+    font-weight: bold;
+}
+
+.symptoms_jumbo {
+    width: 350px;
+    margin: 10% 6% 15% 0%;
+}
