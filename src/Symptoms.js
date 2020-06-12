@@ -16,7 +16,7 @@ class Symptoms extends Component {
                         </div>
                         <div className="row">
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/cough.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/cough.png'} alt="cough" />
                             </div>
                             <div className="col-lg-8 detail_container">
                                 <h5 className="symptoms_header5" >
@@ -28,7 +28,7 @@ class Symptoms extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/sore.svg'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/sore.svg'} alt="sore throat" />
                             </div>
                             <div className="col-lg-8 detail_container">
                                 <h5 className="symptoms_header5" >
@@ -41,7 +41,7 @@ class Symptoms extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/fever.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/fever.png'} alt="fever" />
                             </div>
                             <div className="col-lg-8 detail_container">
                                 <h5 className="symptoms_header5" >
@@ -55,7 +55,7 @@ class Symptoms extends Component {
                             </div>
                             
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/chills.jpg'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/chills.jpg'} alt="chills" />
                             </div>
                             <div className="col-lg-8 detail_container">
                                 <h5 className="symptoms_header5" >
@@ -66,7 +66,7 @@ class Symptoms extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/short_breath.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/short_breath.png'} alt="breathing difficulty" />
                             </div>
                             <div className="col-lg-8 detail_container">
                                 <h5 className="symptoms_header5" >
@@ -76,7 +76,7 @@ class Symptoms extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/loss_taste.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/loss_taste.png'} alt="no smell" />
                             </div>
                             <div className="col-lg-8 detail_container">
                                 <h5 className="symptoms_header5" >
@@ -87,7 +87,7 @@ class Symptoms extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/tired.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/tired.png'} alt="tired" />
                             </div>
                             <div className="col-lg-8 detail_container">
                                 <h5 className="symptoms_header5" >
@@ -98,7 +98,7 @@ class Symptoms extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/muscel_pain.jpg'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/muscel_pain.jpg'} alt="pain" />
                             </div>
                             <div className="col-lg-8 detail_container">
                                 <h5 className="symptoms_header5" >
@@ -120,7 +120,7 @@ class Symptoms extends Component {
                             src={videoSrc} 
                         />
                         
-                        <img className="symptoms2_img" src={process.env.PUBLIC_URL + '/symptoms2.png'} alt="logo" />
+                        <img className="symptoms2_img" src={process.env.PUBLIC_URL + '/symptoms2.png'} alt="symptoms" />
                     </div>
                 </div>
             </div>

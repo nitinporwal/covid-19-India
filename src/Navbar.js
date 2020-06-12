@@ -8,7 +8,7 @@ class Navbar extends Component {
         selected: "dash"
     }
     componentDidMount = () => {
-        if(this.props.location.pathname==="/" || this.props.location.state!=undefined) {
+        if(this.props.location.pathname==="/" || this.props.location.state!==undefined) {
             this.setState({selected: "dash"})
         }
         else if(this.props.location.pathname==="/symptoms") {
@@ -44,7 +44,7 @@ class Navbar extends Component {
         return (
             <div className="bd-example">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-light">
-                    <a style={{textDecoration: "none"}} className="home_logo" href="/"><img src={process.env.PUBLIC_URL + '/corona2.png'} alt="logo" style={{maxWidth: "24px", maxHeight: "24px"}} />Covid-19</a>
+                    <a style={{textDecoration: "none"}} className="home_logo" href="/"><img src={process.env.PUBLIC_URL + '/corona2.png'} alt="corona_logo" style={{maxWidth: "24px", maxHeight: "24px"}} />Covid-19</a>
                     <div className="collapse navbar-collapse" id="navbarColor02">
                         <ul className="navbar-nav mr-auto">
                             {(this.state.selected==="dash") ?

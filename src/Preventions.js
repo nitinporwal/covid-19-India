@@ -17,7 +17,7 @@ class Preventions extends Component {
                         </div>
                         <div className="row">
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/washhands.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/washhands.png'} alt="wash hands" />
                             </div>
                             <div className="col-lg-8 detail_container" >
                                 <h5 className="symptoms_header5">
@@ -26,7 +26,7 @@ class Preventions extends Component {
                                 <p>Wash your hands regularly with soap and water, or clean them with alcohol-based hand rub because washing your hands with soap and water or using alcohol-based hand rub kills viruses that may be on your hands.</p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/donottouch.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/donottouch.png'} alt="don't touch" />
                             </div>
                             <div className="col-lg-8 detail_container" >
                                 <h5 className="symptoms_header5">
@@ -37,7 +37,7 @@ class Preventions extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/mask.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/mask.png'} alt="wear mask" />
                             </div>
                             <div className="col-lg-8 detail_container" >
                                 <h5 className="symptoms_header5">
@@ -48,7 +48,7 @@ class Preventions extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/social.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/social.png'} alt="keep distance" />
                             </div>
                             <div className="col-lg-8 detail_container" >
                                 <h5 className="symptoms_header5">
@@ -61,7 +61,7 @@ class Preventions extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/elbow.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/elbow.png'} alt="hygiene" />
                             </div>
                             <div className="col-lg-8 detail_container" >
                                 <h5 className="symptoms_header5">
@@ -72,7 +72,7 @@ class Preventions extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/stayhome.jpg'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/stayhome.jpg'} alt="stay home" />
                             </div>
                             <div className="col-lg-8 detail_container" >
                                 <h5 className="symptoms_header5">
@@ -83,7 +83,7 @@ class Preventions extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/checkup.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/checkup.png'} alt="medical attention" />
                             </div>
                             <div className="col-lg-8 detail_container" >
                                 <h5 className="symptoms_header5">
@@ -95,7 +95,7 @@ class Preventions extends Component {
                                 </p>
                             </div>
                             <div className="col-lg-3 img_container">
-                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/nosmoking.png'} alt="logo" />
+                                <img className="symptoms_img" src={process.env.PUBLIC_URL + '/nosmoking.png'} alt="no smoking" />
                             </div>
                             <div className="col-lg-8 detail_container">
                                 <h5 className="symptoms_header5">
@@ -116,10 +116,10 @@ class Preventions extends Component {
                             title="COVID-19 Stop the Spread of Germs"
                             src={videoSrc} 
                         />
-                        <img className="prevention_img" src={process.env.PUBLIC_URL + '/who1.png'} alt="logo"/>
-                        <img className="prevention_img" src={process.env.PUBLIC_URL + '/who2.png'} alt="logo"/>
-                        <img className="prevention_img" src={process.env.PUBLIC_URL + '/who3.png'} alt="logo"/>
-                        <img className="prevention_img" src={process.env.PUBLIC_URL + '/who4.png'} alt="logo"/>
+                        <img className="prevention_img" src={process.env.PUBLIC_URL + '/who1.png'} alt="who1"/>
+                        <img className="prevention_img" src={process.env.PUBLIC_URL + '/who2.png'} alt="who2"/>
+                        <img className="prevention_img" src={process.env.PUBLIC_URL + '/who3.png'} alt="who3"/>
+                        <img className="prevention_img" src={process.env.PUBLIC_URL + '/who4.png'} alt="who4"/>
                     </div>
                 </div>
             </div>

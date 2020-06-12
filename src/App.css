@@ -4,7 +4,7 @@
     margin-bottom: 2%;
 }
 .svg-map {
-    margin: 2% 2% 3% 10%;
+    margin: 2% 2% 3% 20%;
     width: 90%;
     height: 100%;
     /* width: 96%;
@@ -536,6 +536,25 @@
     color: white;
 }
 
+.footer_a:hover {
+    text-decoration: none;
+    color: yellow
+}
+
+.footer_a_who {
+    text-decoration: none;
+}
+
+.footer_a_who:hover {
+    text-decoration: none;
+    color: yellow
+}
+
+.footer_arogya_a:hover {
+    text-decoration: none;
+    color: yellow;
+}
+
 /* FAQs */
 
 .faqs_container {
@@ -689,7 +708,7 @@ article {
 
 .wider {
     height: 50px;
-    cursor: pointer;
+    /* cursor: pointer; */
 }
 
 .dash_tag {

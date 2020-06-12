@@ -352,7 +352,6 @@ class Dashboard extends React.Component {
         return (
             <tbody>
                 {this.state.cases.map(ca => {
-                    let s=ca.state
                     return (
                         (this.state.mhover===ca.state) ? (
                         <tr key={ca.statecode}
@@ -532,7 +531,7 @@ class Dashboard extends React.Component {
                 return (
                     <article className="examples__block">
                         <div className="dash_tag">
-                            We shall win the war against Cor<span><img className="imageSpin" src={process.env.PUBLIC_URL + '/covid_logo.png'} alt="logo" /></span>na Virus.
+                            We shall win the war against Cor<span><img className="imageSpin" src={process.env.PUBLIC_URL + '/covid_logo.png'} alt="corona_logo" /></span>na Virus.
                         </div>
                         <div className="row">
                             <div className="examples__block__info" style={{marginLeft:"49%", minHeight: "187px"}}>
