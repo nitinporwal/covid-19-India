@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './App.css'
 
 class FAQs extends Component {
     state={
@@ -190,38 +191,38 @@ class FAQs extends Component {
     }
     render() {
         return (
-            <div style={{margin: "2%"}}>
+            <div className="faqs_container">
                 <ul>
-                <h2 style={{margin: "2%"}}>Frequently Asked Questions (By Ministry of Health and Family Welfare(MoHFW)):</h2>
+                <h2 className="faqs_container">Frequently Asked Questions (By Ministry of Health and Family Welfare (MoHFW)):</h2>
                     {this.state.data.map((qu)=> {
                         return (
-                            <div className="card" style={{margin:"1% 2% 1% 2%"}}>
-                                <div onClick={() => this.setId(qu.id)} style={{padding: "1%", fontSize: "20px", color: "blue"}}>
+                            <div className="card faqs_card">
+                                <div className="faqs_ques" onClick={() => this.setId(qu.id)}>
                                     {(this.state.selectedId===qu.id) ? (
-                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                        <svg className="faqs_svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                             width="20" height="20"
                                             viewBox="0 0 172 172"
-                                            style={{fill: "#000000", border: "1px solid lightgray", borderRadius: "50%", margin: "0.2%"}}><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style={{mixBlendMode: "normal"}}><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#9F9D9D"><path d="M78.83333,21.5v100.83724l-32.75391,-32.7539l-10.75,10.75l50.67057,50.67057l50.67057,-50.67057l-10.75,-10.75l-32.7539,32.7539v-100.83724z"></path></g></g></svg>
+                                            ><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" ><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#9F9D9D"><path d="M78.83333,21.5v100.83724l-32.75391,-32.7539l-10.75,10.75l50.67057,50.67057l50.67057,-50.67057l-10.75,-10.75l-32.7539,32.7539v-100.83724z"></path></g></g></svg>
                                         // <img src="https://img.icons8.com/material-sharp/20/000000/down.png" style={{border: "1px solid lightgray", borderRadius: "50%"}}/>
                                         )
                                         :
-                                        <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+                                        <svg className="faqs_svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                                             width="20" height="20"
                                             viewBox="0 0 226 226"
-                                            style={{fill: "#000000", border: "1px solid lightgray", borderRadius: "50%", margin: "0.2%"}}><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" style={{mixBlendMode: "normal"}}><path d="M0,226v-226h226v226z" fill="none"></path><g fill="#9F9D9D"><path d="M131.83333,46.42122l-14.125,14.125l43.0371,43.03711h-132.49544v18.83333h132.49544l-43.0371,43.0371l14.125,14.125l66.57877,-66.57877z"></path></g></g>
+                                            ><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" ><path d="M0,226v-226h226v226z" fill="none"></path><g fill="#9F9D9D"><path d="M131.83333,46.42122l-14.125,14.125l43.0371,43.03711h-132.49544v18.83333h132.49544l-43.0371,43.0371l14.125,14.125l66.57877,-66.57877z"></path></g></g>
                                         </svg>
                                         // <img src="https://img.icons8.com/material/20/000000/right--v1.png" style={{border: "1px solid lightgray", borderRadius: "50%"}}/>
                                     }
                                     {` ${qu.ques}`}
                                 </div>
                                 {(this.state.selectedId===qu.id) ? (
-                                <div style={{marginLeft:"3%", marginBottom: "1%", marginTop: "-1%"}}>
-                                    <ul style={{fontSize: "18px", border: "1px solid lightgray", borderRadius: "2%", marginRight: "2%", padding: "2% 2% 2% 4%"}}>
+                                <div className="faqs_ans_container">
+                                    <ul className="faqs_ans_ul">
                                         {qu.ans.map(an => {
                                             return (
-                                                <li style={{marginBottom: "-0.1%"}}>
+                                            <li className="faqs_ans_li">
                                                     {an}
-                                                </li>
+                                            </li>
                                             )
                                         })}
                                     </ul>
