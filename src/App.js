@@ -7,7 +7,7 @@ import Navbar from "./Navbar";
 import District from './District';
 import Preventions from "./Preventions";
 import Symptoms from "./Symptoms";
-import Checker from "./Checker";
+// import Checker from "./Checker";
 import About from "./About";
 import FAQs from "./FAQs";
 import Footer from "./Footer";
@@ -45,11 +45,11 @@ class App extends React.Component {
                             <Symptoms {...routeProps} />
                         )}
                     />
-                    <Route path="/symptoms/checker" exact
+                    {/* <Route path="/symptoms/checker" exact
                         render={(routeProps) => (
                             <Checker {...routeProps} />
                         )}
-                    />
+                    /> */}
                     <Route path="/preventions" exact
                         render={(routeProps) => (
                             <Preventions {...routeProps} />
