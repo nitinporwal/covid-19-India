@@ -1,7 +1,7 @@
 import React from "react";
 import './App.css';
 import { BrowserRouter, Route} from 'react-router-dom';
-import HoverMap from "./HoverMap";
+import HoverMap from "./Dashboard";
 import States from "./States";
 import Navbar from "./Navbar";
 import District from './District';

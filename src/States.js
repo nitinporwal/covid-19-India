@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { covid } from './api/covid';
 import moment from 'moment';
 import StatesData from './StatesData';
-import Graph from './Graph';
+import GraphStates from './GraphStates';
 
 class States extends Component {
     constructor(props) {
@@ -247,16 +247,16 @@ class States extends Component {
         let daily = (
             <div className='ui grid'>
                 <div className="col-md-6">
-                    <Graph type={this.state.type} data={this.state.confirmedDaily} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #7900fa"/>
+                    <GraphStates type={this.state.type} data={this.state.confirmedDaily} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #7900fa"/>
                 </div>
                 <div className="col-md-6">
-                    <Graph type={this.state.type} data={this.state.activeDaily} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #fc030f"/>
+                    <GraphStates type={this.state.type} data={this.state.activeDaily} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #fc030f"/>
                 </div>
                 <div className="col-md-6">
-                    <Graph type={this.state.type} data={this.state.recoveredDaily} heading="Recovered" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #03fc45"/>
+                    <GraphStates type={this.state.type} data={this.state.recoveredDaily} heading="Recovered" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #03fc45"/>
                 </div>
                 <div className="col-md-6">
-                    <Graph type={this.state.type} data={this.state.deathDaily} heading="Deaths" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #949ea8"/>
+                    <GraphStates type={this.state.type} data={this.state.deathDaily} heading="Deaths" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #949ea8"/>
                 </div>
             </div>
         )
@@ -266,16 +266,16 @@ class States extends Component {
                 daily= (
                     <div className='ui grid'>
                         <div className="col-md-6">
-                            <Graph type={this.state.type} data={this.state.confirmed} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #7900fa"/>
+                            <GraphStates type={this.state.type} data={this.state.confirmed} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #7900fa"/>
                         </div>
                         <div className="col-md-6">
-                            <Graph type={this.state.type} data={this.state.active} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #fc030f"/>
+                            <GraphStates type={this.state.type} data={this.state.active} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #fc030f"/>
                         </div>
                         <div className="col-md-6">
-                            <Graph type={this.state.type} data={this.state.recovered} heading="Recovered" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #03fc45"/>
+                            <GraphStates type={this.state.type} data={this.state.recovered} heading="Recovered:" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #03fc45"/>
                         </div>
                         <div className="col-md-6">
-                            <Graph type={this.state.type} data={this.state.death} heading="Deaths" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #949ea8"/>
+                            <GraphStates type={this.state.type} data={this.state.death} heading="Deaths:" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff(this.props.match.params.name)} shadow="4px 0 #949ea8"/>
                         </div>
                     </div>
                 )

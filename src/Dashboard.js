@@ -5,11 +5,11 @@ import './App.css';
 import Data from "./Data";
 import { covid } from "./api/covid";
 import { Link} from "react-router-dom";
-import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, BarChart } from 'recharts';
 import Loader from 'react-loader-spinner';
 import moment from 'moment'
+import GraphDash from "./GraphDash";
  
-class HoverMap extends React.Component {
+class Dashboard extends React.Component {
     constructor(props) {
 		super(props);
         this.links = {
@@ -20,7 +20,6 @@ class HoverMap extends React.Component {
 			tooltipStyle: {
 				display: 'none'
 			},
-			// focusedLocation: null,
             clickedLocation: null,
             clickedLocationCode: null,
             cases: [],
@@ -53,10 +52,7 @@ class HoverMap extends React.Component {
         }
 		this.handleLocationMouseOver = this.handleLocationMouseOver.bind(this);
 		this.handleLocationMouseOut = this.handleLocationMouseOut.bind(this);
-		// this.handleLocationMouseMove = this.handleLocationMouseMove.bind(this);
 		this.handleLocationClick = this.handleLocationClick.bind(this);
-		// this.handleLocationFocus = this.handleLocationFocus.bind(this);
-		// this.handleLocationBlur = this.handleLocationBlur.bind(this);
     }
     componentDidMount = () => {
         covid.get('/data.json').then(res => {
@@ -121,16 +117,11 @@ class HoverMap extends React.Component {
 		const clickedLocation = this.getLocationName(event);
 		const clickedLocationId = this.getLocationId(event);
         this.setState({ clickedLocation: clickedLocation });
-        // console.log(clickedLocationId);
         let r=this.state.cases.filter(c=> {
             return c.state===clickedLocation
         })
-        // console.log(r);
-		// window.open(this.links[clickedLocationId]);
         this.setState({clickedLocationCode: clickedLocationId});
-        // console.log(this.state);
         const { history } = this.props;
-        // console.log(history);
         if(history) history.push({
             pathname: `/state/${clickedLocationId}/${clickedLocation}`,
             state: {
@@ -155,31 +146,9 @@ class HoverMap extends React.Component {
             </div>
         )
     }
-	// handleLocationFocus(event) {
-	// 	const focusedLocation = this.getLocationName(event);
-    //     this.setState({ focusedLocation: focusedLocation });
-	// }
-
-	// handleLocationBlur() {
-	// 	this.setState({ focusedLocation: null });
-	// }
-
-	// handleLocationMouseMove(event) {
-	// 	const tooltipStyle = {
-	// 		display: 'block',
-	// 		top: event.clientY + 10,
-	// 		left: event.clientX - 100
-	// 	};
-	// 	this.setState({ tooltipStyle });
-    // }
 	getLocationClassName = (location, index) => {
-        // console.log(location, index)
-        // console.log(this.state)
         let cases, max, wh=this.state.whichClicked;
-        // console.log(wh.which)
         this.state.cases.filter(c=> {
-            // console.log(c.wh);
-            // console.log(c);
             if(c.statecode==='TT') {
                 max=c[wh];
             }
@@ -188,7 +157,6 @@ class HoverMap extends React.Component {
             }
             return c.state===location.name
         })
-        // Generate random heat map
         if(cases<2*(max)/100) {
             return `svg-map__location svg-map__location--heat_${wh}4`;
         }
@@ -341,7 +309,6 @@ class HoverMap extends React.Component {
     dynamicsort = (key, direction) => {
         return (a, b) => {
             if(a.statecode==="TT") {
-                // console.log("YES");
                 return direction === 'asc' ? -1 : -1;
             }
             else if(b.statecode==="TT") {
@@ -372,23 +339,15 @@ class HoverMap extends React.Component {
         }
         this.setState({sortConfig: {key: key, direction: direction}});
         let x=this.state.cases;
-        // console.log(key, direction)
         x.sort(this.dynamicsort(key, direction));
     }
     getWhichClicked= (which) => {
-        // console.log(which);
         this.setState({whichClicked: which});
     }
     showStats = () => {
-        // let p=0, q=0, r=0, s=0;
         return (
             <tbody>
                 {this.state.cases.map(ca => {
-                    // q=ca.confirmed-q;
-                    // p=ca.active-p;
-                    // r=ca.recovered-r;
-                    // s=ca.deaths-s;
-                    // console.log(ca)
                     return (
                         <tr key={ca.statecode}
                             onMouseOver={() => this.handleHover(ca)}
@@ -416,8 +375,6 @@ class HoverMap extends React.Component {
                                     <sup style={{color: "green"}}>
                                         {`+${ca.deltaconfirmed}`}
                                     </sup>
-                                    {/* <br/>
-                                    {q} */}
                                 </Link>
                             </td>
                             <td style={{padding: "0.2em 0.7em"}}>
@@ -429,8 +386,6 @@ class HoverMap extends React.Component {
                                 }} style={{textDecoration: "none"}}>
                                     {ca.active}
                                     {(parseInt(ca.deltaactive)>=0) ? `+${ca.deltaactive}` : ca.deltaactive}
-                                    {/* <br/>
-                                    {p} */}
                                 </Link>
                             </td>
                             <td style={{padding: "0.2em 0.7em"}}>
@@ -444,8 +399,6 @@ class HoverMap extends React.Component {
                                     <sup style={{color: "green"}}>
                                         {`+${ca.deltarecovered}`}
                                     </sup>
-                                    {/* <br/>
-                                    {r} */}
                                 </Link>
                             </td>
                             <td style={{padding: "0.2em 0.7em"}}>
@@ -459,16 +412,10 @@ class HoverMap extends React.Component {
                                     <sup style={{color: "green"}}>
                                         {`+${ca.deltadeaths}`}
                                     </sup>
-                                    {/* <br/>
-                                    {s} */}
                                 </Link>
                             </td>
                         </tr>
                     )
-                    // p=ca.confirmed;
-                    // q=ca.active
-                    // r=ca.confirmed
-                    // s=ca.deaths;
                 })}
             </tbody>
         )
@@ -481,322 +428,25 @@ class HoverMap extends React.Component {
         else {
             v=" 🔼"
         }
-        let daily;
-        if(this.state.type==="bar") {
-            daily = (
-                <div>
-                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
-                        <div className="card-body">
-                            <div className="ui header">
-                                Confirmed cases:
-                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                            </div>
-                        </div>
-                        <BarChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey="date"/>
-                        <YAxis dataKey="" />
-                        <Tooltip/>
-                        <Legend />
-                        <Bar type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
-                        </BarChart>
-                    </div>
-                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
-                        <div className="card-body">
-                            <div className="ui header">
-                                Active cases:
-                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                            </div>
-                        </div>
-                        <BarChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey="date"/>
-                        <YAxis/>
-                        <Tooltip/>
-                        <Legend />
-                        <Bar type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
-                        </BarChart>
-                        
-                    </div>
-                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
-                        <div className="card-body">
-                            <div className="ui header">
-                                Recovered:
-                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                            </div>
-                        </div>
-                        <BarChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey="date"/>
-                        <YAxis/>
-                        <Tooltip/>
-                        <Legend />
-                        <Bar type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
-                        </BarChart>
-                        
-                    </div>
-                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
-                        <div className="card-body">
-                            <div className="ui header">
-                                Deaths:
-                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                            </div>
-                        </div>
-                        <BarChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey="date"/>
-                        <YAxis/>
-                        <Tooltip/>
-                        <Legend />
-                        {/* <Brush /> */}
-                        <Bar type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
-                        </BarChart>
-                        
-                    </div>
-                </div>
-            )
-        }
-        else if(this.state.type==="line") {
-            daily = (
-                <div>
-                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
-                        <div className="card-body">
-                            <div className="ui header">
-                                Confirmed cases:
-                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                            </div>
-                        </div>
-                        <LineChart width={500} height={200} data={this.state.confirmedDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey="date"/>
-                        <YAxis dataKey="" />
-                        <Tooltip/>
-                        <Legend />
-                        <Line type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
-                        </LineChart>
-                    </div>
-                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
-                        <div className="card-body">
-                            <div className="ui header">
-                                Active cases:
-                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                            </div>
-                        </div>
-                        <LineChart width={500} height={200} data={this.state.activeDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey="date"/>
-                        <YAxis/>
-                        <Tooltip/>
-                        <Legend />
-                        <Line type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
-                        </LineChart>
-                        
-                    </div>
-                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
-                        <div className="card-body">
-                            <div className="ui header">
-                                Recovered:
-                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                            </div>
-                        </div>
-                        <LineChart width={500} height={200} data={this.state.recoveredDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey="date"/>
-                        <YAxis/>
-                        <Tooltip/>
-                        <Legend />
-                        <Line type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
-                        </LineChart>
-                        
-                    </div>
-                    <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
-                        <div className="card-body">
-                            <div className="ui header">
-                                Deaths:
-                                <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                            </div>
-                        </div>
-                        <LineChart width={500} height={200} data={this.state.deathDaily} syncId="anyId"
-                            margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                        <CartesianGrid strokeDasharray="3 3"/>
-                        <XAxis dataKey="date"/>
-                        <YAxis/>
-                        <Tooltip/>
-                        <Legend />
-                        {/* <Brush /> */}
-                        <Line type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
-                        </LineChart>
-                        
-                    </div>
-                </div>
-            )
-        }
+        let daily = (
+            <div>
+                <GraphDash type={this.state.type} data={this.state.confirmedDaily} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #7900fa" />
+                <GraphDash type={this.state.type} data={this.state.activeDaily} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #fc030f" />
+                <GraphDash type={this.state.type} data={this.state.recoveredDaily} heading="Recovered:" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #03fc45" />
+                <GraphDash type={this.state.type} data={this.state.deathDaily} heading="Deaths:" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #949ea8" />
+            </div>
+        )
         if(!this.state.clickedLocation) {
             console.log(this.state)
             if(!this.state.isDaily) {
-                if(this.state.type==="line") {
-                    daily = (
-                        <div>
-                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
-                                <div className="card-body">
-                                    <div className="ui header">
-                                        Confirmed cases:
-                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                                    </div>
-                                </div>
-                                <LineChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                                <CartesianGrid strokeDasharray="3 3"/>
-                                <XAxis dataKey="date"/>
-                                <YAxis dataKey="" />
-                                <Tooltip/>
-                                <Legend />
-                                <Line type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
-                                </LineChart>
-                                
-                            </div>
-                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
-                                <div className="card-body">
-                                    <div className="ui header">
-                                        Active cases:
-                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                                    </div>
-                                </div>
-                                <LineChart width={500} height={200} data={this.state.active} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                                <CartesianGrid strokeDasharray="3 3"/>
-                                <XAxis dataKey="date"/>
-                                <YAxis/>
-                                <Tooltip/>
-                                <Legend />
-                                <Line type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
-                                </LineChart>
-                                
-                            </div>
-                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
-                                <div className="card-body">
-                                    <div className="ui header">
-                                        Recovered:
-                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                                    </div>
-                                </div>
-                                <LineChart width={500} height={200} data={this.state.recovered} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                                <CartesianGrid strokeDasharray="3 3"/>
-                                <XAxis dataKey="date"/>
-                                <YAxis/>
-                                <Tooltip/>
-                                <Legend />
-                                <Line type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
-                                </LineChart>
-                                
-                            </div>
-                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
-                                <div className="card-body">
-                                    <div className="ui header">
-                                        Deaths:
-                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                                    </div>
-                                </div>
-                                <LineChart width={500} height={200} data={this.state.death} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                                <CartesianGrid strokeDasharray="3 3"/>
-                                <XAxis dataKey="date"/>
-                                <YAxis/>
-                                <Tooltip/>
-                                <Legend />
-                                {/* <Brush /> */}
-                                <Line type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
-                                </LineChart>
-                            </div>
-                        </div>
-                    )
-                }
-                else if(this.state.type==="bar") {
-                    daily = (
-                        <div>
-                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #7900fa"}}>
-                                <div className="card-body">
-                                    <div className="ui header">
-                                        Confirmed cases:
-                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                                    </div>
-                                </div>
-                                <BarChart width={500} height={200} data={this.state.confirmed} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                                <CartesianGrid strokeDasharray="3 3"/>
-                                <XAxis dataKey="date"/>
-                                <YAxis dataKey="" />
-                                <Tooltip/>
-                                <Legend />
-                                <Bar type='monotone' dataKey="cases" stroke='rgb(139, 0, 139)' fill='rgb(139, 0, 139)' />
-                                </BarChart>
-                                
-                            </div>
-                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #fc030f"}}>
-                                <div className="card-body">
-                                    <div className="ui header">
-                                        Active cases:
-                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                                    </div>
-                                </div>
-                                <BarChart width={500} height={200} data={this.state.active} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                                <CartesianGrid strokeDasharray="3 3"/>
-                                <XAxis dataKey="date"/>
-                                <YAxis/>
-                                <Tooltip/>
-                                <Legend />
-                                <Bar type='monotone' dataKey="cases" stroke='rgb(255, 0, 0)' fill='rgb(255, 0, 0)' />
-                                </BarChart>
-                                
-                            </div>
-                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #03fc45"}}>
-                                <div className="card-body">
-                                    <div className="ui header">
-                                        Recovered:
-                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                                    </div>
-                                </div>
-                                <BarChart width={500} height={200} data={this.state.recovered} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                                <CartesianGrid strokeDasharray="3 3"/>
-                                <XAxis dataKey="date"/>
-                                <YAxis/>
-                                <Tooltip/>
-                                <Legend />
-                                <Bar type='monotone' dataKey="cases" stroke='rgb(0, 102, 0)' fill='rgb(0, 102, 0)' />
-                                </BarChart>
-                                
-                            </div>
-                            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: "4px 0 #949ea8"}}>
-                                <div className="card-body">
-                                    <div className="ui header">
-                                        Deaths:
-                                        <p className="card-text"><small className="text-muted">Last updated {this.getDateDiff("Total")}</small></p>
-                                    </div>
-                                </div>
-                                <BarChart width={500} height={200} data={this.state.death} syncId="anyId"
-                                    margin={{top: 0, right: 0, left: 0, bottom: 0}} style={{marginRight: "35px"}}>
-                                <CartesianGrid strokeDasharray="3 3"/>
-                                <XAxis dataKey="date"/>
-                                <YAxis/>
-                                <Tooltip/>
-                                <Legend />
-                                {/* <Brush /> */}
-                                <Bar type='monotone' dataKey="cases" stroke='rgb(64, 74, 66)' fill='rgb(64, 74, 66)' />
-                                </BarChart>
-                            </div>
-                        </div>
-                    )
-                }
+                daily = (
+                    <div>
+                        <GraphDash type={this.state.type} data={this.state.confirmed} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #7900fa" />
+                        <GraphDash type={this.state.type} data={this.state.active} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #fc030f" />
+                        <GraphDash type={this.state.type} data={this.state.recovered} heading="Recovered:" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #03fc45" />
+                        <GraphDash type={this.state.type} data={this.state.death} heading="Deaths:" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #949ea8" />
+                    </div>
+                )
             }
             if(!this.state.cases[0]) {
                 return (
@@ -805,10 +455,6 @@ class HoverMap extends React.Component {
             }
             else {
                 return (
-                    // (this.state.delayed) ?
-                    //     this.showLoader()
-                    //     :
-                    //     (
                     <article className="examples__block" style={{marginTop: "3%", marginLeft:"5%"}}>
                         <div style={{fontSize: "30px", margin: "0% 0% 3% 24vw"}}>
                             We shall win the war against Cor<span><img className="imageSpin" src={process.env.PUBLIC_URL + '/covid_logo.png'} alt="logo" /></span>na Virus.
@@ -836,23 +482,6 @@ class HoverMap extends React.Component {
                                         </div>
                                     </div>
                                 </div>
-                                {/* <div className="ui cards">
-                                    <div className="card">
-                                        <div className="content">
-                                            <div className="header examples__block__info__item">
-                                                Pointed location:
-                                                <br/>
-                                                {(this.state.pointedLocation!=="Total") ? 
-                                                this.state.pointedLocation :
-                                                "India"}
-                                            </div>
-                                            <hr />
-                                            <div className="description">
-                                                <Data code={this.state.pointedLocation} />
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div> */}
                             </div>
                         </div>
                         <div className='row'>
@@ -872,14 +501,7 @@ class HoverMap extends React.Component {
                                             onLocationFocus={this.handleLocationFocus}
                                             onLocationBlur={this.handleLocationBlur}
                                             locationClassName={(location, index) =>this.getLocationClassName(location, index)}
-                                            // onLocationMouseMove={this.handleLocationMouseMove}
                                             />
-                                        {/* <div className="examples__block__map__tooltip" style={this.state.tooltipStyle}>
-                                            <div className="ui header">
-                                                {this.state.pointedLocation}
-                                            </div>
-                                            <Data code={this.state.pointedLocation} />
-                                        </div> */}
                                     </div>
                                 </div>
                                 <div className='row'>
@@ -956,11 +578,10 @@ class HoverMap extends React.Component {
                             </div>
                         </div>
                     </article>
-                // )
                 );
             }
         }
 	}
 }
 
-export default HoverMap;
+export default Dashboard;

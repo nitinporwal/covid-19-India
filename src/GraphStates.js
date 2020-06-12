@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, BarChart } from 'recharts';
 
-class Graph extends Component {
+class GraphStates extends Component {
     render(props) {
         let card=(
             <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: `${this.props.shadow}`}}>
@@ -51,4 +51,4 @@ class Graph extends Component {
     }
 }
 
-export default Graph;
+export default GraphStates;
