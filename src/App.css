@@ -43,6 +43,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 1;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_active1 {
     fill: rgb(252, 36, 36);
@@ -52,6 +53,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.9;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_active2 {
     fill: rgb(253, 78, 78);
@@ -61,6 +63,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.8;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_active3 {
     fill: rgb(250, 103, 103);
@@ -70,6 +73,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.7;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_active4 {
     fill: rgb(255, 156, 156);
@@ -79,6 +83,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.6;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_active5 {
     fill: rgb(248, 191, 191);
@@ -88,6 +93,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.5;
+    cursor: pointer;
 }
 
 .examples__block__map--usa .svg-map__location--heat_recovered0 {
@@ -98,6 +104,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 1;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_recovered1 {
     fill: rgb(20, 150, 20);
@@ -107,6 +114,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.9;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_recovered2 {
     fill: rgb(40, 170, 40);
@@ -116,6 +124,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.8;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_recovered3 {
     fill: rgb(60, 190, 60);
@@ -125,6 +134,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.7;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_recovered4 {
     fill: rgb(80, 210, 80);
@@ -134,6 +144,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.6;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_recovered5 {
     fill: rgb(100, 230, 100);
@@ -143,6 +154,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.5;
+    cursor: pointer;
 }
 
 .examples__block__map--usa .svg-map__location--heat_deaths0 {
@@ -153,6 +165,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 1;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_deaths1 {
     fill: rgb(70, 70, 70);
@@ -162,6 +175,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.9;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_deaths2 {
     fill: rgb(110, 110, 110);
@@ -171,6 +185,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.8;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_deaths3 {
     fill: rgb(150, 150, 150);
@@ -180,6 +195,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.7;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_deaths4 {
     fill: rgb(190, 190, 190);
@@ -189,6 +205,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.6;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_deaths5 {
     fill: rgb(230, 230, 230);
@@ -198,6 +215,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.5;
+    cursor: pointer;
 }
 
 .examples__block__map--usa .svg-map__location--heat_confirmed0 {
@@ -208,6 +226,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 1;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_confirmed1 {
     fill: rgb(200, 40, 230);
@@ -217,6 +236,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.9;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_confirmed2 {
     fill: rgb(200, 80, 230);
@@ -226,6 +246,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.8;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_confirmed3 {
     fill: rgb(200, 120, 230);
@@ -235,6 +256,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.7;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_confirmed4 {
     fill: rgb(200, 160, 230);
@@ -244,6 +266,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.6;
+    cursor: pointer;
 }
 .examples__block__map--usa .svg-map__location--heat_confirmed5 {
     fill: rgb(200, 200, 200);
@@ -253,6 +276,7 @@
     fill: yellow;
     stroke-width: 1;
     opacity: 0.5;
+    cursor: pointer;
 }
 .examples__block__info {
     display: inline-block;
