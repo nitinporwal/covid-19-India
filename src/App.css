@@ -554,3 +554,49 @@ tbody > tr:nth-of-type(even) {
     margin: 2% 2% 0% 0%;
     background-color: #7aabfa;
 }
+
+/* Footer */
+
+.footer_container {
+    background-color: #003366;
+    color: white;
+    border: 5px solid #003366;
+}
+
+.copyright {
+    text-align: center;
+    color: white;
+}
+
+.hline {
+    border-top: 1px solid gray;
+}
+
+.footer_row {
+    background-color: #003366;
+    color: white;
+    padding: 3% 2% 0 2%;
+}
+
+.footer_col {
+    padding: 0 0 0 5%;
+}
+
+.footer_ul {
+    font-size: 16px;
+}
+
+.footer_arogya_img {
+    width: 25px;
+    height: 25px;
+}
+
+.footer_arogya_a {
+    text-decoration: none;
+    color: yellow;
+}
+
+.footer_a {
+    text-decoration: none;
+    color: white;
+}
