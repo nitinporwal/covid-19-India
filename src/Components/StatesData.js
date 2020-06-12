@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import {covid} from './api/covid';
+import {covid} from '../api/covid';
+import '../App.css';
 
-class Data extends Component {
+class StatesData extends Component {
     state= {
         data: []
     }
@@ -31,26 +32,26 @@ class Data extends Component {
             if(stats) {
                 toolpick=(
                     <div className="row">
-                        <div className="card text-white bg-red col-md-3 dashboard_confirmed_card">
-                            <div className="card-body" onClick={()=> this.props.onClick("confirmed")}>
+                        <div className="card text-white bg-red col-md-3 state_confirmed_card">
+                            <div className="card-body">
                                 <h5 className="card-title">Confirmed: </h5>
                                 <p className="card-text">{stats.confirmed} <sup>{(parseInt(stats.deltaconfirmed)>=0) ? `+${stats.deltaconfirmed}` : stats.deltaconfirmed}</sup></p>
                             </div>
                         </div>
-                        <div className="card text-white bg-red col-md-3 dashboard_active_card">
-                            <div className="card-body" onClick={()=> this.props.onClick("active")}>
+                        <div className="card text-white bg-red col-md-3 state_active_card">
+                            <div className="card-body">
                                 <h5 className="card-title">Active: </h5>
                                 <p className="card-text">{stats.active} <sup>{(parseInt(stats.deltaactive)>=0) ? `+${stats.deltaactive}` : stats.deltaactive}</sup></p>
                             </div>
                         </div>
-                        <div className="card text-white bg-red col-md-3 dashboard_recovered_card">
-                            <div className="card-body" onClick={()=> this.props.onClick("recovered")}>
+                        <div className="card text-white bg-red col-md-3 state_recovered_card">
+                            <div className="card-body">
                                 <h5 className="card-title">Recovered: </h5>
                                 <p className="card-text">{stats.recovered} <sup>{(parseInt(stats.deltarecovered)>=0) ? `+${stats.deltarecovered}` : stats.deltarecovered}</sup></p>
                             </div>
                         </div>
-                        <div className="card text-white bg-red col-md-3 dashboard_deaths_card">
-                            <div className="card-body" onClick={()=> this.props.onClick("deaths")}>
+                        <div className="card text-white bg-red col-md-3 state_deaths_card">
+                            <div className="card-body">
                                 <h5 className="card-title">Deaths: </h5>
                                 <p className="card-text">{stats.deaths} <sup>{(parseInt(stats.deltadeaths)>=0) ? `+${stats.deltadeaths}` : stats.deltadeaths}</sup></p>
                             </div>
@@ -60,11 +61,11 @@ class Data extends Component {
             }
         }
         return (
-            <div>
+            <div className="state_card_container">
                 {toolpick}
             </div>
         )
     }
 }
 
-export default Data;
+export default StatesData;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
 import Backdrop from '@material-ui/core/Backdrop';
-import './App.css';
+import '../App.css';
 class Navbar extends Component {
     state = {
         open: false,

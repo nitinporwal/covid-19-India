@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import Elbow from '../public/elbow.png'
+import '../App.css';
 
 class Preventions extends Component {
     render() {

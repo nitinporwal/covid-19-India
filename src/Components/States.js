@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { covid } from './api/covid';
+import { covid } from '../api/covid';
 import moment from 'moment';
 import StatesData from './StatesData';
 import GraphStates from './GraphStates';
+import '../App.css';
 
 class States extends Component {
     constructor(props) {

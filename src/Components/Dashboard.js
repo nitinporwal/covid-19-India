@@ -1,9 +1,9 @@
 import React from "react";
 import { SVGMap } from "react-svg-map";
 import world from "@svg-maps/india";
-import './App.css';
+import '../App.css';
 import Data from "./Data";
-import { covid } from "./api/covid";
+import { covid } from "../api/covid";
 import { Link} from "react-router-dom";
 import Loader from 'react-loader-spinner';
 import moment from 'moment'

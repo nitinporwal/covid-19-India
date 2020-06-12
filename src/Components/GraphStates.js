@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, BarChart } from 'recharts';
+import '../App.css';
 
 class GraphStates extends Component {
     render(props) {

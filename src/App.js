@@ -1,14 +1,14 @@
 import React from "react";
 import './App.css';
 import { BrowserRouter, Route} from 'react-router-dom';
-import HoverMap from "./Dashboard";
-import States from "./States";
-import Navbar from "./Navbar";
-import Preventions from "./Preventions";
-import Symptoms from "./Symptoms";
-import About from "./About";
-import FAQs from "./FAQs";
-import Footer from "./Footer";
+import HoverMap from "./Components/Dashboard";
+import States from "./Components/States";
+import Navbar from "./Components/Navbar";
+import Preventions from "./Components/Preventions";
+import Symptoms from "./Components/Symptoms";
+import About from "./Components/About";
+import FAQs from "./Components/FAQs";
+import Footer from "./Components/Footer";
  
 class App extends React.Component {
     render() {
