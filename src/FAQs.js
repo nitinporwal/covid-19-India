@@ -203,7 +203,6 @@ class FAQs extends Component {
                                             width="20" height="20"
                                             viewBox="0 0 172 172"
                                             ><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" ><path d="M0,172v-172h172v172z" fill="none"></path><g fill="#9F9D9D"><path d="M78.83333,21.5v100.83724l-32.75391,-32.7539l-10.75,10.75l50.67057,50.67057l50.67057,-50.67057l-10.75,-10.75l-32.7539,32.7539v-100.83724z"></path></g></g></svg>
-                                        // <img src="https://img.icons8.com/material-sharp/20/000000/down.png" style={{border: "1px solid lightgray", borderRadius: "50%"}}/>
                                         )
                                         :
                                         <svg className="faqs_svg" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
@@ -211,7 +210,6 @@ class FAQs extends Component {
                                             viewBox="0 0 226 226"
                                             ><g fill="none" fill-rule="nonzero" stroke="none" stroke-width="1" stroke-linecap="butt" stroke-linejoin="miter" stroke-miterlimit="10" stroke-dasharray="" stroke-dashoffset="0" font-family="none" font-weight="none" font-size="none" text-anchor="none" ><path d="M0,226v-226h226v226z" fill="none"></path><g fill="#9F9D9D"><path d="M131.83333,46.42122l-14.125,14.125l43.0371,43.03711h-132.49544v18.83333h132.49544l-43.0371,43.0371l14.125,14.125l66.57877,-66.57877z"></path></g></g>
                                         </svg>
-                                        // <img src="https://img.icons8.com/material/20/000000/right--v1.png" style={{border: "1px solid lightgray", borderRadius: "50%"}}/>
                                     }
                                     {` ${qu.ques}`}
                                 </div>

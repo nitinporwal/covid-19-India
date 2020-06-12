@@ -4,7 +4,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Bar
 class GraphDash extends Component {
     render(props) {
         let card=(
-            <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: `${this.props.shadow}`}}>
+            <div className="card graph_dash" style={{boxShadow: `${this.props.shadow}`}}>
                 <div className="card-body">
                     <div className="ui header">
                         {this.props.heading}
@@ -24,7 +24,7 @@ class GraphDash extends Component {
         )
         if(this.props.type==="line") {
             card=(
-                <div className="card" style={{margin: "3% 18% 3% 5%", padding: "1% 7% 1% 1%", minWidth: "90%", maxWidth: "200%", borderRadius: "2%", boxShadow: `${this.props.shadow}`}}>
+                <div className="card graph_dash" style={{boxShadow: `${this.props.shadow}`}}>
                     <div className="card-body">
                         <div className="ui header">
                             {this.props.heading}

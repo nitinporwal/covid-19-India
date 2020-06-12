@@ -39,7 +39,8 @@ class Dashboard extends React.Component {
             isDaily: false,
             whichClicked: "confirmed",
             type: "line",
-            delayed: true
+            delayed: true,
+            mhover: ""
         };
         
         this.classes = {
@@ -48,7 +49,9 @@ class Dashboard extends React.Component {
             class3: "",
             class4: "active focus",
             class5: "",
-            class6: "active focus"
+            class6: "active focus",
+            class7: "",
+            class8: ""
         }
 		this.handleLocationMouseOver = this.handleLocationMouseOver.bind(this);
 		this.handleLocationMouseOut = this.handleLocationMouseOut.bind(this);
@@ -141,8 +144,7 @@ class Dashboard extends React.Component {
         );
         return (
             <div>
-                <Loader type="ThreeDots" color="#0278f5" height="100" width="100" style={{margin:"0 0 0 40%"}} />
-
+                <Loader className="loader" type="ThreeDots" color="#0278f5" height="100" width="100" />
             </div>
         )
     }
@@ -178,10 +180,12 @@ class Dashboard extends React.Component {
     }
     handleHover = (ca) => {
         const pointedLocation = ca.state;
-		this.setState({ pointedLocation });
+        this.setState({ pointedLocation, mhover: `${ca.state}`});
+        this.classes.class8="wider";
     }
     handleOut = () => {
-		this.setState({ pointedLocation: "Total", tooltipStyle: { display: 'none' } });
+		this.setState({ pointedLocation: "Total", tooltipStyle: { display: 'none' }, mhover: ""});
+        this.classes.class8="";
     }
     fetchOverall = () => {
         let conf=[], act=[], dec=[], rec=[];
@@ -348,13 +352,15 @@ class Dashboard extends React.Component {
         return (
             <tbody>
                 {this.state.cases.map(ca => {
+                    let s=ca.state
                     return (
+                        (this.state.mhover===ca.state) ? (
                         <tr key={ca.statecode}
                             onMouseOver={() => this.handleHover(ca)}
                             onMouseOut={this.handleOut}
-                            style={{height: "1px"}}
-                            >
-                            <td style={{padding: "0.2em 0.7em"}}>
+                            className="wider"
+                        >
+                            <td>
                                 <Link to={{
                                     pathname: `/state/${ca.statecode}/${ca.state}`,
                                     state: {
@@ -362,9 +368,11 @@ class Dashboard extends React.Component {
                                     }
                                 }} style={{textDecoration: "none"}}>
                                     {ca.state}
+                                    <br/>
+                                    <small className="text-muted">Last Updated: <br/> {this.getDateDiff(this.state.pointedLocation)}</small>
                                 </Link>
                             </td>
-                            <td style={{padding: "0.2em 0.7em"}}>
+                            <td>
                                 <Link to={{
                                     pathname: `/state/${ca.statecode}/${ca.state}`,
                                     state: {
@@ -377,7 +385,7 @@ class Dashboard extends React.Component {
                                     </sup>
                                 </Link>
                             </td>
-                            <td style={{padding: "0.2em 0.7em"}}>
+                            <td>
                                 <Link to={{
                                     pathname: `/state/${ca.statecode}/${ca.state}`,
                                     state: {
@@ -385,10 +393,10 @@ class Dashboard extends React.Component {
                                     }
                                 }} style={{textDecoration: "none"}}>
                                     {ca.active}
-                                    {(parseInt(ca.deltaactive)>=0) ? `+${ca.deltaactive}` : ca.deltaactive}
+                                    {(parseInt(ca.deltaactive)>=0) ? <sup style={{color: "green"}}>{`+${ca.deltaactive}`}</sup> : <sup style={{color: "red"}} >{ca.deltaactive}</sup>}
                                 </Link>
                             </td>
-                            <td style={{padding: "0.2em 0.7em"}}>
+                            <td>
                                 <Link to={{
                                     pathname: `/state/${ca.statecode}/${ca.state}`,
                                     state: {
@@ -401,7 +409,73 @@ class Dashboard extends React.Component {
                                     </sup>
                                 </Link>
                             </td>
-                            <td style={{padding: "0.2em 0.7em"}}>
+                            <td>
+                                <Link to={{
+                                    pathname: `/state/${ca.statecode}/${ca.state}`,
+                                    state: {
+                                        region: {ca}
+                                    }
+                                }}>
+                                    {ca.deaths}
+                                    <sup style={{color: "green"}}>
+                                        {`+${ca.deltadeaths}`}
+                                    </sup>
+                                </Link>
+                            </td>
+                        </tr>) :
+                        (
+                            <tr key={ca.statecode}
+                            onMouseOver={() => this.handleHover(ca)}
+                            onMouseOut={this.handleOut}
+                        >
+                            <td>
+                                <Link to={{
+                                    pathname: `/state/${ca.statecode}/${ca.state}`,
+                                    state: {
+                                        region: {ca}
+                                    }
+                                }} style={{textDecoration: "none"}}>
+                                    {ca.state}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link to={{
+                                    pathname: `/state/${ca.statecode}/${ca.state}`,
+                                    state: {
+                                        region: {ca}
+                                    }
+                                }} style={{textDecoration: "none"}}>
+                                    {ca.confirmed}
+                                    <sup style={{color: "green"}}>
+                                        {`+${ca.deltaconfirmed}`}
+                                    </sup>
+                                </Link>
+                            </td>
+                            <td>
+                                <Link to={{
+                                    pathname: `/state/${ca.statecode}/${ca.state}`,
+                                    state: {
+                                        region: {ca}
+                                    }
+                                }} style={{textDecoration: "none"}}>
+                                    {ca.active}
+                                    {(parseInt(ca.deltaactive)>=0) ? <sup style={{color: "green"}}>{`+${ca.deltaactive}`}</sup> : <sup style={{color: "red"}} >{ca.deltaactive}</sup>}
+                                </Link>
+                            </td>
+                            <td>
+                                <Link to={{
+                                    pathname: `/state/${ca.statecode}/${ca.state}`,
+                                    state: {
+                                        region: {ca}
+                                    }
+                                }} style={{textDecoration: "none"}}>
+                                    {ca.recovered}
+                                    <sup style={{color: "green"}}>
+                                        {`+${ca.deltarecovered}`}
+                                    </sup>
+                                </Link>
+                            </td>
+                            <td>
                                 <Link to={{
                                     pathname: `/state/${ca.statecode}/${ca.state}`,
                                     state: {
@@ -415,6 +489,7 @@ class Dashboard extends React.Component {
                                 </Link>
                             </td>
                         </tr>
+                        )
                     )
                 })}
             </tbody>
@@ -450,18 +525,18 @@ class Dashboard extends React.Component {
             }
             if(!this.state.cases[0]) {
                 return (
-                    <Loader type="ThreeDots" color="#0278f5" height="100" width="100" style={{margin:"0 0 0 40%"}} />
+                    <Loader className="loader" type="ThreeDots" color="#0278f5" height="100" width="100" />
                 )
             }
             else {
                 return (
-                    <article className="examples__block" style={{marginTop: "3%", marginLeft:"5%"}}>
-                        <div style={{fontSize: "30px", margin: "0% 0% 3% 24vw"}}>
+                    <article className="examples__block">
+                        <div className="dash_tag">
                             We shall win the war against Cor<span><img className="imageSpin" src={process.env.PUBLIC_URL + '/covid_logo.png'} alt="logo" /></span>na Virus.
                         </div>
                         <div className="row">
                             <div className="examples__block__info" style={{marginLeft:"49%", minHeight: "187px"}}>
-                                <div className="card bg-light mb-3" style={{maxWidth: "80rem", minWidth: "40rem", margin: "-2% 0 0 12%"}}>
+                                <div className="card bg-light mb-3 dash_data">
                                     <div className="card-header">
                                         <h5>
                                             Pointed State:
@@ -475,7 +550,7 @@ class Dashboard extends React.Component {
                                         </p>
                                     </div>
                                     <div className="row no-gutters">
-                                        <div className="card-body" style={{minHeight: "123px"}}>
+                                        <div className="card-body dash_card">
                                             {(this.state.delayed) ?
                                             this.showLoader() :
                                             <Data onClick={(which) => this.getWhichClicked(which)} code={this.state.pointedLocation} />}
@@ -485,9 +560,9 @@ class Dashboard extends React.Component {
                             </div>
                         </div>
                         <div className='row'>
-                            <div className="col-lg-6 col-md-8 cd-sm-8 jumbotron" style={{marginTop:"-17.5%"}}>
+                            <div className="col-lg-6 col-md-8 cd-sm-8 jumbotron map_ind">
                                 <div className="row">
-                                    <h3 style={{margin:"-4% 0 1% 40%"}}>
+                                    <h3 className="map_header3">
                                         Map of India
                                     </h3>
                                 </div>
@@ -505,8 +580,7 @@ class Dashboard extends React.Component {
                                     </div>
                                 </div>
                                 <div className='row'>
-    
-                                    <div className="btn-group btn-group-toggle" style={{marginLeft: "9%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
+                                    <div className="btn-group btn-group-toggle dash_radio_type" data-toggle="buttons">
                                         <label onClick={this.toggleChartsTotal} className={`btn btn-primary ${this.classes.class1}`}>
                                             <input type="radio" name="options" id="option1" autoComplete="off" /> Total
                                         </label>
@@ -514,7 +588,7 @@ class Dashboard extends React.Component {
                                             <input type="radio" name="options" id="option2" autoComplete="off" /> Daily
                                         </label>
                                     </div>
-                                    <div className="btn-group btn-group-toggle" style={{marginLeft: "5%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
+                                    <div className="btn-group btn-group-toggle dash_radio" data-toggle="buttons">
                                         <label onClick={this.handleBegining} className={`btn btn-primary ${this.classes.class3}`}>
                                             <input type="radio" name="options" id="option1" autoComplete="off" /> Begining
                                         </label>
@@ -525,7 +599,7 @@ class Dashboard extends React.Component {
                                             <input type="radio" name="options" id="option2" autoComplete="off" /> Two Weeks
                                         </label>
                                     </div>
-                                    <div className="btn-group btn-group-toggle" style={{marginLeft: "5%", marginBottom: "2%", marginTop: "2%"}} data-toggle="buttons">
+                                    <div className="btn-group btn-group-toggle dash_radio" data-toggle="buttons">
                                         <label onClick={this.toggleLine} className={`btn btn-primary ${this.classes.class6}`}>
                                             <input type="radio" name="options" id="option1" autoComplete="off" /> Line
                                         </label>
@@ -542,27 +616,27 @@ class Dashboard extends React.Component {
                                     }
                                 </div>
                             </div>
-                            <div className="col-lg-5 col-md-12" style={{marginLeft:"4%"}}>
-                                <table style={{borderCollapse: "seperated"}}>
+                            <div className="col-lg-5 col-md-12 table_container">
+                                <table>
                                     <thead>
                                         <tr>
-                                            <th onClick={() => this.sortData("state")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                            <th className="table_head" onClick={() => this.sortData("state")}>
                                                 State/UT
                                                 {(this.state.sortConfig.key==="state") ? v : ""}
                                             </th>
-                                            <th onClick={() => this.sortData("confirmed")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                            <th className="table_head" onClick={() => this.sortData("confirmed")}>
                                                 Confirmed
                                                 {(this.state.sortConfig.key==="confirmed") ? v : ""}
                                             </th>
-                                            <th onClick={() => this.sortData("active")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                            <th className="table_head" onClick={() => this.sortData("active")}>
                                                 Active
                                                 {(this.state.sortConfig.key==="active") ? v : ""}
                                             </th>
-                                            <th onClick={() => this.sortData("recovered")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                            <th className="table_head" onClick={() => this.sortData("recovered")}>
                                                 Recovered
                                                 {(this.state.sortConfig.key==="recovered") ? v : ""}
                                             </th>
-                                            <th onClick={() => this.sortData("deaths")} style={{cursor: "default", paddingBottom: "10px", paddingTop: "10px"}}>
+                                            <th className="table_head" onClick={() => this.sortData("deaths")}>
                                                 Deaths
                                                 {(this.state.sortConfig.key==="deaths") ? v : ""}
                                             </th>

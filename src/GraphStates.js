@@ -4,7 +4,7 @@ import { LineChart, Line, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, Bar
 class GraphStates extends Component {
     render(props) {
         let card=(
-            <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: `${this.props.shadow}`}}>
+            <div className="card graph_state" style={{boxShadow: `${this.props.shadow}`}}>
                 <div className="card-body">
                     <div className="ui header">
                         {this.props.heading}
@@ -24,7 +24,7 @@ class GraphStates extends Component {
         )
         if(this.props.type==="line") {
             card=(
-                <div className="card" style={{margin: "1% 2% 8% 15%", padding: "1% 3% 1% 1%", width: "100%", borderRadius: "2%", boxShadow: `${this.props.shadow}`}}>
+                <div className="card graph_state" style={{boxShadow: `${this.props.shadow}`}}>
                     <div className="card-body">
                         <div className="ui header">
                             {this.props.heading}
