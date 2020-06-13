@@ -31,6 +31,41 @@ class Navbar extends Component {
         let x=this.state.open;
         this.setState({open: !x});
     }
+    showDash = () => {
+        const { history } = this.props;
+        if(history) history.push({
+            pathname: `/`
+        });
+        this.setState({selected: "dash"})
+    }
+    showSym = () => {
+        const { history } = this.props;
+        if(history) history.push({
+            pathname: `/symptoms`
+        });
+        this.setState({selected: "sym"})
+    }
+    showPre = () => {
+        const { history } = this.props;
+        if(history) history.push({
+            pathname: `/preventions`
+        });
+        this.setState({selected: "pre"})
+    }
+    showFaqs = () => {
+        const { history } = this.props;
+        if(history) history.push({
+            pathname: `/faqs`
+        });
+        this.setState({selected: "faq"})
+    }
+    showAbt = () => {
+        const { history } = this.props;
+        if(history) history.push({
+            pathname: `/about`
+        });
+        this.setState({selected: "abt"})
+    }
     render() {
         console.log(this.props)
         let styles={
@@ -44,51 +79,51 @@ class Navbar extends Component {
         return (
             <div className="bd-example">
                 <nav className="navbar navbar-expand-lg navbar-dark bg-light">
-                    <a style={{textDecoration: "none"}} className="home_logo" href="/"><img src={process.env.PUBLIC_URL + '/corona2.png'} alt="corona_logo" style={{maxWidth: "24px", maxHeight: "24px"}} />Covid-19</a>
+                    <a style={{color: "blue"}} className="home_logo" onClick={this.showDash}><img src={process.env.PUBLIC_URL + '/corona2.png'} alt="corona_logo" style={{maxWidth: "24px", maxHeight: "24px"}} />Covid-19</a>
                     <div className="collapse navbar-collapse" id="navbarColor02">
                         <ul className="navbar-nav mr-auto">
                             {(this.state.selected==="dash") ?
-                                <Button variant="contained" color={color2} style={styles} href="/">
+                                <Button variant="contained" color={color2} style={styles} onClick={this.showDash}>
                                     Dashboard
                                 </Button>
                             :
-                                <Button variant="contained" color={color1} style={styles} href="/">
+                                <Button variant="contained" color={color1} style={styles} onClick={this.showDash}>
                                     Dashboard
                                 </Button>
                             }
                             {(this.state.selected==="sym") ?
-                                <Button variant="contained" color={color2} style={styles} href="/symptoms">
+                                <Button variant="contained" color={color2} style={styles} onClick={this.showSym}>
                                     Symptoms
                                 </Button>
                                 :
-                                <Button variant="contained" color={color1} style={styles} href="/symptoms">
+                                <Button variant="contained" color={color1} style={styles} onClick={this.showSym}>
                                     Symptoms
                                 </Button>
                             }
                             {(this.state.selected==="pre") ?
-                                <Button variant="contained" color={color2} style={styles} href="/preventions">
+                                <Button variant="contained" color={color2} style={styles} onClick={this.showPre}>
                                     Preventions
                                 </Button>
                                 :
-                                <Button variant="contained" color={color1} style={styles} href="/preventions">
+                                <Button variant="contained" color={color1} style={styles} onClick={this.showPre}>
                                     Preventions
                                 </Button>
                             }
                             {(this.state.selected==="faq") ?
-                                <Button variant="contained" color={color2} style={styles} href="/faqs">
+                                <Button variant="contained" color={color2} style={styles} onClick={this.showFaqs}>
                                     FAQs
                                 </Button>
                                 :
-                                <Button variant="contained" color={color1} style={styles} href="/faqs">
+                                <Button variant="contained" color={color1} style={styles} onClick={this.showFaqs}>
                                     FAQs
                                 </Button>
                             }
                             {(this.state.selected==="abt") ?
-                                <Button variant="contained" color={color2} style={styles} href="/about">
+                                <Button variant="contained" color={color2} style={styles} onClick={this.showAbt}>
                                     About Us
                                 </Button>
                                 :
-                                <Button variant="contained" color={color1} style={styles} href="/about">
+                                <Button variant="contained" color={color1} style={styles} onClick={this.showAbt}>
                                     About Us
                                 </Button>
                             }
