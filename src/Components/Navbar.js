@@ -128,9 +128,9 @@ class Navbar extends Component {
                                 </Button>
                             }
                         </ul>
-                        <form className="form-inline">
+                        <form className="form-inline" style={{marginRight: "4%"}}>
                             <Button variant="contained" color="secondary" onClick={this.handleToggle}>
-                                Show Covid-19 Symptoms Checker
+                                Covid-19 Symptoms Checker
                             </Button>
                             <Backdrop open={this.state.open} onKeyDown={(e) => this.handleKey(e)} onClick={this.handleClose} style={{zIndex: "100"}}>
                                 <div className="backdrop_data">

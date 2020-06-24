@@ -103,7 +103,7 @@ class Symptoms extends Component {
                             </div>
                             <div className="col-lg-8 detail_container">
                                 <h5 className="symptoms_header5" >
-                                    Muscel Pain: 
+                                    Muscle Pain: 
                                 </h5>
                                 <p>
                                     Muscle pain—often caused by muscle inflammation (myositis)—isn't an uncommon symptom for a viral infection.
@@ -112,15 +112,26 @@ class Symptoms extends Component {
                         </div>
                     </div>
                     <div className="col-lg-3 col-sm-1">
-                        <iframe width="350" height="330" allowFullScreen="allowFullScreen"
-                            mozallowfullscreen="mozallowfullscreen" 
-                            msallowfullscreen="msallowfullscreen" 
-                            oallowfullscreen="oallowfullscreen" 
-                            webkitallowfullscreen="webkitallowfullscreen" 
-                            title="COVID-19 Stop the Spread of Germs"
-                            src={videoSrc} 
-                        />
-                        
+                        <div className="resp_false">
+                            <iframe width="350" height="330" allowFullScreen="allowFullScreen"
+                                mozallowfullscreen="mozallowfullscreen" 
+                                msallowfullscreen="msallowfullscreen" 
+                                oallowfullscreen="oallowfullscreen" 
+                                webkitallowfullscreen="webkitallowfullscreen" 
+                                title="COVID-19 Stop the Spread of Germs"
+                                src={videoSrc} 
+                            />
+                        </div>
+                        <div className="resp_true">
+                            <iframe width="300" height="300" allowFullScreen="allowFullScreen"
+                                mozallowfullscreen="mozallowfullscreen" 
+                                msallowfullscreen="msallowfullscreen" 
+                                oallowfullscreen="oallowfullscreen" 
+                                webkitallowfullscreen="webkitallowfullscreen" 
+                                title="COVID-19 Stop the Spread of Germs"
+                                src={videoSrc} 
+                            />
+                        </div>
                         <img className="symptoms2_img" src={process.env.PUBLIC_URL + '/symptoms2.png'} alt="symptoms" />
                     </div>
                 </div>

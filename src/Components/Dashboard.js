@@ -1,6 +1,6 @@
 import React from "react";
 import { SVGMap } from "react-svg-map";
-import world from "@svg-maps/india";
+import india from "@svg-maps/india";
 import '../App.css';
 import Data from "./Data";
 import { covid } from "../api/covid";
@@ -140,7 +140,7 @@ class Dashboard extends React.Component {
                     this.setState({delayed: false})
                 )
             }
-            , 2000
+            , 1000
         );
         return (
             <div>
@@ -504,10 +504,26 @@ class Dashboard extends React.Component {
         }
         let daily = (
             <div>
-                <GraphDash type={this.state.type} data={this.state.confirmedDaily} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #7900fa" />
-                <GraphDash type={this.state.type} data={this.state.activeDaily} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #fc030f" />
-                <GraphDash type={this.state.type} data={this.state.recoveredDaily} heading="Recovered:" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #03fc45" />
-                <GraphDash type={this.state.type} data={this.state.deathDaily} heading="Deaths:" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #949ea8" />
+                {/* <div className='ui grid'>
+                    <div className="col-md-6">
+                        <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.confirmedDaily} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #7900fa" />
+                    </div>
+                    <div className="col-md-6">
+                        <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.activeDaily} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #fc030f" />
+                    </div>
+                    <div className="col-md-6">
+                        <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.recoveredDaily} heading="Recovered:" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #03fc45" />
+                    </div>
+                    <div className="col-md-6">
+                        <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.deathDaily} heading="Deaths:" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #949ea8" />
+                    </div>
+                </div> */}
+                <div>
+                    <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.confirmedDaily} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #7900fa" />
+                    <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.activeDaily} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #fc030f" />
+                    <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.recoveredDaily} heading="Recovered:" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #03fc45" />
+                    <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.deathDaily} heading="Deaths:" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #949ea8" />
+                </div>
             </div>
         )
         if(!this.state.clickedLocation) {
@@ -515,10 +531,26 @@ class Dashboard extends React.Component {
             if(!this.state.isDaily) {
                 daily = (
                     <div>
-                        <GraphDash type={this.state.type} data={this.state.confirmed} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #7900fa" />
-                        <GraphDash type={this.state.type} data={this.state.active} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #fc030f" />
-                        <GraphDash type={this.state.type} data={this.state.recovered} heading="Recovered:" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #03fc45" />
-                        <GraphDash type={this.state.type} data={this.state.death} heading="Deaths:" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #949ea8" />
+                        {/* <div className='ui grid'>
+                            <div className="col-md-6">
+                                <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.confirmed} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #7900fa" />
+                            </div>
+                            <div className="col-md-6">
+                                <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.active} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #fc030f" />
+                            </div>
+                            <div className="col-md-6">
+                                <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.recovered} heading="Recovered:" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #03fc45" />
+                            </div>
+                            <div className="col-md-6">
+                                <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.death} heading="Deaths:" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #949ea8" />
+                            </div>
+                        </div> */}
+                        <div>
+                            <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.confirmed} heading="Confirmed cases:" color="rgb(139, 0, 139)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #7900fa" />
+                            <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.active} heading="Active cases:" color="rgb(255, 0, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #fc030f" />
+                            <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.recovered} heading="Recovered:" color="rgb(0, 102, 0)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #03fc45" />
+                            <GraphDash wid="500" hei="200"  type={this.state.type} data={this.state.death} heading="Deaths:" color="rgb(64, 74, 66)" lastUpdate={this.getDateDiff("Total")} shadow="4px 0 #949ea8" />
+                        </div>
                     </div>
                 )
             }
@@ -529,12 +561,12 @@ class Dashboard extends React.Component {
             }
             else {
                 return (
-                    <article className="examples__block">
+                    <article>
                         <div className="dash_tag">
-                            We shall win the war against Cor<span><img className="imageSpin" src={process.env.PUBLIC_URL + '/covid_logo.png'} alt="corona_logo" /></span>na Virus.
+                            We will win the war against <span>Cor<img className="imageSpin" src={process.env.PUBLIC_URL + '/covid_logo.png'} alt="corona_logo" />na</span> Virus.
                         </div>
                         <div className="row">
-                            <div className="examples__block__info" style={{marginLeft:"49%", minHeight: "187px"}}>
+                            <div className="examples__block__info">
                                 <div className="card bg-light mb-3 dash_data">
                                     <div className="card-header">
                                         <h5>
@@ -559,7 +591,7 @@ class Dashboard extends React.Component {
                             </div>
                         </div>
                         <div className='row'>
-                            <div className="col-lg-6 col-md-8 cd-sm-8 jumbotron map_ind">
+                            <div className="col-lg-6 col-md-12 jumbotron map_ind">
                                 <div className="row">
                                     <h3 className="map_header3">
                                         Map of India
@@ -568,7 +600,7 @@ class Dashboard extends React.Component {
                                 <div className="row">
                                     <div className="examples__block__map examples__block__map--usa">
                                         <SVGMap 
-                                            map={world}
+                                            map={india}
                                             onLocationMouseOver={this.handleLocationMouseOver}
                                             onLocationMouseOut={this.handleLocationMouseOut}
                                             onLocationClick={(event) => this.handleLocationClick(event)}
@@ -598,7 +630,7 @@ class Dashboard extends React.Component {
                                             <input type="radio" name="options" id="option2" autoComplete="off" /> Two Weeks
                                         </label>
                                     </div>
-                                    <div className="btn-group btn-group-toggle dash_radio" data-toggle="buttons">
+                                    <div className="btn-group btn-group-toggle dash_radio_line" data-toggle="buttons">
                                         <label onClick={this.toggleLine} className={`btn btn-primary ${this.classes.class6}`}>
                                             <input type="radio" name="options" id="option1" autoComplete="off" /> Line
                                         </label>

@@ -108,14 +108,26 @@ class Preventions extends Component {
                         </div>
                     </div>
                     <div className="col-lg-3">
-                        <iframe width="340" height="310" allowFullScreen="allowFullScreen"
-                            mozallowfullscreen="mozallowfullscreen" 
-                            msallowfullscreen="msallowfullscreen" 
-                            oallowfullscreen="oallowfullscreen" 
-                            webkitallowfullscreen="webkitallowfullscreen" 
-                            title="COVID-19 Stop the Spread of Germs"
-                            src={videoSrc} 
-                        />
+                        <div className="resp_false">
+                            <iframe width="340" height="310" allowFullScreen="allowFullScreen"
+                                mozallowfullscreen="mozallowfullscreen" 
+                                msallowfullscreen="msallowfullscreen" 
+                                oallowfullscreen="oallowfullscreen" 
+                                webkitallowfullscreen="webkitallowfullscreen" 
+                                title="COVID-19 Stop the Spread of Germs"
+                                src={videoSrc} 
+                            />
+                        </div>
+                        <div className="resp_true">
+                            <iframe width="300" height="300" allowFullScreen="allowFullScreen"
+                                mozallowfullscreen="mozallowfullscreen" 
+                                msallowfullscreen="msallowfullscreen" 
+                                oallowfullscreen="oallowfullscreen" 
+                                webkitallowfullscreen="webkitallowfullscreen" 
+                                title="COVID-19 Stop the Spread of Germs"
+                                src={videoSrc} 
+                            />
+                        </div>
                         <img className="prevention_img" src={process.env.PUBLIC_URL + '/who1.png'} alt="who1"/>
                         <img className="prevention_img" src={process.env.PUBLIC_URL + '/who2.png'} alt="who2"/>
                         <img className="prevention_img" src={process.env.PUBLIC_URL + '/who3.png'} alt="who3"/>

@@ -22,35 +22,41 @@ class App extends React.Component {
                             <Navbar {...routeProps} />
                         )}
                     />
-                    <Route path="/" exact component={HoverMap} />
-                    <Route 
-                        path="/state/:code/:name" exact
-                        render={(routeProps) => (
-                            <States {...routeProps} />
-                        )}
-                    />
-                    <Route path="/symptoms" exact
-                        render={(routeProps) => (
-                            <Symptoms {...routeProps} />
-                        )}
-                    />
-                    <Route path="/preventions" exact
-                        render={(routeProps) => (
-                            <Preventions {...routeProps} />
-                        )}
-                    />
-                    <Route path="/about" exact
-                        render={(routeProps) => (
-                            <About {...routeProps} />
-                        )}
-                    />
-                    <Route path="/faqs" exact
-                        render={(routeProps) => (
-                            <FAQs {...routeProps} />
-                        )}
-                    />
+                    <div style={{maxWidth: "95%"}}>
+                        <Route path="/" exact component={HoverMap} />
+                        <Route 
+                            path="/state/:code/:name" exact
+                            render={(routeProps) => (
+                                <States {...routeProps} />
+                            )}
+                        />
+                        <Route path="/symptoms" exact
+                            render={(routeProps) => (
+                                <Symptoms {...routeProps} />
+                            )}
+                        />
+                        <Route path="/preventions" exact
+                            render={(routeProps) => (
+                                <Preventions {...routeProps} />
+                            )}
+                        />
+                        <Route path="/about" exact
+                            render={(routeProps) => (
+                                <About {...routeProps} />
+                            )}
+                        />
+                        <Route path="/faqs" exact
+                            render={(routeProps) => (
+                                <FAQs {...routeProps} />
+                            )}
+                        />
+                    </div>
+                    <div style={{backgroundColor: "#003366"}}>
+                        <div style={{width: "95%"}}>
+                            <Footer />
+                        </div>
+                    </div>
                 </BrowserRouter>
-                <Footer />
             </div>
             </>
         )

@@ -285,7 +285,7 @@ class States extends Component {
         console.log(this.state);
         return (
             <div className="container">
-                <h2>
+                <h2 className="resp_center">
                     {this.props.match.params.name}
                 </h2>
                 <StatesData code={this.props.match.params.name} />
@@ -308,7 +308,7 @@ class States extends Component {
                         <input type="radio" name="options" id="option2" autoComplete="off" /> Two Weeks
                     </label>
                 </div>
-                <div className="btn-group btn-group-toggle states_radio" data-toggle="buttons">
+                <div className="btn-group btn-group-toggle states_radio_line" data-toggle="buttons">
                     <label onClick={this.toggleLine} className={`btn btn-primary ${this.classes.class6}`}>
                         <input type="radio" name="options" id="option1" autoComplete="off" /> Line
                     </label>
