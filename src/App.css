@@ -790,6 +790,9 @@
 }
 
 @media only screen and (max-width: 991px) {
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.9)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+      }
     .map_ind {
         margin-top: 0;
     }
@@ -1055,6 +1058,23 @@
 }
 
 @media only screen and (max-width: 767px) {
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.9)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+    }
+    .backdrop_data {
+        background-color: #98fa9a;
+        border: 3px solid lightgray;
+        margin: 4% 10% 4% 10%;
+    }
+    .checker_iframe {
+        border: 0;
+        height: 380px;
+        width: 80vw;
+        min-width: 300px;
+        border: 3px solid black;
+        margin: 2% 2% 0% 0%;
+        background-color: #7aabfa;
+    }
     .map_ind {
         margin-top: 0;
     }
@@ -1322,8 +1342,31 @@
 }
 
 @media only screen and (max-width: 600px) {
+    .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 32 32' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,102,203, 0.9)' stroke-width='3' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+      }
     .map_ind {
         margin-top: 0;
+    }
+    .backdrop_data {
+        background-color: #98fa9a;
+        border: 3px solid lightgray;
+        margin: 4% 10% 4% 10%;
+    }
+    .backdrop_data h2 {
+        font-size: 1.6em;
+    }
+    .backdrop_data ul h5 {
+        font-size: 1.1em;
+    }
+    .checker_iframe {
+        border: 0;
+        height: 40vh;
+        width: 80vw;
+        min-width: 300px;
+        border: 3px solid black;
+        margin: 2% 2% 0% 0%;
+        background-color: #7aabfa;
     }
     .examples__block__info {
         min-height: 187px;
@@ -1474,7 +1517,9 @@
         /* padding-top: 10px; */
     }
     .svg-map {
-        margin: 2% 2% 3% 5%;
+        margin: 2% 2% 3% 2%;
+        width: 95%;
+        height: 100%;
     }
     .dash_tag {
         font-size: 30px;

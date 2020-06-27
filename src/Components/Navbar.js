@@ -5,7 +5,9 @@ import '../App.css';
 class Navbar extends Component {
     state = {
         open: false,
-        selected: "dash"
+        selected: "dash",
+        coll: false,
+        st: {display: "none", zIndex: "3000"}
     }
     componentDidMount = () => {
         if(this.props.location.pathname==="/" || this.props.location.state!==undefined) {
@@ -36,13 +38,14 @@ class Navbar extends Component {
         if(history) history.push({
             pathname: `/`
         });
-        this.setState({selected: "dash"})
+        this.setState({selected: "dash", coll: false, st: {display: "none", zIndex: "3000"}})
     }
     showSym = () => {
         const { history } = this.props;
         if(history) history.push({
             pathname: `/symptoms`
         });
+        this.handleToggleHam();
         this.setState({selected: "sym"})
     }
     showPre = () => {
@@ -50,6 +53,7 @@ class Navbar extends Component {
         if(history) history.push({
             pathname: `/preventions`
         });
+        this.handleToggleHam();
         this.setState({selected: "pre"})
     }
     showFaqs = () => {
@@ -57,6 +61,7 @@ class Navbar extends Component {
         if(history) history.push({
             pathname: `/faqs`
         });
+        this.handleToggleHam();
         this.setState({selected: "faq"})
     }
     showAbt = () => {
@@ -64,7 +69,17 @@ class Navbar extends Component {
         if(history) history.push({
             pathname: `/about`
         });
+        this.handleToggleHam();
         this.setState({selected: "abt"})
+    }
+    handleToggleHam = () => {
+        let colla=this.state.coll;
+        if(colla) {
+            this.setState({coll: !colla, st: {display: "none", zIndex: "3000"}});
+        }
+        else {
+            this.setState({coll: !colla, st: {display: "block", zIndex: "3000", minHeight: "260px"}})
+        }
     }
     render() {
         console.log(this.props)
@@ -77,10 +92,14 @@ class Navbar extends Component {
         let color1 = "primary";
         let color2 = "secondary"
         return (
-            <div className="bd-example">
-                <nav className="navbar navbar-expand-lg navbar-dark bg-light">
+            <div className="bd-example" role="navigation">
+                <nav className="navbar navbar-expand-lg bg-light">
                     <a style={{color: "blue"}} className="home_logo" onClick={this.showDash}><img src={process.env.PUBLIC_URL + '/corona2.png'} alt="corona_logo" style={{maxWidth: "24px", maxHeight: "24px"}} />Covid-19</a>
-                    <div className="collapse navbar-collapse" id="navbarColor02">
+                    <button onClick={() => this.handleToggleHam()} class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                        {/* click me */}
+                    </button>
+                    <div className="collapse navbar-collapse" style={this.state.st} id="navbarTogglerDemo02">
                         <ul className="navbar-nav mr-auto">
                             {(this.state.selected==="dash") ?
                                 <Button variant="contained" color={color2} style={styles} onClick={this.showDash}>
@@ -127,11 +146,26 @@ class Navbar extends Component {
                                     About Us
                                 </Button>
                             }
+                            {(this.state.coll) ? 
+                                <Button variant="contained" color="primary" style={styles} onClick={this.handleToggle}>
+                                    Covid-19 Symptoms Checker
+                                </Button>
+                            :
+                            <div>
+                            </div>}
+                            
                         </ul>
-                        <form className="form-inline" style={{marginRight: "4%"}}>
-                            <Button variant="contained" color="secondary" onClick={this.handleToggle}>
-                                Covid-19 Symptoms Checker
-                            </Button>
+                        {(!this.state.coll) ? 
+                            <form className="form-inline" style={{marginRight: "4%"}}>
+                                <Button variant="contained" color="secondary" onClick={this.handleToggle}>
+                                    Covid-19 Symptoms Checker
+                                </Button>
+                            </form>
+                            :
+                            <div>
+                            </div>
+                        }
+                        {(this.state.open) ? 
                             <Backdrop open={this.state.open} onKeyDown={(e) => this.handleKey(e)} onClick={this.handleClose} style={{zIndex: "100"}}>
                                 <div className="backdrop_data">
                                     <h2 >Covid-19 Symptoms checker: By Johns Hopkins Medicine</h2>
@@ -154,7 +188,10 @@ class Navbar extends Component {
                                     <iframe className="checker_iframe" id="checker-iframe" title="Coronavirus (COVID-19) Self-Checker" src="https://jhmcoronavirusselfchecker.azurewebsites.net/" />
                                 </div>
                             </Backdrop>
-                        </form>
+                            :
+                            <div>
+                            </div>
+                        }
                     </div>
                 </nav>
             </div>
