@@ -45,32 +45,28 @@ class Navbar extends Component {
         if(history) history.push({
             pathname: `/symptoms`
         });
-        this.handleToggleHam();
-        this.setState({selected: "sym"})
+        this.setState({selected: "sym", coll: false, st: {display: "none", zIndex: "3000"}})
     }
     showPre = () => {
         const { history } = this.props;
         if(history) history.push({
             pathname: `/preventions`
         });
-        this.handleToggleHam();
-        this.setState({selected: "pre"})
+        this.setState({selected: "pre", coll: false, st: {display: "none", zIndex: "3000"}})
     }
     showFaqs = () => {
         const { history } = this.props;
         if(history) history.push({
             pathname: `/faqs`
         });
-        this.handleToggleHam();
-        this.setState({selected: "faq"})
+        this.setState({selected: "faq", coll: false, st: {display: "none", zIndex: "3000"}})
     }
     showAbt = () => {
         const { history } = this.props;
         if(history) history.push({
             pathname: `/about`
         });
-        this.handleToggleHam();
-        this.setState({selected: "abt"})
+        this.setState({selected: "abt", coll: false, st: {display: "none", zIndex: "3000"}})
     }
     handleToggleHam = () => {
         let colla=this.state.coll;
